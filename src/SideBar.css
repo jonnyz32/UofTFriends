@@ -1,0 +1,21 @@
+
+.chats {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 100%;
+    background-color:royalblue;
+    
+}
+
+.chats p {
+    text-align: center;
+    height: 50px;
+    color: white;
+}
+
+.chats p:hover {
+    text-align: center;
+    background-color: #3399FF;
+}
