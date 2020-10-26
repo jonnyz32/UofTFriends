@@ -1,0 +1,28 @@
+.filterBar {
+    height: 20px;
+    
+}
+#button {
+    height: 26px;
+}
+
+
+.SearchBar {
+    background-color: indigo;
+    height: 100px;
+    overflow: auto;
+}
+
+#SearchBarForm {
+    display: inline;
+    }
+
+.mainBody   {
+    
+    overflow: auto;
+
+}
+
+.inner {
+    margin-top: 20px;
+}

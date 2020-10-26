@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './ChatItem.css';
 
 
 class ChatItem extends Component {
@@ -12,7 +13,10 @@ class ChatItem extends Component {
   render() {
    
     return (
-    <p onClick={() => this.openChat(this.props.chatName)}>{this.props.chatName}</p>
+      <div className="chatItem">
+         <p onClick={() => this.openChat(this.props.chatName)}>{this.props.chatName}</p>
+      </div>
+   
     );
   }
 }
