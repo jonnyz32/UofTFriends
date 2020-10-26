@@ -7,8 +7,7 @@ class SideBar extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {chats: [{name: 'Chats'},
-                          {name: 'CSC309'},
+    this.state = {chats: [{name: 'CSC309'},
                           {name: 'CSC311'},
                           {name: 'CSC300'},
                           {name: 'PHL245'},
@@ -20,6 +19,7 @@ class SideBar extends Component {
    
     return (
      <div className="chats">
+       <p>Chats</p>
         {this.state.chats.map((chat) => <ChatItem chatName={chat.name} />)}
      </div>
     );

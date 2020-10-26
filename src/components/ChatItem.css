@@ -1,0 +1,12 @@
+.chatItem p {
+    text-align: center;
+    height: 50px;
+    color: white;
+    padding-top: 6px;
+    margin: 0;
+}
+
+.chatItem p:hover {
+    text-align: center;
+    background-color: #3399FF;
+}
