@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     width: 150px;
-    height: 100vh;
+    height: 100vmax;
     background-color:royalblue;
     float: left;
     
@@ -17,7 +17,7 @@
     margin: 0;
 }
 
-.chats p:hover {
+/* .chats p:hover {
     text-align: center;
     background-color: #3399FF;
-}
+} */

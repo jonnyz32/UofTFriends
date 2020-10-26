@@ -21,11 +21,13 @@ class StudentItem extends Component {
     return (
         <div className="Student">
             <img className="Avatar" src={require('../images/Mobsquare.png')}></img>
+            <button>Chat</button>
             <p><strong>{this.props.name}</strong></p>
-            <p>courses: {this.props.courses}</p>
-            <p>program: {this.props.program}</p>
-            <p>hobbies:  {this.props.hobbies}</p>
+            <p>courses: {this.props.courses.join(", ")}</p>
+            <p>program: {this.props.program.join(", ")}</p>
+            <p>hobbies:  {this.props.hobbies.join(", ")}</p>
             <p>bio: {this.props.bio}</p>
+            
 
         </div>
     
