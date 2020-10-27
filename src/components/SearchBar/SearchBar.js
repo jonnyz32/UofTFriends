@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './SearchBar.css'
-import SideBar from './SideBar';
-import Students from './Students';
+import SideBar from '../SideNav/SideNav';
+import Students from './../Students/Students';
 
 
 class SearchBar extends Component {
@@ -12,6 +12,11 @@ class SearchBar extends Component {
                 course: "",
                 program: "",
                 hobby: "",
+                chats: [{name: 'CSC309'},
+                          {name: 'CSC311'},
+                          {name: 'CSC300'},
+                          {name: 'PHL245'},
+                          {name: 'CSC343'}],
                 students: [
                     {name: 'Jonathan Zak',
                     courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
@@ -82,6 +87,15 @@ class SearchBar extends Component {
         {this.setState({[event.target.name]: event.target.value})}
     }
 
+    addChat = (chatName) => {
+        {console.log(chatName)}
+        const updatedChats = this.state.chats;
+        updatedChats.push({name: chatName})
+        {console.log(updatedChats)}
+        this.setState({chats: updatedChats})
+        {console.log(this.state)}
+    }
+
     
     render() {
    
@@ -102,8 +116,8 @@ class SearchBar extends Component {
             {/* {console.log(this.state.students)} */}
             </div>
             <div className="mainBody">
-            <SideBar />
-            <Students students={this.state.students}/>
+            <SideBar chats={this.state.chats}/>
+            <Students addChat={this.addChat} students={this.state.students}/>
    
             </div>
 

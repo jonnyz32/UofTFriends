@@ -20,8 +20,8 @@ class StudentItem extends Component {
    
     return (
         <div className="Student">
-            <img className="Avatar" src={require('../images/Mobsquare.png')}></img>
-            <button>Chat</button>
+            <img className="Avatar" src={require('../../images/Mobsquare.png')}></img>
+            <button onClick={() => this.props.addChat(this.props.name)}>Chat</button>
             <p><strong>{this.props.name}</strong></p>
             <p>courses: {this.props.courses.join(", ")}</p>
             <p>program: {this.props.program.join(", ")}</p>
