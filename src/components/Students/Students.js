@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import StudentItem from './StudentItem';
-import './StudentItem.css';
+import StudentItem from '../StudentItem/StudentItem';
+import './../StudentItem/StudentItem.css';
 
 
 class Students extends Component {
@@ -17,11 +17,12 @@ class Students extends Component {
    
     return (
         <div className="Students">
-          {console.log(this.props)}
+          {/* {console.log(this.props)} */}
 
           
           
-            {this.props.students && this.props.students.map((student) => <StudentItem name={student.name} 
+            {this.props.students && this.props.students.map((student) => <StudentItem addChat={this.props.addChat}
+                                                              name={student.name} 
                                                               courses={student.courses} 
                                                               program={student.program} 
                                                               hobbies={student.hobbies} 
