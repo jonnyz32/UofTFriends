@@ -12,6 +12,10 @@
  text-align: center;
  background-color: #a6f6f1;
 }
+.input:hover {
+  background-color: white;
+}
+
 
 .div {
   position: fixed; /* or absolute */
@@ -21,6 +25,14 @@
  color: #213e3b;
 
 }
+
+.button:hover
+  {
+    color:white;
+    text-decoration:none;
+    cursor:pointer;
+    background-color: black;
+   }
 
 .button {
   margin-top: 5px;
