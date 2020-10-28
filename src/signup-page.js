@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import "./signup-page.css"
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import SearchBar from './components/SearchBar/SearchBar';
 
 
 
@@ -7,17 +10,31 @@ import "./signup-page.css"
 
 class Signup extends Component {
 
-  state = {
-    username: "",
-    password:"",
-    email:"",
-    users : [{username:"",password:""}]
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password:"",
+      email:"",
+      users : this.props.users
 
+    };
+
+  }
+
+
+  SignIn = (event) => {
+    const verificationUser = {username: this.state.username, password: this.state.password, email: this.state.email}
+    for (var i=0; i<this.state.users.length; i++) {
+     if (JSON.stringify(this.state.users[i].name) === JSON.stringify(verificationUser.username) ) {
+             alert("EQUALS");
+      }
+}
   }
 
   handleInputChange = (event) => {
     const target = event.target
-    const value = event.value
+    const value = target.value
     const name=target.name
 
     this.setState({
@@ -34,24 +51,32 @@ class Signup extends Component {
     userList.push(newUser)
     this.setState ({
       users : userList
-    })
+    });
+
+    console.log(newUser.username)
+
   }
 
     render() {
-      return(<div class="div">
+      return(<div className="div">
 
 
         <h1> Sign Up to Friends-at-UofT </h1>
-        <input type="text" value= {this.state.username} onChange="this.handleInputChange" class="input" name="username" placeholder="User Name"/>
-        <input type="text" value= {this.state.password} onChange="this.handleInputChange" class="input" name="password" placeholder="Password"/>
-        <input type="text" value= {this.state.email} onChange="this.handleInputChange" class="input" name="email" placeholder="UofT Email"/>
+        <input type="text" value= {this.state.username} onChange={this.handleInputChange} className="input" name="username" placeholder="User Name"/>
+        <input type="text" value= {this.state.password} onChange={this.handleInputChange} className="input" name="password" placeholder="Password"/>
+        <input type="text" value= {this.state.email} onChange={this.handleInputChange} className="input" name="email" placeholder="UofT Email"/>
 
-        <button class="button" onClick={this.addUser}> Sign Up </button>
 
-        <a class="FAQ"> Frequently Asked Questions</a>
-        <a href="mailto:97sdmn@gmail.com" class="Contact"> Contact us</a>
+        <button className="button" onClick={this.addUser}> Sign Up </button>
+        <button className="button" onClick={this.SignIn}> Sign In </button>
+
+
+        <a className="FAQ"> Frequently Asked Questions</a>
+        <a href="mailto:97sdmn@gmail.com" className="Contact"> Contact us</a>
         </div>);
     }
 }
+
+//<Link to={'/SearchBar'}> <button>Go to search bar</button></Link>
 
 export default Signup

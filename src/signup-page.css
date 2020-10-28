@@ -45,6 +45,12 @@
   border-style: solid;
 
 }
+.Contact:hover
+  {
+    color:white;
+    text-decoration:none;
+    cursor:pointer;
+   }
 .Contact{
   position: absolute;
   top: 120%;
@@ -52,6 +58,8 @@
   border-width: 1px;
   border-color: black;
   border-style: solid;
+  text-decoration: none;
+
 
   font-size: 14px;
   border-radius: 50%;
