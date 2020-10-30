@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import Signup from './components/SignupPage/SignupPage';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
+import SettingsPage from './components/SettingsPage/SettingsPage';
 import Chat from './components/Chat/Chat';
 
 class App extends Component {
@@ -68,7 +69,9 @@ class App extends Component {
           <Route exact path='/Signup' render={() =>
                           (<Signup users={this.state.students}/>)}/>
           <Route exact path='/SearchBar' render={() =>
-                          (<SearchBar />)}/>
+                          (<SearchBar/>)}/>
+          <Route exact path='/Settings' render={() =>
+                          (<SettingsPage student={this.state.students[2]}/>)}/>
           <Route exact path='/Chat' render={() =>
                           (<Chat />)}/>
         </Switch>

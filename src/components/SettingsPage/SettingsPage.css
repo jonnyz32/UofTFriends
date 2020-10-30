@@ -1,0 +1,73 @@
+.SettingsHeader {
+    display: block;
+    text-align: center;
+    align-self: center;
+    border: 3px solid #000000;
+    border-radius: 20px;
+
+    height: 100px;
+
+    /* Horizontal Align */
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    
+}
+
+.Background {
+    background-color: #e8ffff;
+}
+
+
+.Bio {
+    text-align: left;
+    font-size: 15pt;
+    height: 100px;
+    width: 60%;
+    margin-top: 10px;
+}
+
+.SettingsTitle {
+    width: fit-content;
+    height: inherit;
+    margin: auto;
+}
+
+.Submit {
+    width: 75px;
+    height: 50px;
+    margin: 10px;
+}
+
+.Name {
+    font-size: 30pt;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    float: left;
+}
+
+.CourseList {
+    display: block;
+    text-align: center;
+    align-self: center;
+    border: 3px solid #000000;
+    border-radius: 20px;
+
+    height: 60%;
+    width: 50%;
+
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
