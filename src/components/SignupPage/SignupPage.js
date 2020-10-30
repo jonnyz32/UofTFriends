@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import "./signup-page.css"
+import "./SignupPage.css"
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import SearchBar from './components/SearchBar/SearchBar';
 
 
 
