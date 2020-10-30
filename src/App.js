@@ -5,6 +5,7 @@ import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import SettingsPage from './components/SettingsPage/SettingsPage';
 import Chat from './components/Chat/Chat';
+import PostRegistration from './components/PostRegistration/postregistration';
 
 class App extends Component {
   state = {
@@ -74,6 +75,8 @@ class App extends Component {
                           (<SettingsPage student={this.state.students[2]}/>)}/>
           <Route exact path='/Chat' render={() =>
                           (<Chat />)}/>
+          <Route exact path='/PostRegistration' render={() =>
+                          (<PostRegistration/>)}/>
         </Switch>
       </BrowserRouter>
 
