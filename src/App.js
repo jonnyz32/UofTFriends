@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import Signup from './signup-page';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
+import SettingsPage from './components/SettingsPage/SettingsPage';
 
 class App extends Component {
   state = {
@@ -68,6 +69,8 @@ class App extends Component {
                           (<Signup users={this.state.students}/>)}/>
           <Route exact path='/SearchBar' render={() =>
                           (<SearchBar/>)}/>
+          <Route exact path='/Settings' render={() =>
+                          (<SettingsPage student={this.state.students[2]}/>)}/>
         </Switch>
       </BrowserRouter>
 
