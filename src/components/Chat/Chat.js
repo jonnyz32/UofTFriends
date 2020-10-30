@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ChatStyle from './chat.css'
+import ChatStyle from './Chat.css'
 
 class Chat extends React.Component {
 
@@ -62,6 +62,8 @@ class Chat extends React.Component {
     class Texts extends React.Component {
           render() {
             return (
+              <div> 
+                {/* <SearchBar searchMode={false}/> */}
               <ul className="messages">
                 {this.props.texts.map(text => {
                   return (
@@ -76,6 +78,8 @@ class Chat extends React.Component {
                  )
                })}
              </ul>
+              </div>
+              
             )
           }
         }

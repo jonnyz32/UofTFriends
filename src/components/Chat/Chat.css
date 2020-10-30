@@ -19,9 +19,8 @@
   position: relative;
 }
 .messages{
-  left: 355px;
-  top: 25px;
-  width: 40%;
+  margin: 0;
+  height: 600px;
   border-color: #41aea9;
   border-width: 15px;
   border-style: solid;
@@ -32,9 +31,8 @@
 
 }
 .messagesBox {
-  align-self: center;
-  top: 60px;
-
+  float: left;
+  width: 87%;
   position: relative;
   border-color: black;
 
