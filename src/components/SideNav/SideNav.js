@@ -20,7 +20,8 @@ class SideBar extends Component {
     return (
      <div className="chats">
        <p>Chats</p>
-        {this.props.chats.map((chat) => <ChatItem chatName={chat.name} />)}
+       {console.log("in sidenav ", this.props.searchMode)}
+        {this.props.chats.map((chat) => <ChatItem toggleSearchMode={this.props.toggleSearchMode} searchMode={this.props.searchMode} chatName={chat.name} />)}
      </div>
     );
   }

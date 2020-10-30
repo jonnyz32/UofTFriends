@@ -4,9 +4,12 @@ import './ChatItem.css';
 
 class ChatItem extends Component {
 
-  openChat = (chatName) => { 
-    {console.log("You've clicked on ", {chatName})}
-  }
+  // openChat = (chatName) => { 
+  //   {console.log("in openChat")}
+  //   if (this.props.SearchMode){
+  //     this.props.toggleSearchMode();
+  //   }
+  // }
 
 
 
@@ -14,7 +17,8 @@ class ChatItem extends Component {
    
     return (
       <div className="chatItem">
-         <p onClick={() => this.openChat(this.props.chatName)}>{this.props.chatName}</p>
+        {console.log("in ChatItem ", this.props.searchMode)}
+         <p onClick={() => this.props.toggleSearchMode(this.props.searchMode)}>{this.props.chatName}</p>
       </div>
    
     );

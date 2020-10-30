@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './SearchBar.css'
 import SideBar from '../SideNav/SideNav';
 import Students from './../Students/Students';
+import Chat from '../Chat/Chat';
 
 
 class SearchBar extends Component {
@@ -9,6 +10,7 @@ class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
+                searchMode: true,
                 course: "",
                 program: "",
                 hobby: "",
@@ -73,8 +75,9 @@ class SearchBar extends Component {
     
     setFilters = (event) => {
         const {course, program, hobby, students} = this.state
+
         event.preventDefault()
-        {this.setState({students: students.filter(student => 
+        {this.setState({searchMode: true, students: students.filter(student => 
             (student.courses.indexOf(course) > -1 || !course) &&
             (student.program.indexOf(program) > -1 || !program) &&
             (student.hobbies.indexOf(hobby) > -1 || !hobby)
@@ -94,6 +97,13 @@ class SearchBar extends Component {
         {console.log(updatedChats)}
         this.setState({chats: updatedChats})
         {console.log(this.state)}
+    }
+
+    toggleSearchMode = (searchMode) => {
+        {console.log("searchMode: ", searchMode)}
+        if (searchMode){
+            {this.setState({searchMode: !this.state.searchMode})}
+            }  
     }
 
     
@@ -116,8 +126,12 @@ class SearchBar extends Component {
             {/* {console.log(this.state.students)} */}
             </div>
             <div className="mainBody">
-            <SideBar chats={this.state.chats}/>
-            <Students addChat={this.addChat} students={this.state.students}/>
+                <SideBar toggleSearchMode={this.toggleSearchMode} searchMode={this.state.searchMode} chats={this.state.chats}/>
+                { this.state.searchMode ? 
+                    <Students addChat={this.addChat} students={this.state.students}/>: <Chat/>
+
+                }
+        
    
             </div>
 

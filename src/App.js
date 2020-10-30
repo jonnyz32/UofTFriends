@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import Signup from './signup-page';
+import Signup from './components/SignupPage/SignupPage';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import SettingsPage from './components/SettingsPage/SettingsPage';
+import Chat from './components/Chat/Chat';
 
 class App extends Component {
   state = {
@@ -71,6 +72,8 @@ class App extends Component {
                           (<SearchBar/>)}/>
           <Route exact path='/Settings' render={() =>
                           (<SettingsPage student={this.state.students[2]}/>)}/>
+          <Route exact path='/Chat' render={() =>
+                          (<Chat />)}/>
         </Switch>
       </BrowserRouter>
 
