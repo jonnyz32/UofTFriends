@@ -36,7 +36,7 @@ class PostRegistration extends React.Component {
           </div>
 
           <h1> Before you begin using the website and making new friends, tell us a little bit about yourself! </h1>
-          <img className="Avatar" src={require('../../images/Mobsquare.png')}></img>
+          <img className="profilePicture" src={require('../../images/Mobsquare.png')}></img>
 
           <div className="descContainer">
             <div className= 'infoContainer'>
