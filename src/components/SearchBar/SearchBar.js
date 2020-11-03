@@ -72,6 +72,10 @@ class SearchBar extends Component {
      
     }  
      
+    componentDidMount(){
+        //setChats
+
+    }
     
     setFilters = (event) => {
         const {course, program, hobby, students} = this.state

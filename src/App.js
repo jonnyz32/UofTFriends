@@ -7,6 +7,7 @@ import Chat from './components/Chat/Chat';
 
 class App extends Component {
   state = {
+    currentUser: "",
     students: [
         {name: 'Jonathan Zak',
         courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],

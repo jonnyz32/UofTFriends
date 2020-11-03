@@ -1,19 +1,55 @@
 .filterBar {
-    height: 20px;
-    
+       width: 10%;
+       height: 30px;
+       border-radius: 4px;
+      
+       top: 1000%;
+       left: 10%;
+       display: inline block;
+       text-align: center;
+       background-color: #a6f6f1;
+      }
+
+.filterBar:hover {
+background-color: white;
 }
+
+#button:hover
+{
+  color:white;
+  text-decoration:none;
+  cursor:pointer;
+  background-color: black;
+ }
+
+
+
 #button {
-    height: 26px;
+    width: 100px;
+    margin-top: 5px;
+    margin-left: 10px;
+    height: 38px;
+    font-size: 14px;
+    padding: 10px 30px;
+    border-radius: 12px;
+    background-color: white;
+    color: #213e3b;
 }
 
 
 .SearchBar {
-    background-color: indigo;
+    position: fixed;
+    background-color: white;
     height: 100px;
     overflow: auto;
+    border-radius: 30%;
+    border: 2px solid  #213e3b;
+    width: 90%;
+    margin-left: 5%;
 }
 
 #SearchBarForm {
+    width: 400px;
     display: inline;
     }
 
