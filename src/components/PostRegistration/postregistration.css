@@ -1,11 +1,4 @@
-html, body, #app, #app>div {
-    background-color: lightskyblue;
-	margin: 0;
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
-    height: 100%;
-    width: 100%;
-    display: block;
-}
+
 
 .backgroundContainer {
     display: block;

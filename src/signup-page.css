@@ -16,6 +16,10 @@
   background-color: white;
 }
 
+.SignUP {
+  background-color: #e8ffff;
+}
+
 
 .div {
   position: fixed; /* or absolute */
@@ -23,7 +27,6 @@
  left: 35%;
  font-family: 'Raleway', sans-serif;
  color: #213e3b;
- background-color: #e8ffff;
 
 }
 
@@ -41,10 +44,6 @@
   padding: 10px 30px;
   border-radius: 12px;
   background-color: white;
-  color: #213e3b;
-}
-.header{
-  background-color: #e8ffff;
   color: #213e3b;
 }
 .FAQ {

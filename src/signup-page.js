@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import "./SignupPage.css"
+import "./signup-page.css"
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import SearchBar from './components/SearchBar/SearchBar';
 
 
 
@@ -60,7 +61,7 @@ class Signup extends Component {
       return(<div className="div">
 
 
-        <h1 className="header"> Sign Up to Friends-at-UofT </h1>
+        <h1> Sign Up to Friends-at-UofT </h1>
         <input type="text" value= {this.state.username} onChange={this.handleInputChange} className="input" name="username" placeholder="User Name"/>
         <input type="text" value= {this.state.password} onChange={this.handleInputChange} className="input" name="password" placeholder="Password"/>
         <input type="text" value= {this.state.email} onChange={this.handleInputChange} className="input" name="email" placeholder="UofT Email"/>
