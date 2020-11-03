@@ -46,6 +46,7 @@ background-color: white;
     border: 2px solid  #213e3b;
     width: 90%;
     margin-left: 5%;
+    z-index: 1;
 }
 
 #SearchBarForm {
@@ -56,6 +57,9 @@ background-color: white;
 .mainBody   {
     
     overflow: auto;
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: auto;
 
 }
 

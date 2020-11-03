@@ -16,7 +16,6 @@ class Students extends Component {
   render() {
    
     return (
-      <div className="studentContainer">
         <div className="Students">
           {/* {console.log(this.props)} */}
 
@@ -33,8 +32,6 @@ class Students extends Component {
            
 
         </div>
-
-      </div>
         
     
     );
