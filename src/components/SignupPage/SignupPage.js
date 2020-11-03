@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "./SignupPage.css"
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
 import { Link } from "react-router-dom";
 
 
@@ -15,7 +15,9 @@ class Signup extends Component {
       username: "",
       password:"",
       email:"",
-      users : this.props.users
+      users : this.props.users,
+      currentUser:"",
+      signedIn:false
 
     };
 
@@ -27,9 +29,23 @@ class Signup extends Component {
     for (var i=0; i<this.state.users.length; i++) {
      if (JSON.stringify(this.state.users[i].name) === JSON.stringify(verificationUser.username) ) {
              alert("EQUALS");
+
+             this.setState({
+               currentUser:this.state.users[i],
+               signedIn:1
+             }
+
+
+             )
+
+
+
+
       }
 }
   }
+
+
 
   handleInputChange = (event) => {
     const target = event.target
@@ -57,6 +73,11 @@ class Signup extends Component {
   }
 
     render() {
+
+      if(this.state.signedIn==1){
+        this.props.toggleSignIn(this.state.currentUser,this.state.signedIn)
+        return <Redirect to={{ pathname: "/SearchBar" }}/>
+      }
       return(<div className="div">
 
 

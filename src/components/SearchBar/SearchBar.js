@@ -11,6 +11,7 @@ class SearchBar extends Component {
         super(props);
         this.state = {
                 searchMode: true,
+                currentUser: this.props.currentUser,
                 course: "",
                 program: "",
                 hobby: "",
@@ -25,69 +26,69 @@ class SearchBar extends Component {
                     program: ['Computer Science Specialist'],
                     hobbies: ['Rock climbing'],
                     bio: 'Third year cs student. Looking to meet some new people!'},
-  
+
                     {name: 'Shadman Aziz',
                     courses: ['Apm236', 'CSC309', 'Egy201', 'CSC343', 'CSC311'],
                     program: ['Computer Science Major', 'Religion minor'],
                     hobbies: ['Looking sexy'],
                     bio: 'Leveling up in Fifa'},
-  
+
                     {name: 'Meirbek Zeinulla',
                     courses: ['CSC458', 'CSC309', 'MAT235', 'CSC343', 'CSC263'],
                     program: ['Computer Science Major', 'Religion minor'],
                     hobbies: ['Looking sexy'],
                     bio: 'Leveling up in Fifa'},
-  
+
                     {name: 'Adi Thakur',
                     courses: ['Apm236', 'CSC309', 'Rel101', 'CSC343', 'Ast304'],
                     program: ['Computer Science Major', 'Religion minor'],
                     hobbies: ['Looking sexy'],
                     bio: 'Leveling up in Fifa'},
-  
+
                     {name: 'Cathy Aziz',
                     courses: ['CSC108', 'Rel101', 'Mat235', 'MAT137', 'BIO101'],
                     program: ['Computer Science Major', 'Religion minor'],
                     hobbies: ['Looking sexy'],
                     bio: 'Leveling up in Fifa'},
-  
+
                     {name: 'Jake Peralta',
                     courses: ['psy101', 'phl200', 'phl245', 'csc400', 'pey100'],
                     program: ['Computer Science Major', 'Religion minor'],
                     hobbies: ['Looking sexy'],
                     bio: 'Leveling up in Fifa'},
-  
+
                     {name: 'amy santiago',
                     courses: ['cog201', 'psy101', 'Egy201', 'CSC343', 'CSC311'],
                     program: ['Computer Science Major', 'Religion minor'],
                     hobbies: ['Looking sexy'],
                     bio: 'Leveling up in Fifa'},
-  
+
                     {name: 'Phil dunphy',
                     courses: ['Apm236', 'Rel101', 'MAT157', 'MAT247', 'CSC311'],
                     program: ['Computer Science Major', 'Religion minor'],
                     hobbies: ['Looking sexy'],
                     bio: 'Leveling up in Fifa'}
-                  ]              
+                  ]
         };
-     
-    }  
-     
+
+    }
+
     componentDidMount(){
         //setChats
 
     }
-    
+
     setFilters = (event) => {
         const {course, program, hobby, students} = this.state
 
         event.preventDefault()
-        {this.setState({searchMode: true, students: students.filter(student => 
+        {this.setState({searchMode: true, students: students.filter(student =>
             (student.courses.indexOf(course) > -1 || !course) &&
             (student.program.indexOf(program) > -1 || !program) &&
             (student.hobbies.indexOf(hobby) > -1 || !hobby)
-            )})}   
+            )})}
     }
-    
+
 
     onChange = (event) => {
         {console.log("in onchange")}
@@ -107,14 +108,15 @@ class SearchBar extends Component {
         {console.log("searchMode: ", searchMode)}
         if (searchMode){
             {this.setState({searchMode: !this.state.searchMode})}
-            }  
+            }
     }
 
-    
+
     render() {
-   
+      console.log(this.props.currentUser)
+
     return (
-        
+
         <div className="outerDiv">
             <div className="SearchBar">
                 <div className="inner">
@@ -125,25 +127,25 @@ class SearchBar extends Component {
                         <input type="submit" id="button" value="Submit"></input>
                     </form>
                 </div>
-                    
-                
+
+
             {/* {console.log(this.state.students)} */}
             </div>
             <div className="mainBody">
                 <SideBar toggleSearchMode={this.toggleSearchMode} searchMode={this.state.searchMode} chats={this.state.chats}/>
-                { this.state.searchMode ? 
+                { this.state.searchMode ?
                     <Students addChat={this.addChat} students={this.state.students}/>: <Chat/>
 
                 }
-        
-   
+
+
             </div>
 
-            
+
         </div>
 
-    
-    
+
+
     );
   }
 }

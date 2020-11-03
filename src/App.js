@@ -9,7 +9,7 @@ import PostRegistration from './components/PostRegistration/postregistration';
 
 class App extends Component {
   state = {
-    currentUser: "",
+    currentUser: 1,
     students: [
         {name: 'Jonathan Zak',
         courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
@@ -61,6 +61,13 @@ class App extends Component {
       ]
   }
 
+  toggleSignIn = (currentUser,signedIn) => {
+      {console.log("currentUser: ", currentUser)}
+      if (signedIn){
+          {this.setState({currentUser: currentUser})}
+          }
+  }
+
   render() {
 
     return (
@@ -69,9 +76,8 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path='/Signup' render={() =>
-                          (<Signup users={this.state.students}/>)}/>
-          <Route exact path='/SearchBar' render={() =>
-                          (<SearchBar/>)}/>
+                          (<Signup toggleSignIn={this.toggleSignIn} users={this.state.students}/>)}/>
+          <Route path="/SearchBar" render={(props) => <SearchBar currentUser={this.state.currentUser}/>}/>
           <Route exact path='/Settings' render={() =>
                           (<SettingsPage student={this.state.students[2]}/>)}/>
           <Route exact path='/Chat' render={() =>
