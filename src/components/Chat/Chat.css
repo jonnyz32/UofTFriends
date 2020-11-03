@@ -19,22 +19,23 @@
   position: relative;
 }
 .messages{
-  margin: 0;
-  height: 600px;
+  border-color: #41aea9;
+  border-width: 15px;
+  border-style: solid;
+  height: 450px;
   border-color: #41aea9;
   border-width: 15px;
   border-style: solid;
   padding-bottom: 5px;
   margin-bottom: 25px;
   padding-top: 10px;
-  position: relative;
 
 }
 .messagesBox {
-  float: left;
-  width: 87%;
+  width: 70%;
   position: relative;
   border-color: black;
-
+  margin-left: 17%;
+  margin-top: 10%;
 
 }
