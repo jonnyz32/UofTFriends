@@ -1,16 +1,14 @@
 
 .chats {
-    margin-top: 12%;
-    top: 0;
+    top: 14%;
     left: 0;
     width: 13%;
     height: 100vmax;
-    float: left;   
     position: fixed; 
 }
 
 .chatHeader {
-    position: fixed;
+    /* position: fixed; */
     margin-top: 8%;
     padding-bottom: 0%;
     padding-right: 0%;
@@ -18,18 +16,16 @@
     left: 10px;
     margin-left: 50px;
     border-radius: 40%;
-    width: 8%;
+    /* width: 8%; */
     height: 40px; 
    color: white;
    background-color:#41aea9;
    border: 2px solid  #213e3b;
   }
-  /* .chatHeader:hover {
-    background-color: white;
-  } */
+  
   
 
-.chats p {
+ .chats p {
     text-align: center;
     height: 30px;
     color: #213e3b;
@@ -39,16 +35,23 @@
     padding-bottom: 0%;
     padding-right: 0%;
     padding-left: 0%;
-    margin-left: 33%;
+    margin-left: 34%;
     border-radius: 70%;
     width: 50%;
     background-color: #a6f6f1;
     border: 2px solid  #213e3b;
+    border-radius: 70%;
+    width: 50%;
+    background-color: #a6f6f1;
+    border: 2px solid  #213e3b;
+    color: #213e3b;
     
-}
+} 
 
 .chats p:hover {
     text-align: center;
     background-color:#213e3b;
     color: white;
-}
+    background-color:#213e3b;
+    color: white;
+} 
