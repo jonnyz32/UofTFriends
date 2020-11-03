@@ -32,6 +32,7 @@ class Students extends Component {
            
 
         </div>
+        
     
     );
   }

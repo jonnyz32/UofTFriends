@@ -8,6 +8,11 @@
     position: relative;
 }
 
+.Students {
+    margin-left: 15%;
+    margin-top: 7%;
+}
+
 .Avatar {
     width: 90px;
     height: 90px;
@@ -26,4 +31,27 @@
 
 .Student button {
     float: right;
+    width: 100px;
+    margin-top: 5px;
+    margin-left: 10px;
+    height: 38px;
+    font-size: 14px;
+    padding: 10px 30px;
+    border-radius: 12px;
+    background-color: white;
+    color: #213e3b;
 }
+
+.Student button:hover
+{
+  color:white;
+  text-decoration:none;
+  cursor:pointer;
+  background-color: black;
+ }
+
+ .studentContainer {
+     position: relative;
+ }
+
+

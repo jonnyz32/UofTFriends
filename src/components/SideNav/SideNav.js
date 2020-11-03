@@ -18,10 +18,12 @@ class SideBar extends Component {
   render() {
    
     return (
-     <div className="chats">
-       <p>Chats</p>
+      <div>
+       <h1 className="chatHeader">Chats</h1>
        {console.log("in sidenav ", this.props.searchMode)}
+       <div className="chats">
         {this.props.chats.map((chat) => <ChatItem toggleSearchMode={this.props.toggleSearchMode} searchMode={this.props.searchMode} chatName={chat.name} />)}
+     </div>
      </div>
     );
   }
