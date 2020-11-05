@@ -12,13 +12,13 @@ class App extends Component {
     currentUser: 1,
     students: [
         {name: 'Jonathan Zak',
-        courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
+        courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
         program: ['Computer Science Specialist'],
         hobbies: ['Rock climbing'],
         bio: 'Third year cs student. Looking to meet some new people!'},
 
         {name: 'Shadman Aziz',
-        courses: ['Apm236', 'CSC309', 'Egy201', 'CSC343', 'CSC311'],
+        courses: [{name:'Apm236'}, {name:'CSC309'}, {name:'Egy201'}, {name:'CSC343'}, {name:'CSC311'}],
         program: ['Computer Science Major', 'Religion minor'],
         hobbies: ['Looking sexy'],
         bio: 'Leveling up in Fifa'},
