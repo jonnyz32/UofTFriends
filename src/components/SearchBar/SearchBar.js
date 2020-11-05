@@ -15,11 +15,12 @@ class SearchBar extends Component {
                 course: "",
                 program: "",
                 hobby: "",
-                chats: [{name: 'CSC309'},
-                          {name: 'CSC311'},
-                          {name: 'CSC300'},
-                          {name: 'PHL245'},
-                          {name: 'CSC343'}],
+                chats: this.props.currentUser.courses,
+                // chats: [{name: 'CSC309'},
+                //           {name: 'CSC311'},
+                //           {name: 'CSC300'},
+                //           {name: 'PHL245'},
+                //           {name: 'CSC343'}],
                 students: [
                     {name: 'Jonathan Zak',
                     courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
@@ -113,7 +114,7 @@ class SearchBar extends Component {
 
 
     render() {
-      console.log(this.props.currentUser)
+      console.log(this.props.currentUser.courses)
 
     return (
 
