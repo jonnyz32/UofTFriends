@@ -6,15 +6,28 @@ import SearchBar from './components/SearchBar/SearchBar';
 import SettingsPage from './components/SettingsPage/SettingsPage';
 import Chat from './components/Chat/Chat';
 import PostRegistration from './components/PostRegistration/postregistration';
+import Home from './components/Home/Home';
 
 class App extends Component {
   state = {
-    currentUser: 1,
+    currentUser: 0,
     students: [
         {name: 'Jonathan Zak',
         courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
         program: ['Computer Science Specialist'],
         hobbies: ['Rock climbing'],
+        schedule: [{
+                    activity: 'CSC300',
+                    time: '2-4pm' 
+                  },
+                  {
+                    activity: 'CSC309',
+                    time: '6-7pm'
+                  }
+                  ],
+                    
+        
+
         bio: 'Third year cs student. Looking to meet some new people!'},
 
         {name: 'Shadman Aziz',
@@ -82,6 +95,8 @@ class App extends Component {
                           (<SettingsPage student={this.state.students[2]}/>)}/>
           <Route exact path='/Chat' render={() =>
                           (<Chat />)}/>
+          <Route exact path='/Home' render={() =>
+                          (<Home schedule={this.state.students[this.state.currentUser].schedule}/>)}/>
           <Route exact path='/PostRegistration' render={() =>
                           (<PostRegistration/>)}/>
         </Switch>
