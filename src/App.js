@@ -13,6 +13,18 @@ class App extends Component {
         courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
         program: ['Computer Science Specialist'],
         hobbies: ['Rock climbing'],
+        schedule: [{
+                    activity: 'CSC300',
+                    time: '2-4pm' 
+                  },
+                  {
+                    activity: 'Rock climbing',
+                    time: '6-7pm'
+                  }
+                  ],
+                    
+        
+
         bio: 'Third year cs student. Looking to meet some new people!'},
 
         {name: 'Shadman Aziz',
@@ -72,6 +84,8 @@ class App extends Component {
                           (<SearchBar />)}/>
           <Route exact path='/Chat' render={() =>
                           (<Chat />)}/>
+          <Route exact path='/Home' render={() =>
+                          (<Home scheduleItems={this.state.students[currentUser].scheduleItems}/>)}/>
         </Switch>
       </BrowserRouter>
 
