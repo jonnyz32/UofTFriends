@@ -3,14 +3,17 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import Signup from './components/SignupPage/SignupPage';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
+import SettingsPage from './components/SettingsPage/SettingsPage';
 import Chat from './components/Chat/Chat';
+import PostRegistration from './components/PostRegistration/postregistration';
+import Home from './components/Home/Home';
 
 class App extends Component {
   state = {
-    currentUser: "",
+    currentUser: 0,
     students: [
         {name: 'Jonathan Zak',
-        courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
+        courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
         program: ['Computer Science Specialist'],
         hobbies: ['Rock climbing'],
         schedule: [{
@@ -18,7 +21,7 @@ class App extends Component {
                     time: '2-4pm' 
                   },
                   {
-                    activity: 'Rock climbing',
+                    activity: 'CSC309',
                     time: '6-7pm'
                   }
                   ],
@@ -28,7 +31,7 @@ class App extends Component {
         bio: 'Third year cs student. Looking to meet some new people!'},
 
         {name: 'Shadman Aziz',
-        courses: ['Apm236', 'CSC309', 'Egy201', 'CSC343', 'CSC311'],
+        courses: [{name:'Apm236'}, {name:'CSC309'}, {name:'Egy201'}, {name:'CSC343'}, {name:'CSC311'}],
         program: ['Computer Science Major', 'Religion minor'],
         hobbies: ['Looking sexy'],
         bio: 'Leveling up in Fifa'},
@@ -71,6 +74,13 @@ class App extends Component {
       ]
   }
 
+  toggleSignIn = (currentUser,signedIn) => {
+      {console.log("currentUser: ", currentUser)}
+      if (signedIn){
+          {this.setState({currentUser: currentUser})}
+          }
+  }
+
   render() {
 
     return (
@@ -79,13 +89,16 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path='/Signup' render={() =>
-                          (<Signup users={this.state.students}/>)}/>
-          <Route exact path='/SearchBar' render={() =>
-                          (<SearchBar />)}/>
+                          (<Signup toggleSignIn={this.toggleSignIn} users={this.state.students}/>)}/>
+          <Route path="/SearchBar" render={(props) => <SearchBar currentUser={this.state.currentUser}/>}/>
+          <Route exact path='/Settings' render={() =>
+                          (<SettingsPage student={this.state.students[2]}/>)}/>
           <Route exact path='/Chat' render={() =>
                           (<Chat />)}/>
           <Route exact path='/Home' render={() =>
-                          (<Home scheduleItems={this.state.students[currentUser].scheduleItems}/>)}/>
+                          (<Home schedule={this.state.students[this.state.currentUser].schedule}/>)}/>
+          <Route exact path='/PostRegistration' render={() =>
+                          (<PostRegistration/>)}/>
         </Switch>
       </BrowserRouter>
 

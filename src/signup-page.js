@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import "./SignupPage.css"
-import { Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
+import "./signup-page.css"
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import SearchBar from './components/SearchBar/SearchBar';
 
 
 
@@ -15,9 +16,7 @@ class Signup extends Component {
       username: "",
       password:"",
       email:"",
-      users : this.props.users,
-      currentUser:"",
-      signedIn:false
+      users : this.props.users
 
     };
 
@@ -29,23 +28,9 @@ class Signup extends Component {
     for (var i=0; i<this.state.users.length; i++) {
      if (JSON.stringify(this.state.users[i].name) === JSON.stringify(verificationUser.username) ) {
              alert("EQUALS");
-
-             this.setState({
-               currentUser:this.state.users[i],
-               signedIn:1
-             }
-
-
-             )
-
-
-
-
       }
 }
   }
-
-
 
   handleInputChange = (event) => {
     const target = event.target
@@ -73,15 +58,10 @@ class Signup extends Component {
   }
 
     render() {
-
-      if(this.state.signedIn==1){
-        this.props.toggleSignIn(this.state.currentUser,this.state.signedIn)
-        return <Redirect to={{ pathname: "/SearchBar" }}/>
-      }
       return(<div className="div">
 
 
-        <h1 className="header"> Sign Up to Friends-at-UofT </h1>
+        <h1> Sign Up to Friends-at-UofT </h1>
         <input type="text" value= {this.state.username} onChange={this.handleInputChange} className="input" name="username" placeholder="User Name"/>
         <input type="text" value= {this.state.password} onChange={this.handleInputChange} className="input" name="password" placeholder="Password"/>
         <input type="text" value= {this.state.email} onChange={this.handleInputChange} className="input" name="email" placeholder="UofT Email"/>

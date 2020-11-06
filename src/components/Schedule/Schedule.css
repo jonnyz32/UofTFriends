@@ -1,0 +1,28 @@
+.schedule {
+    margin-top: 10%;
+    margin-left: 35%;
+    width: 30%;
+    height: 20%;
+    border: 1px solid black;
+}
+
+.scheduleItem {
+    border-top: 1px solid black;
+}
+
+/* .Activity {
+    margin-left: 15%;
+} */
+
+.Activity h2 {
+    margin-top: 0%;
+}
+
+
+.Time {
+    float: left;
+    margin-left: 6%;
+    margin-top: 1%;
+
+}
+

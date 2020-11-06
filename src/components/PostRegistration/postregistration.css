@@ -1,0 +1,87 @@
+
+
+.backgroundContainer {
+    display: block;
+}
+
+.descContainer {
+    background-color: lightskyblue;
+    display: block;
+    margin-top: 25%;
+    position: absolute;
+    width: 100%;
+}
+
+.profileContainer {
+    background-color: lightskyblue;
+    display: block;
+    margin-top: 10%;
+    margin-left: 30%;
+    position: absolute;
+    width: 100%;
+}
+
+h1 {
+    background-color: lightskyblue;
+    color: white;
+    left: 0;
+    position: relative;
+    text-align: center;
+}
+
+.profilePicture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    position: absolute;
+}
+
+.infoContainer {
+    background-color: lightskyblue;
+    font-size: 25px;
+    color: white;
+    font-weight: bolder;
+    padding-left: 10%;
+    position: static;
+    text-align: left;
+}
+
+.coursesContainer {
+    background-color: lightskyblue;
+    font-size: 25px;
+    color: white;
+    font-weight: bolder;
+    padding-left: 10%;
+    position: static;
+    text-align: left;
+}
+
+.bioContainer {
+    background-color: lightskyblue;
+    font-size: 25px;
+    color: white;
+    font-weight: bolder;
+    padding-left: 10%;
+    position: static;
+    text-align: left;
+}
+
+.saveButton {
+    font-size: 25px;
+    font-weight: bolder;
+    margin-top: 35%;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+}
+
+.profileButton {
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+input {
+    text-align: center;
+}
