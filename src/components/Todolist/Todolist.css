@@ -2,23 +2,53 @@
     margin-top: 10%;
     margin-left: 55%;
     width: 30%;
-    border: 1px solid black;
 }
 
-.TodoListItem {
-    border-top: 1px solid black;
+.Todolist h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    color: #213E3B;
+    margin-top: 0px;
+}
+
+.ToDoListItem td {
+    background-color: white;
+    width: 100%;
+    border-top:1px solid black;
     border-bottom: 1px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ToDoListItem td:first-child {
+    background-color: white;
+    width: 100%;
+    border-left:1px solid black;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
+
+.ToDoListItem td:last-child {
+    background-color: white;
+    width: 100%;
+    border-right:1px solid black;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+
+
 }
 
 
-.Activity h2 {
+/* .Activity h2 {
     margin-top: 0%;
-}
+    width: 100%;
+} */
 
 
-.Time {
+/* .Time {
     float: left;
     margin-left: 6%;
     margin-top: 1%;
 
-}
+} */
