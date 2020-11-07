@@ -10,7 +10,29 @@ import Home from './components/Home/Home';
 
 class App extends Component {
   state = {
-    currentUser: 0,
+    currentUser: {name: 'Jonathan Zak',
+    courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
+    program: ['Computer Science Specialist'],
+    hobbies: ['Rock climbing'],
+    schedule: [{
+                activity: 'CSC300',
+                time: '2-4pm'
+              },
+              {
+                activity: 'CSC309',
+                time: '6-7pm'
+              }
+              ],
+    toDoList:[{
+                activity: 'leg day',
+                time: '4-5pm'
+              },
+              {
+                activity: 'CSC309 group meeting',
+                time: '8-9pm'
+              }
+              ],
+  bio: 'Third year cs student. Looking to meet some new people!'},
     students: [
         {name: 'Jonathan Zak',
         courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
@@ -18,15 +40,24 @@ class App extends Component {
         hobbies: ['Rock climbing'],
         schedule: [{
                     activity: 'CSC300',
-                    time: '2-4pm' 
+                    time: '2-4pm'
                   },
                   {
                     activity: 'CSC309',
                     time: '6-7pm'
                   }
                   ],
-                    
-        
+        toDoList:[{
+                    activity: 'leg day',
+                    time: '4-5pm'
+                  },
+                  {
+                    activity: 'CSC309 group meeting',
+                    time: '8-9pm'
+                  }
+                  ],
+
+
 
         bio: 'Third year cs student. Looking to meet some new people!'},
 
@@ -81,11 +112,24 @@ class App extends Component {
           }
   }
 
+  removeToDo = (name,activity) => {
+   // console.log("to be removed",name,activity)
+   // for(var i=0; i< this.state.currentUser.toDoList.length;i++) {
+   //   console.log(this.state.currentUser.toDoList[i].activity)
+   //   if(this.state.currentUser.toDoList[i].activity === activity){
+   //     console.log("done")
+   //     delete this.state.currentUser.toDoList[i]
+   //   }
+   //
+   // }
+
+  }
+
   render() {
+
 
     return (
       <div className="App">
-
       <BrowserRouter>
         <Switch>
           <Route exact path='/Signup' render={() =>
@@ -96,7 +140,7 @@ class App extends Component {
           <Route exact path='/Chat' render={() =>
                           (<Chat />)}/>
           <Route exact path='/Home' render={() =>
-                          (<Home schedule={this.state.students[this.state.currentUser].schedule}/>)}/>
+                          (<Home schedule={this.state.currentUser.schedule} removeToDo={this.removeToDo} name={this.state.currentUser.name} toDoList={this.state.currentUser.toDoList}/>)}/>
           <Route exact path='/PostRegistration' render={() =>
                           (<PostRegistration/>)}/>
         </Switch>
