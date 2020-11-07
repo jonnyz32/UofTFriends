@@ -11,7 +11,7 @@ import Home from './components/Home/Home';
 class App extends Component {
   state = {
     currentUser: {name: 'Jonathan Zak',
-    courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
+    courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
     program: ['Computer Science Specialist'],
     hobbies: ['Rock climbing'],
     schedule: [{
@@ -32,10 +32,10 @@ class App extends Component {
                 time: '8-9pm'
               }
               ],
-  bio: 'Third year cs student. Looking to meet some new people!'},
+    bio: 'Third year cs student. Looking to meet some new people!'},
     students: [
         {name: 'Jonathan Zak',
-        courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
+        courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
         program: ['Computer Science Specialist'],
         hobbies: ['Rock climbing'],
         schedule: [{
@@ -62,7 +62,7 @@ class App extends Component {
         bio: 'Third year cs student. Looking to meet some new people!'},
 
         {name: 'Shadman Aziz',
-        courses: [{name:'Apm236'}, {name:'CSC309'}, {name:'Egy201'}, {name:'CSC343'}, {name:'CSC311'}],
+        courses: ['Apm236', 'CSC309', 'Egy201', 'CSC343', 'CSC311'],
         program: ['Computer Science Major', 'Religion minor'],
         hobbies: ['Looking sexy'],
         bio: 'Leveling up in Fifa'},
