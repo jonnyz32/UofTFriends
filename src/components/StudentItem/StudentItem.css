@@ -1,45 +1,54 @@
+/* Search result student card. */
 .Student {
-    border-bottom: 1px solid #ced0d4;
-    width: 1000px;
+    display: flex;
+    background-color: white;
+    padding: 15px;
+    margin: auto;
+    width: 80%;
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 50px;
+    height: fit-content;
+    justify-content: space-between;
+
+    /* Decorations */
+    box-shadow: 10px 10px 8px #888888;
+}
+
+.StudentInfo {
+    width: 50%;
+    display: block;
+    height: fit-content;
+    margin: auto;
     float: left;
-    margin-left: 100px;
-    margin-top: 10px;
-    height: 110px;
-    position: relative;
 }
 
-.Students {
-    margin-left: 15%;
-    margin-top: 7%;
+.StudentInfo p {
+    text-align: left;
 }
 
+.StudentInfo h3 {
+    margin-top: 0px;
+}
 .Avatar {
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    margin-left: 15px;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    display: block;
     float: left;
 }
 
-.Student p {
-    text-align: left;
-    line-height: 3px;
-    margin-left: 250px;
-}
-
+/* Button to chat with given student. */
 .Student button {
-    float: right;
-    width: 100px;
-    margin-top: 5px;
-    margin-left: 10px;
+    display: block;
+    float: left;
     height: 38px;
     font-size: 14px;
     padding: 10px 30px;
     border-radius: 12px;
     background-color: white;
     color: #213e3b;
+    margin: auto;
 }
 
 .Student button:hover
