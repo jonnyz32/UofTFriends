@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import "./signup-page.css"
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import SearchBar from './components/SearchBar/SearchBar';
+import Home from './components/Home/Home';
 
 
 
@@ -77,6 +77,6 @@ class Signup extends Component {
     }
 }
 
-//<Link to={'/SearchBar'}> <button>Go to search bar</button></Link>
+//<Link to={'/Home'}> <button>Go to search bar</button></Link>
 
 export default Signup

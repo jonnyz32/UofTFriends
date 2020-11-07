@@ -8,7 +8,7 @@ class ChatItem extends Component {
    
     return (
       <div className="ChatItem">
-         <p onClick={() => this.props.toggleSearchMode(this.props.searchMode)}>{this.props.chatName.toUpperCase()}</p>
+         <p onClick={() => this.props.toggleSearchMode("chat")}>{this.props.chatName.toUpperCase()}</p>
       </div>
    
     );

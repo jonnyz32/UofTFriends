@@ -11,7 +11,8 @@ class Schedule extends Component {
    
     return (
       <div className="schedule">
-          <div className="header">This is header</div>
+          <div className="header"><h2>Schedule</h2></div>
+          {console.log("in Schedule",this.props.schedule)}
           {this.props.schedule.map((scheduleItem) => <ScheduleItem activity={scheduleItem.activity}
                                                                         time={scheduleItem.time}
                                                                         />)}
