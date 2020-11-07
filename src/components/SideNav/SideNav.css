@@ -1,57 +1,16 @@
-
-.chats {
-    top: 14%;
-    left: 0;
-    width: 13%;
-    height: 100vmax;
-    position: fixed; 
+/* Container for chat header and all chats. */
+.Chats {
+    width: 100%;
+    margin: auto;
+    display: block;
 }
 
-.chatHeader {
-    /* position: fixed; */
-    margin-top: 8%;
-    padding-bottom: 0%;
-    padding-right: 0%;
-    padding-left: 0%;
-    left: 10px;
-    margin-left: 50px;
-    border-radius: 40%;
-    /* width: 8%; */
-    height: 40px; 
-   color: white;
-   background-color:#41aea9;
-   border: 2px solid  #213e3b;
+.ChatHeader {
+    font-size: 3.5vw;
+    background-color: rgb(121, 117, 117);
+    width: 90%;
+    margin: 5%;
+    padding: 30px 0 30px 0;
+    /* border-radius: 50px; */
+    box-shadow: 0px 3px 3px 3px #888888;
   }
-  
-  
-
- .chats p {
-    text-align: center;
-    height: 30px;
-    color: #213e3b;
-    padding-top: 6px;
-    margin-top: 0px;
-    margin-bottom: 7%;
-    padding-bottom: 0%;
-    padding-right: 0%;
-    padding-left: 0%;
-    margin-left: 34%;
-    border-radius: 70%;
-    width: 50%;
-    background-color: #a6f6f1;
-    border: 2px solid  #213e3b;
-    border-radius: 70%;
-    width: 50%;
-    background-color: #a6f6f1;
-    border: 2px solid  #213e3b;
-    color: #213e3b;
-    
-} 
-
-.chats p:hover {
-    text-align: center;
-    background-color:#213e3b;
-    color: white;
-    background-color:#213e3b;
-    color: white;
-} 

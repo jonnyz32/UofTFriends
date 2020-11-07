@@ -1,68 +1,102 @@
-.filterBar {
-       width: 10%;
-       height: 30px;
-       border-radius: 4px;
-      
-       top: 1000%;
-       left: 10%;
-       display: inline block;
-       text-align: center;
-       background-color: #a6f6f1;
-      }
-
-.filterBar:hover {
-background-color: white;
+/* Root element of the main page. */
+.outerDiv {
+	background-color:#f4f4f4;
+	color:#555;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	line-height:1.6em;
+    margin:0;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
 }
 
-#button:hover
-{
-  color:white;
-  text-decoration:none;
-  cursor:pointer;
-  background-color: black;
- }
-
-
-
-#button {
-    width: 100px;
-    margin-top: 5px;
-    margin-left: 10px;
-    height: 38px;
-    font-size: 14px;
-    padding: 10px 30px;
-    border-radius: 12px;
-    background-color: white;  
-    color: #213e3b;
-}
-
-
-.SearchBar {
-    position: fixed;
-    background-color: white;
-    height: 100px;
+/* Navbar. */
+#nav {
+    width: 100%;
+    background-color: #555;
     overflow: auto;
-    border-radius: 21%;
-    border: 2px solid  #213e3b;
-    width: 90%;
-    margin-left: 5%;
-    z-index: 1;
+    line-height: 25px;
+    border-bottom: solid 5px #888888;
+    box-sizing: border-box;
 }
 
-#SearchBarForm {
-    width: 400px;
-    display: inline;
-    }
+#nav form {
+    position: absolute;
+    display: inline-block;
+    width: 40%;
+    left: 30%;
+    margin: 8.5px;
+}
 
-.mainBody   {
+/* Search Bar */
+#nav form input {
+    display: inline-block;
+    width: 88%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    border: 1px solid white;
+    border-radius: 100px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Search Button */
+#nav form .submitQuery{
     
-    overflow: auto;
-    flex: 1;
-    overflow-x: auto;
-    overflow-y: auto;
-
+    float: right;
+    margin: auto;
+    padding: 3px;
+    margin-top: 2.5px;
+    width: 10%;    
 }
 
-.inner {
-    margin-top: 20px;
+#nav form input:hover {
+    border: 3px black solid;
+}
+
+/* Navigation Icons */
+#nav a {
+    display: block;
+    float: right;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    width: 10%;
+    max-width: fit-content;
+}
+
+/* Navbar links on mouse-over */
+#nav a:hover {
+    background-color: #000;
+}
+
+/* What do you think this is? */
+#sidebarContainer {
+    margin: 0;
+    width: 20%;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: auto;
+    float: left;
+
+    background-color: #d3d3d3;
+    border-right: solid 5px #888888;
+}
+
+/* Container for the fragments (Search results, chat window, etc.) */
+
+#fragmentContainer {
+    margin: 0;
+    width: 80%;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: auto;
+
+    background-color: #d3d3d3;
+    display: block;
 }
