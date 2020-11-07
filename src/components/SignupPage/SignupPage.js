@@ -76,7 +76,7 @@ class Signup extends Component {
 
       if(this.state.signedIn==1){
         this.props.toggleSignIn(this.state.currentUser,this.state.signedIn)
-        return <Redirect to={{ pathname: "/SearchBar" }}/>
+        return <Redirect to={{ pathname: "/Home" }}/>
       }
       return(<div className="div">
 

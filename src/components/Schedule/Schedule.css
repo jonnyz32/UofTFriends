@@ -1,13 +1,20 @@
 .schedule {
     margin-top: 10%;
-    margin-left: 35%;
+    margin-left: 13%;
     width: 30%;
-    height: 20%;
     border: 1px solid black;
+    float: left;
+}
+
+.schedule .header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    background-color: inherit;
 }
 
 .scheduleItem {
     border-top: 1px solid black;
+    clear: both;
 }
 
 /* .Activity {
@@ -15,7 +22,7 @@
 } */
 
 .Activity h2 {
-    margin-top: 0%;
+    margin-top: 1%;
 }
 
 

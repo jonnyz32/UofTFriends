@@ -7,7 +7,7 @@ class ToDoList extends Component {
 
    state = {
      time: "",
-     todolist: this.props.todolist,
+     todoList: this.props.todoList,
      activity:""
 
    }
@@ -26,7 +26,7 @@ class ToDoList extends Component {
    }
 
    addNewTodo = () => {
-     const newTodoList = this.state.todolist
+     const newTodoList = this.state.todoList
      const newTodo = {activity: this.state.activity, time: this.state.time}
      newTodoList.push(newTodo)
      this.setState ({
@@ -46,7 +46,7 @@ class ToDoList extends Component {
       <h2> To do list </h2>
       <table>
 
-     {this.props.todolist.map((toDoListItem) => <ToDoListItem removeToDo={this.props.removeToDo} name={this.props.name} activity={toDoListItem.activity}
+     {this.props.todoList.map((toDoListItem) => <ToDoListItem removeToDo={this.props.removeToDo} name={this.props.name} activity={toDoListItem.activity}
                                                                    time={toDoListItem.time}
                                                                    />)}
       </table>

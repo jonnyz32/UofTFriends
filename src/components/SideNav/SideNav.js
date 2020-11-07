@@ -11,7 +11,7 @@ class SideBar extends Component {
 
       <div className="Chats">
         <h1 className="ChatHeader">Groups</h1>       
-          {this.props.chats.map((chat) => <ChatItem toggleSearchMode={this.props.toggleSearchMode} searchMode={this.props.searchMode} chatName={chat} />)}
+          {this.props.chats.map((chat) => <ChatItem toggleSearchMode={this.props.toggleSearchMode} chatName={chat} />)}
       </div>
     );
   }
