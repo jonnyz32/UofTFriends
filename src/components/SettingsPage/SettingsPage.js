@@ -15,7 +15,7 @@ export class SettingsPage extends React.Component {
 
 	addCourse = () => {
 
-		if (this.state.chats.includes(this.newCourse) || (this.newCourse === "")) {
+		if (this.state.chats.includes(this.state.newCourse) || (this.state.newCourse == "")) {
 			return
 		}
 
