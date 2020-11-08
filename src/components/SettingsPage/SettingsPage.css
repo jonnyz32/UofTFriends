@@ -41,7 +41,6 @@
     margin: auto;
     display: flex;
     justify-content: space-between;
-    background-color: red;
 }
 
 /* Container for courses and bio. */
@@ -120,6 +119,7 @@
     font-size: 0.9vw;
     font-weight: 600;
     outline: none;
+    text-align: center;
 }
 
 .SettingsAddCourseButton {
@@ -159,4 +159,19 @@
     margin-top: 20px;
     border-radius: 50px;
     box-shadow: 10px 10px 8px #888888;  
+}
+
+/* Profile-pic changer container. */
+.SettingsPictureContainer {
+    /* background-color: red; */
+}
+
+/* Preview of the selected picture. */
+.SettingsPicturePreview {
+    display: block;
+    margin: auto;
+    height: 80%;
+    width: 80%;
+    padding: 20px;
+    border-radius: 50px;
 }

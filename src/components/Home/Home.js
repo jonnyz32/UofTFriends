@@ -7,6 +7,10 @@ import Schedule from '../Schedule/Schedule';
 import TodoList from '../Todolist/Todolist'
 import SettingsPage from  '../SettingsPage/SettingsPage'
 
+import confusedMan from '../../images/Mobsquare.png'
+import happySun from '../../images/happySun.png'
+import sadMan from '../../images/sadFace.jpg'
+
 
 class Home extends Component {
 
@@ -42,6 +46,7 @@ class Home extends Component {
             searchQuery: "",
             newCourse: "",
             newBio: "",
+            image: confusedMan,
             // chats: this.props.currentUser.courses,
             chats: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
             students: [],
@@ -226,7 +231,26 @@ class Home extends Component {
 		let updatedUser = {...this.state.currentUser}
 		updatedUser.bio = this.state.newBio
 		this.setState({currentUser: updatedUser})
-	}
+    }
+    
+    // Image selection handler.
+    handleSelectionChange = (event) => {
+        const pic = event.target.value
+        let profilePic = confusedMan
+        switch(pic) {
+          case "confusedMan":
+            break;
+          case "happySun":
+            profilePic = happySun
+            break;
+          case "sadMan":
+            profilePic = sadMan
+            break;
+          default:
+            profilePic = sadMan
+        }
+        this.setState({image: profilePic})
+      }
     
     toggleSearchMode = (newView) => {
         this.setState({ viewFragment: newView })
@@ -245,9 +269,9 @@ class Home extends Component {
             centerPage = <Students addChat={this.addChat} students={this.state.students} />
             rightPage = null
         } else if (this.state.viewFragment == "settings") {
-            centerPage = <SettingsPage currentUser={this.state.currentUser} chats={this.state.chats} 
+            centerPage = <SettingsPage currentUser={this.state.currentUser} chats={this.state.chats} image={this.state.image}
                             courseOnChange={this.courseOnChange} addCourse={this.addCourse} removeCourse={this.removeCourse} 
-                            bioOnChange={this.bioOnChange} submitBio={this.submitBio}/>
+                            bioOnChange={this.bioOnChange} submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange}/>
             rightPage = null
         }
         else {

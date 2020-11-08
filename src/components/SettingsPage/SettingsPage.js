@@ -19,7 +19,14 @@ export class SettingsPage extends React.Component {
 				<div className="SettingsBodyContainer">
 
 					<div className="SettingsScheduleContainer">
-						Schedule and shit.
+						<div className="SettingsPictureContainer">
+							<img className="SettingsPicturePreview" value="confusedMan" src={this.props.image} alt="profilePicture" />
+							<select className="SettingsPictureSelect" onChange={this.props.handleSelectionChange}>
+								<option value="confusedMan">Confused Man</option>
+								<option value="happySun">Happy Sun</option>
+								<option value="sadMan">Sad Man</option>
+							</select>
+            			</div>
 					</div>
 
 					<div className="SettingsStudentInfo">
