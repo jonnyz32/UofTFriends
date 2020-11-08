@@ -11,11 +11,13 @@ class Chat extends React.Component {
        texts: [
            {
              sender: "Aziz",
-             text: "Hello UofT student"
+             text: "Hello UofT student",
+             iscurrentsender: false
            },
            {
              sender: "Jonathan",
-             text: "Hi back"
+             text: "Hi back",
+             iscurrentsender: false
            }
          ]
     }
@@ -23,11 +25,14 @@ class Chat extends React.Component {
 
   message = () => {
     const messageList = this.state.texts
-    const newMessage = {sender: this.state.name, text: this.state.message}
+    if(this.state.message !=""){
+    const newMessage = {sender: this.state.name, text: this.state.message, iscurrentsender:true}
+
     messageList.push(newMessage)
     this.setState ({
       texts : messageList
     });
+  }
   }
 
   handleInputChange = (event) => {
@@ -50,8 +55,8 @@ class Chat extends React.Component {
           <div className= 'messagesBox'>
 
             <Texts  texts={this.state.texts}/>
-            <input  name="message" value={this.state.message} onChange={this.handleInputChange} placeholder="message" type="text" />
-            <button className="button" onClick={this.message}> send chat </button>
+            <input className="messageInput"  name="message" value={this.state.message} onChange={this.handleInputChange} placeholder="message" type="text" />
+            <button className="messageButton" onClick={this.message}> send chat </button>
 
          </div>
         )
@@ -63,20 +68,33 @@ class Chat extends React.Component {
             return (
               <div>
                 {/* <SearchBar searchMode={false}/> */}
-              <ul className="messages">
+              <div className="messages">
                 {this.props.texts.map(text => {
+                  if(text.iscurrentsender) {
+                    return (
+                     <div key={text.sender}>
+                       <div className="currentUser sender">
+                         {text.sender}
+                       </div>
+                       <div className="currentUser text">
+                         {text.text}
+                       </div>
+                     </div>
+                   )
+                  }
+                  else {
                   return (
-                   <li key={text.sender}>
+                   <div key={text.sender}>
                      <div className="sender">
                        {text.sender}
                      </div>
                      <div className="text">
                        {text.text}
                      </div>
-                   </li>
-                 )
+                   </div>
+                 )}
                })}
-             </ul>
+             </div>
               </div>
 
             )
