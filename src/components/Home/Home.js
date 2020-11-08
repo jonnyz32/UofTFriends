@@ -230,13 +230,8 @@ class Home extends Component {
                     {/* Search Bar */}
                     <form onChange={this.onChange} onClick={() => this.toggleSearchMode("search")} onSubmit={this.filterStudents}>
                         <input type="text"></input>
-<<<<<<< HEAD
                         <input className="submitQuery" type="submit" value="Ok"></input>
                     </form>       
-=======
-                        <input class="submitQuery" type="submit" value="Ok"></input>
-                    </form>
->>>>>>> 643859b9bff169ead1b020990cb2e7ed01079d8a
                     {/* Navigation buttons */}
                     <a href="#" id="accountButton"><i className="fa fa-fw fa-user"></i>{this.state.currentUser.name}</a>
                     <a href="#" onClick={() => this.toggleSearchMode("home")}><i className="fa fa-fw fa-home"></i> Home</a>
