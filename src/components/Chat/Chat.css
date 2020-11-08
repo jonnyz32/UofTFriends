@@ -1,42 +1,79 @@
 .text {
-  background-color: lightblue;
-  color: #213e3b;
+  background-color: rgb(121, 117, 117);
+  color: white;
   font-size: 20;
-  border-radius: 40%;
+  border-radius: 5%;
   font-weight: bolder;
-  width: 40%;
+  left: 8%;
+  width: 30%;
   padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right:5px;
   padding-top: 2px;
   position: relative;
+  box-shadow: 0px 3px 3px 3px #888888;
 
+}
+.currentUser.sender {
+  left: 73%;
+}
+.currentUser.text {
+  left: 61%;
+}
+
+.text p {
+    margin: auto;
+    padding: 5px;
 }
 .sender{
   font-weight:lighter;
-  width: 10%;
+  text-align: left;
+  width: 15%;
+  padding-left: 8%;
 
-  padding-bottom: 5px;
-  padding-top: 5px;
+  padding-bottom: 0%;
+  padding-top: 1%;
   position: relative;
 }
 
+.messageInput {
+  padding-top: 0px;
+  width: 80%;
+  padding-right: 2%;
+
+}
+.messageButton {
+  height: 24px;
+}
+.messageButton:hover
+  {
+    color:white;
+    text-decoration:none;
+    cursor:pointer;
+    background-color: black;
+   }
+
 .messages{
-  border-color: #41aea9;
-  border-width: 15px;
-  border-style: solid;
+
   height: 450px;
-  border-color: #41aea9;
-  border-width: 15px;
-  border-style: solid;
-  padding-bottom: 5px;
-  margin-bottom: 25px;
+
+  padding-bottom: 2px;
+  margin-bottom: 2px;
   padding-top: 10px;
+  background-color: white;
+  overflow:scroll;
+
+  margin: 1%;
+  /* border-radius: 50px; */
+  box-shadow: 0px 3px 3px 3px #888888;
 
 }
 .messagesBox {
-  width: 70%;
+  width: 90%;
+  padding-top: 0px;
   position: relative;
   border-color: black;
-  margin-left: 17%;
-  margin-top: 10%;
+  margin-left: 5%;
+  margin-top: 5%;
 
 }
