@@ -17,105 +17,109 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            viewFragment: "home",
-            currentUser: {
-                name: 'Jonathan Zak',
-                courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
-                program: ['Computer Science Specialist'],
-                hobbies: ['Rock climbing'],
-                schedule: [{
-                    activity: 'CSC300',
-                    time: '2-4pm'
-                },
-                {
-                    activity: 'CSC309',
-                    time: '6-7pm'
-                }
-                ],
-                toDoList: [{
-                    activity: 'leg day',
-                    time: '4-5pm'
-                },
-                {
-                    activity: 'CSC309 group meeting',
-                    time: '8-9pm'
-                }
-                ],
-                bio: 'Third year cs student. Looking to meet some new people!'
-            },
-            searchQuery: "",
-            newCourse: "",
-            newBio: "",
-            image: confusedMan,
-            // chats: this.props.currentUser.courses,
-            chats: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
-            students: [],
-            studentsMasterList: [
-                {
-                    name: 'Jonathan Zak',
-                    courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
-                    program: ['Computer Science Specialist'],
-                    hobbies: ['Rock climbing'],
-                    bio: 'Third year cs student. Looking to meet some new people!'
-                },
+                viewFragment: "home",
+                currentUser: {name: 'Jonathan Zak',
+                            courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
+                            program: ['Computer Science Specialist'],
+                            hobbies: ['Rock climbing'],
+                            schedule: [
+                                {
+                            activity: 'CSC300',
+                            time: '2-4pm'
+                        },
+                        {
+                            activity: 'CSC309',
+                            time: '6-7pm'
+                        },
+                        {
+                            activity: 'CSC400',
+                            time: '7-8pm'
+                        }
+                        ],
+                toDoList:[{
+                            activity: 'leg day',
+                            time: '4-5pm'
+                        },
+                        {
+                            activity: 'CSC309 group meeting',
+                            time: '8-9pm'
+                        }
+                        ],
 
-                {
-                    name: 'Shadman Aziz',
-                    courses: ['Apm236', 'CSC309', 'Egy201', 'CSC343', 'CSC311'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'
-                },
+            bio: 'Third year cs student. Looking to meet some new people!'},
+                searchQuery: "",
+                newCourse: "",
+                newBio: "",
+                image: confusedMan,
+                // chats: this.props.currentUser.courses,
+                chats: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
+                students: [],
+                studentsMasterList: [
+                    {
+                        name: 'Jonathan Zak',
+                        courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
+                        program: ['Computer Science Specialist'],
+                        hobbies: ['Rock climbing'],
+                        bio: 'Third year cs student. Looking to meet some new people!'
+                    },
 
-                {
-                    name: 'Meirbek Zeinulla',
-                    courses: ['CSC458', 'CSC309', 'MAT235', 'CSC343', 'CSC263'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'
-                },
+                    {
+                        name: 'Shadman Aziz',
+                        courses: ['Apm236', 'CSC309', 'Egy201', 'CSC343', 'CSC311'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    },
 
-                {
-                    name: 'Adi Thakur',
-                    courses: ['Apm236', 'CSC309', 'Rel101', 'CSC343', 'Ast304'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'
-                },
+                    {
+                        name: 'Meirbek Zeinulla',
+                        courses: ['CSC458', 'CSC309', 'MAT235', 'CSC343', 'CSC263'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    },
 
-                {
-                    name: 'Cathy Aziz',
-                    courses: ['CSC108', 'Rel101', 'Mat235', 'MAT137', 'BIO101'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'
-                },
+                    {
+                        name: 'Adi Thakur',
+                        courses: ['Apm236', 'CSC309', 'Rel101', 'CSC343', 'Ast304'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    },
 
-                {
-                    name: 'Jake Peralta',
-                    courses: ['psy101', 'phl200', 'phl245', 'csc400', 'pey100'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'
-                },
+                    {
+                        name: 'Cathy Aziz',
+                        courses: ['CSC108', 'Rel101', 'Mat235', 'MAT137', 'BIO101'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    },
 
-                {
-                    name: 'amy santiago',
-                    courses: ['cog201', 'psy101', 'Egy201', 'CSC343', 'CSC311'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'
-                },
+                    {
+                        name: 'Jake Peralta',
+                        courses: ['psy101', 'phl200', 'phl245', 'csc400', 'pey100'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    },
 
-                {
-                    name: 'Phil dunphy',
-                    courses: ['Apm236', 'Rel101', 'MAT157', 'MAT247', 'CSC311'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'
-                }
-            ]
-        };
+                    {
+                        name: 'amy santiago',
+                        courses: ['cog201', 'psy101', 'Egy201', 'CSC343', 'CSC311'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    },
+
+                    {
+                        name: 'Phil dunphy',
+                        courses: ['Apm236', 'Rel101', 'MAT157', 'MAT247', 'CSC311'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    }
+                ]
+            };
 
     }
 
@@ -263,7 +267,7 @@ class Home extends Component {
         if (this.state.viewFragment == "home") {
             { console.log(this.state.currentUser.schedule) }
             centerPage = <Schedule schedule={this.state.currentUser.schedule} />
-            rightPage = <TodoList name={this.state.currentUser.name} removeToDo={this.props.removeToDo} todoList={this.state.currentUser.toDoList} />
+            rightPage = <TodoList name={this.props.name} removeToDo={this.props.removeToDo} todoList={this.props.toDoList} />
         }
         else if (this.state.viewFragment == "search") {
             centerPage = <Students addChat={this.addChat} students={this.state.students} />
@@ -275,7 +279,7 @@ class Home extends Component {
             rightPage = null
         }
         else {
-            centerPage = <Chat />
+            centerPage = <Chat currentUser={this.state.currentUser}/>
             rightPage = null
         }
 
