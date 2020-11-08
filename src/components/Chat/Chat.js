@@ -6,7 +6,7 @@ class Chat extends React.Component {
   constructor() {
     super()
     this.state = {
-       name : "",
+       name : this.props.currentUser.name,
        message : "",
        texts: [
            {
@@ -50,7 +50,6 @@ class Chat extends React.Component {
           <div className= 'messagesBox'>
 
             <Texts  texts={this.state.texts}/>
-            <input  name="name" value={this.state.name} onChange={this.handleInputChange} placeholder="name" type="text" />
             <input  name="message" value={this.state.message} onChange={this.handleInputChange} placeholder="message" type="text" />
             <button className="button" onClick={this.message}> send chat </button>
 
@@ -62,7 +61,7 @@ class Chat extends React.Component {
     class Texts extends React.Component {
           render() {
             return (
-              <div> 
+              <div>
                 {/* <SearchBar searchMode={false}/> */}
               <ul className="messages">
                 {this.props.texts.map(text => {
@@ -79,7 +78,7 @@ class Chat extends React.Component {
                })}
              </ul>
               </div>
-              
+
             )
           }
         }

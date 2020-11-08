@@ -51,6 +51,24 @@ class Home extends Component {
                     courses: ['Apm236', 'CSC309', 'Egy201', 'CSC343', 'CSC311'],
                     program: ['Computer Science Major', 'Religion minor'],
                     hobbies: ['Looking sexy'],
+                    toDoList:[{
+                                activity: 'leg day',
+                                time: '4-5pm'
+                            },
+                            {
+                                activity: 'CSC309 group meeting',
+                                time: '8-9pm'
+                            }
+                          ],
+                          schedule: [{
+                          activity: 'CSC300',
+                          time: '2-4pm'
+                      },
+                      {
+                          activity: 'CSC309',
+                          time: '6-7pm'
+                      }
+                    ],
                     bio: 'Leveling up in Fifa'},
 
                     {name: 'Meirbek Zeinulla',
@@ -174,8 +192,9 @@ class Home extends Component {
     toggleSearchMode = (newView) => {
         this.setState({viewFragment: newView})
     }
-   
+
     render() {
+      console.log("name"+this.state.currentUser.name)
 
         let centerPage=null
         let rightPage=null
@@ -189,7 +208,7 @@ class Home extends Component {
           rightPage = null
       }
       else {
-          centerPage = <Chat />
+          centerPage = <Chat currentUser={this.state.currentUser} />
           rightPage = null
       }
     }
@@ -200,14 +219,14 @@ class Home extends Component {
 
                 {/* Load icons for navbar */}
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                
+
                 {/* Navbar */}
                 <nav id="nav">
                     {/* Search Bar */}
                     <form onChange={this.onChange} onClick={() => this.toggleSearchMode("search")} onSubmit={this.filterStudents}>
                         <input type="text"></input>
                         <input class="submitQuery" type="submit" value="Ok"></input>
-                    </form>       
+                    </form>
                     {/* Navigation buttons */}
                     <a href="#" id="accountButton"><i className="fa fa-fw fa-user"></i>{this.state.currentUser.name}</a>
                     <a href="#" onClick={() => this.toggleSearchMode("home")}><i className="fa fa-fw fa-home"></i> Home</a>
