@@ -19,7 +19,7 @@ class Home extends Component {
         this.state = {
                 viewFragment: "home",
                 currentUser: {name: 'Jonathan Zak',
-                            courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
+                            courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
                             program: ['Computer Science Specialist'],
                             hobbies: ['Rock climbing'],
                             schedule: [
