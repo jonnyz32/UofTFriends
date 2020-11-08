@@ -27,6 +27,10 @@
     text-align: left;
 }
 
+.StudentInfo span {
+    text-align: left;
+}
+
 .StudentInfo h3 {
     margin-top: 0px;
 }

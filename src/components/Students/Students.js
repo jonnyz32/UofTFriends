@@ -5,11 +5,22 @@ import './../StudentItem/StudentItem.css';
 
 class Students extends Component {
 
+  constructor(props){
+    super(props)
+    this.keyCount = 0
+  }
+
+  newKey = () => {
+    this.keyCount += 1
+    return this.keyCount;
+  }
+
+
   render() {
    
     return (
         <div className="Students">
-            {this.props.students && this.props.students.map((student) => <StudentItem addChat={this.props.addChat}
+            {this.props.students && this.props.students.map((student) => <StudentItem key={this.newKey()} addChat={this.props.addChat}
                                                               name={student.name} 
                                                               courses={student.courses} 
                                                               program={student.program} 

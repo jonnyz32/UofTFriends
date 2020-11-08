@@ -32,13 +32,13 @@ class ToDoListItem extends Component {
     return (
       <div className="ToDoListItem">
 
-          <div class='Time'>
+          <div className='Time'>
             {this.props.time}
           </div>
 
-          <div class='Activity'>
+          <div className='Activity'>
             {this.props.activity}
-            <input onClick={this.remove} type="checkbox" hello />
+            <input onClick={this.remove} type="checkbox" />
           </div>
 
 

@@ -184,12 +184,11 @@ class Home extends Component {
 
         let centerPage=null
         let rightPage=null
-      {if (this.state.viewFragment=="home"){
-          {console.log(this.state.currentUser.schedule)}
+      if (this.state.viewFragment==="home"){
            centerPage = <Schedule schedule={this.state.currentUser.schedule}/>
            rightPage = <TodoList name={this.props.name} removeToDo={this.props.removeToDo} todoList={this.props.toDoList}/>
       }
-      else if (this.state.viewFragment=="search"){
+      else if (this.state.viewFragment==="search"){
           centerPage = <Students addChat={this.addChat} students={this.state.students}/>
           rightPage = null
       }
@@ -197,7 +196,7 @@ class Home extends Component {
           centerPage = <Chat />
           rightPage = null
       }
-    }
+    
 
         return (
 
@@ -211,7 +210,7 @@ class Home extends Component {
                     {/* Search Bar */}
                     <form onChange={this.onChange} onClick={() => this.toggleSearchMode("search")} onSubmit={this.filterStudents}>
                         <input type="text"></input>
-                        <input class="submitQuery" type="submit" value="Ok"></input>
+                        <input className="submitQuery" type="submit" value="Ok"></input>
                     </form>       
                     {/* Navigation buttons */}
                     <a href="#" id="accountButton"><i className="fa fa-fw fa-user"></i>{this.state.currentUser.name}</a>
