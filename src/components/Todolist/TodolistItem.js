@@ -30,21 +30,21 @@ class ToDoListItem extends Component {
 
 
     return (
-      <tr className="ToDoListItem">
+      <div className="ToDoListItem">
 
-          <td class='Time'>
+          <div class='Time'>
             {this.props.time}
-          </td>
+          </div>
 
-          <td class='Activity'>
+          <div class='Activity'>
             {this.props.activity}
             <input onClick={this.remove} type="checkbox" hello />
-          </td>
+          </div>
 
 
 
 
-      </tr>
+      </div>
 
     );
   }

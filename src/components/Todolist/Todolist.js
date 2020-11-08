@@ -44,12 +44,12 @@ class ToDoList extends Component {
     return (
       <div className="Todolist">
       <h2> To do list </h2>
-      <table>
+      <div>
 
      {this.props.todoList.map((toDoListItem) => <ToDoListItem removeToDo={this.props.removeToDo} name={this.props.name} activity={toDoListItem.activity}
                                                                    time={toDoListItem.time}
                                                                    />)}
-      </table>
+      </div>
       <input name="activity"  type='text' value= {this.state.activity} onChange={this.handleInputChange} placeholder='new task'/>
       <input name="time"  type='text' value= {this.state.time} onChange={this.handleInputChange} placeholder='time for new task'/>
       <button className="button" onClick={this.addNewTodo}> add new ToDo </button>

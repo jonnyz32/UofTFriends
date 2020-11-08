@@ -1,7 +1,7 @@
 .Todolist {
     margin-top: 10%;
     margin-left: 55%;
-    width: 30%;
+    width: 29%;
 }
 
 .Todolist h2 {
@@ -11,44 +11,12 @@
     margin-top: 0px;
 }
 
-.ToDoListItem td {
+.ToDoListItem {
     background-color: white;
     width: 100%;
-    border-top:1px solid black;
-    border-bottom: 1px solid black;
+    border: 1px solid black;
     font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    margin-bottom: .4%;
+    padding: 5%;
 }
-
-.ToDoListItem td:first-child {
-    background-color: white;
-    width: 100%;
-    border-left:1px solid black;
-    border-top-left-radius: 20%;
-    border-bottom-left-radius: 20%;
-
-}
-
-.ToDoListItem td:last-child {
-    background-color: white;
-    width: 100%;
-    border-right:1px solid black;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-
-
-
-}
-
-
-/* .Activity h2 {
-    margin-top: 0%;
-    width: 100%;
-} */
-
-
-/* .Time {
-    float: left;
-    margin-left: 6%;
-    margin-top: 1%;
-
-} */
