@@ -22,6 +22,7 @@ export class SettingsPage extends React.Component {
 						<div className="SettingsPictureContainer">
 							<img className="SettingsPicturePreview" value="confusedMan" src={this.props.image} alt="profilePicture" />
 							<select className="SettingsPictureSelect" onChange={this.props.handleSelectionChange}>
+								<option value="" selected disabled hidden>Select Image</option>
 								<option value="confusedMan">Confused Man</option>
 								<option value="happySun">Happy Sun</option>
 								<option value="sadMan">Sad Man</option>
