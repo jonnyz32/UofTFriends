@@ -57,17 +57,9 @@
 
 .removeCourseCard {
     margin: auto;
-    margin-left: 10%;
-    text-align: left;
-    background-color: rgb(121, 117, 117);
-    color: white;
-
-    border: solid 2px black;
-    border-radius: 50px;
-    
-    height: 1.5vw;
-    width: 1.5vw;
-
-    font-size: 1vw;
-    font-weight: 800;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: url("../../images/delete.png") no-repeat center;
 }
+

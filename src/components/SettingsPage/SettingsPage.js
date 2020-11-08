@@ -44,7 +44,7 @@ export class SettingsPage extends React.Component {
 		let updatedUser = this.state.currentUser
 		updatedUser.courses.splice(coursesIndex, 1)
 
-		let newChats = this.state.chats
+		let newChats = this.state.chats.splice()
 		newChats.splice(chatIndex, 1)
 
 		this.setState({ currentUser: updatedUser, chats: newChats })

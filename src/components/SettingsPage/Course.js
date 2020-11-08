@@ -8,7 +8,7 @@ export class Course extends React.Component {
         return (
             <div className="CourseCard">
                 <input className="CourseCardName" value={this.props.course}></input>
-                <button className="removeCourseCard" onClick={this.props.removeCourse}>X</button>
+                <button className="removeCourseCard" onClick={this.props.removeCourse}></button>
             </div>
             
         );  
