@@ -10,7 +10,7 @@ import PostRegistration from './components/PostRegistration/postregistration';
 class App extends Component {
   state = {
     currentUser: {name: 'Jonathan Zak',
-    courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
+    courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
     program: ['Computer Science Specialist'],
     hobbies: ['Rock climbing'],
     schedule: [{
@@ -31,10 +31,10 @@ class App extends Component {
                 time: '8-9pm'
               }
               ],
-  bio: 'Third year cs student. Looking to meet some new people!'},
+    bio: 'Third year cs student. Looking to meet some new people!'},
     students: [
         {name: 'Jonathan Zak',
-        courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
+        courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
         program: ['Computer Science Specialist'],
         hobbies: ['Rock climbing'],
         schedule: [{
@@ -61,7 +61,7 @@ class App extends Component {
         bio: 'Third year cs student. Looking to meet some new people!'},
 
         {name: 'Shadman Aziz',
-        courses: [{name:'Apm236'}, {name:'CSC309'}, {name:'Egy201'}, {name:'CSC343'}, {name:'CSC311'}],
+        courses: ['Apm236', 'CSC309', 'Egy201', 'CSC343', 'CSC311'],
         program: ['Computer Science Major', 'Religion minor'],
         hobbies: ['Looking sexy'],
         bio: 'Leveling up in Fifa'},
@@ -133,12 +133,12 @@ class App extends Component {
         <Switch>
           <Route exact path='/Signup' render={() =>
                           (<Signup toggleSignIn={this.toggleSignIn} users={this.state.students}/>)}/>
-          {/* <Route path="/SearchBar" render={(props) => <SearchBar currentUser={this.state.currentUser} 
+          {/* <Route path="/SearchBar" render={(props) => <SearchBar currentUser={this.state.currentUser}
           schedule={this.state.currentUser.schedule} removeToDo={this.removeToDo} name={this.state.currentUser.name} toDoList={this.state.currentUser.toDoList}/>}/> */}
           <Route exact path='/Settings' render={() =>
                           (<SettingsPage student={this.state.students[2]}/>)}/>
           <Route exact path='/Chat' render={() =>
-                          (<Chat />)}/>
+                          (<Chat currentUser={this.state.currentUser}/>)}/>
           <Route exact path='/Home' render={() =>
                           (<Home schedule={this.state.currentUser.schedule} currentUser={this.state.currentUser} removeToDo={this.removeToDo} name={this.state.currentUser.name} toDoList={this.state.currentUser.toDoList}/>)}/>
           <Route exact path='/PostRegistration' render={() =>
