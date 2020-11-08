@@ -1,73 +1,161 @@
-.SettingsHeader {
-    display: block;
+.SettingsRoot {
+    margin: auto;
+    margin-top: 15px;
+    width: 100%;
+    height: 100%;
+}
+/* Container for the name and avatar of student. */
+.SettingsHeaderContainer {
+    display: flex;
+    width: 80%;
+    height: 10%;
+    margin: auto;
+    background-color: white;
+    border-radius: 50px;
+    min-height: 110px;
+    box-shadow: 10px 10px 8px #888888;
+}
+
+/* Student Name */
+.SettingsName {
+    font-size: 3.5vw;
+    font-weight: 600;
     text-align: center;
-    align-self: center;
-    border: 3px solid #000000;
-    border-radius: 20px;
-
-    height: 100px;
-
-    /* Horizontal Align */
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    
-}
-
-.Background {
-    background-color: #e8ffff;
-}
-
-
-.Bio {
-    text-align: left;
-    font-size: 15pt;
-    height: 100px;
-    width: 60%;
-    margin-top: 10px;
-}
-
-.SettingsTitle {
-    width: fit-content;
-    height: inherit;
     margin: auto;
 }
 
-.Submit {
-    width: 75px;
-    height: 50px;
-    margin: 10px;
-}
-
-.Name {
-    font-size: 30pt;
-    margin-top: 25px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.Avatar {
-    width: 90px;
-    height: 90px;
+/* Student Avatar */
+.SettingsAvatar {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     margin-left: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
-    float: left;
 }
 
-.CourseList {
+.SettingsBodyContainer {
+
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Container for courses and bio. */
+.SettingsStudentInfo {
     display: block;
-    text-align: center;
-    align-self: center;
-    border: 3px solid #000000;
-    border-radius: 20px;
+    height: 100%;
+    width: 48%;
+}
 
-    height: 60%;
-    width: 50%;
+/* Container for student's courses. */
+.SettingsCoursesContainer {
+    display: block;
+    background-color: white;
+    height: fit-content;
 
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    margin-top: 20px;
+      
+    box-shadow: 10px 10px 8px #888888;
+    border-radius: 50px;
+}
+
+/* Container for Student Bio */
+.SettingsBioContainer {
+    display: flex;
+    background-color: white;
+    width: 100%;
+    height: 25%;
+
+    padding: 15px 0px;
+    margin-top: 20px;
+    border-radius: 50px;
+    box-shadow: 10px 10px 8px #888888;   
+}
+
+.SettingsBio {
+    display: block;
+    width: 80%;
+    height: 80%;
+    text-align: left;
+    margin: auto;
+    border: solid 2px rgb(121, 117, 117);
+    border-radius: 50px;
+    padding: 20px;
+    font-size: x-large;
+    color: rgb(121, 117, 117);
+    resize: none;
+}
+
+.SettingsBio:focus{
+    outline: none;
+}
+
+.SettingsAddCourseContainer {
+    display: flex;
+    margin: auto;
+    margin-top: 20px;
+    height: 5%;
+    width: 95%;
+    background-color: white;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 10px 10px 8px #888888;    
+    justify-content: space-between;
+}   
+
+.SettingsAddCourseForm {
+    display: block;
+    margin: auto;
+    width: 45%;
+}
+
+.SettingsAddCourseForm  input{
+    padding: 5px;
+    border-radius: 50px;
+    font-size: 0.9vw;
+    font-weight: 600;
+    outline: none;
+}
+
+.SettingsAddCourseButton {
+    padding: 5px;
+    display: block;
+    margin: auto;
+    width: 45%;
+    border-radius: 50px;
+    font-size: 0.9vw;
+    font-weight: 600;
+    background-color: rgb(121, 117, 117);
+    color: white;
+    outline: none;
+}
+
+.SettingsSubmit {
+    margin: auto;
+    margin-top: 20px;
+    height: 5%;
+    width: 95%;
+    background-color: rgb(121, 117, 117);
+    border-radius: 50px;
+    border: none;
+    box-shadow: 10px 10px 8px #888888;   
+    padding: 5px;
+    font-size: 1.5vw;
+    font-weight: 600;
+    color: white;
+}
+
+/* Container for schedule */
+.SettingsScheduleContainer {
+    display: block;
+    width: 48%;
+    height: 100%;
+    background-color: white;
+    margin-top: 15px;
+    border-radius: 50px;
 }

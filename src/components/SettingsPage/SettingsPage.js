@@ -6,31 +6,88 @@ import logo from '../../images/Mobsquare.png'
 
 export class SettingsPage extends React.Component {
 
-  render() {
+	
+	state = {
+		currentUser: this.props.currentUser,
+		chats: this.props.chats,
+		newCourse: "",
+	}
 
-    return (
-        <div className="Background"> 
+	addCourse = () => {
 
-          <div className="SettingsHeader">
+		if (this.state.chats.includes(this.newCourse) || (this.newCourse === "")) {
+			return
+		}
 
-            <img className="Avatar" src={logo}></img>
-            <div className="SettingsTitle">
-              <p className="Name"> {this.props.student.name} </p>
-            </div>
-            
-          </div>
+		let updatedUser = this.state.currentUser
+		updatedUser.courses.push(this.state.newCourse)
 
-          <form className="CourseList">
+		let newChats = this.state.chats
+		newChats.push(this.state.newCourse)
 
-            {this.props.student.courses.map((course) => (<Course course={course} />))}
-            <input className="Bio" type="text" value={this.props.student.bio}></input>
-            <br></br>
-            <button className="Submit">Save!</button>
-        
-          </form>
-        </div>
-    );
-  }
+		this.setState({currentUser: updatedUser, chats: newChats, newCourse: ""})
+	}
+
+	removeCourse = (event) => {
+
+		const courseToRemove = event.target.parentNode.firstChild.value
+		let coursesIndex = this.state.currentUser.courses.indexOf(courseToRemove)
+		let chatIndex = this.state.chats.indexOf(courseToRemove)
+
+		let updatedUser = this.state.currentUser
+		updatedUser.courses.splice(coursesIndex, 1)
+
+		let newChats = this.state.chats
+		newChats.splice(chatIndex, 1)
+
+		this.setState({currentUser: updatedUser, chats: newChats})
+	}
+
+	courseOnChange = (event) => {
+		// this.newCourse = event.target.value.trim()
+		this.setState({newCourse: event.target.value.trim().toUpperCase()})
+	}
+
+	render() {
+
+		return (
+			<div className="SettingsRoot">
+				
+				<div className="SettingsHeaderContainer">
+					<img className="SettingsAvatar" src={logo}></img>
+					<p className="SettingsName"> {this.state.currentUser.name} </p>
+				</div>
+
+				<div className="SettingsBodyContainer">
+
+					<div className="SettingsStudentInfo">
+
+						<form className="SettingsCoursesContainer">
+							{this.state.currentUser.courses.map((course) => (<Course course={course} removeCourse={this.removeCourse} />))}
+						</form>
+
+						<div className="SettingsAddCourseContainer">
+							<form className="SettingsAddCourseForm" onChange={this.courseOnChange}>
+								<input placeholder="Enter new course..." value={this.state.newCourse}></input>
+							</form>
+							<button className="SettingsAddCourseButton"  onClick={this.addCourse}>Add</button>
+						</div>
+						
+						<form className="SettingsBioContainer">
+							<textarea className="SettingsBio">{this.state.currentUser.bio}</textarea>
+						</form>
+
+						<button className="SettingsSubmit">Save</button>
+					</div>
+
+					<div className="SettingsScheduleContainer">
+						YO WHATS POPPING
+					</div>
+
+				</div>
+			</div>
+		);
+	}
 }
 
 export default SettingsPage;
