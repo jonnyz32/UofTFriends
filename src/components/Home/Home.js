@@ -18,25 +18,29 @@ class Home extends Component {
                             program: ['Computer Science Specialist'],
                             hobbies: ['Rock climbing'],
                             schedule: [
-                            {
+                                {
                             activity: 'CSC300',
                             time: '2-4pm'
-                            },
-                            {
-                                activity: 'CSC309',
-                                time: '6-7pm'
-                            }
-                            ],
-                            toDoList:[
-                                {
-                                    activity: 'leg day',
-                                    time: '4-5pm'
-                                },
-                                {
-                                    activity: 'CSC309 group meeting',
-                                    time: '8-9pm'
-                                }
-                                    ],
+                        },
+                        {
+                            activity: 'CSC309',
+                            time: '6-7pm'
+                        },
+                        {
+                            activity: 'CSC400',
+                            time: '7-8pm'
+                        }
+                        ],
+                toDoList:[{
+                            activity: 'leg day',
+                            time: '4-5pm'
+                        },
+                        {
+                            activity: 'CSC309 group meeting',
+                            time: '8-9pm'
+                        }
+                        ],
+
             bio: 'Third year cs student. Looking to meet some new people!'},
                 searchQuery: "",
                 // chats: this.props.currentUser.courses,
