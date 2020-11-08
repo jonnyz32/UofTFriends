@@ -120,7 +120,6 @@ class Home extends Component {
                     }
                 ]
             };
-
     }
 
     // Update this.state.students to match search query.
