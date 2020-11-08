@@ -133,12 +133,12 @@ class App extends Component {
         <Switch>
           <Route exact path='/Signup' render={() =>
                           (<Signup toggleSignIn={this.toggleSignIn} users={this.state.students}/>)}/>
-          {/* <Route path="/SearchBar" render={(props) => <SearchBar currentUser={this.state.currentUser} 
+          {/* <Route path="/SearchBar" render={(props) => <SearchBar currentUser={this.state.currentUser}
           schedule={this.state.currentUser.schedule} removeToDo={this.removeToDo} name={this.state.currentUser.name} toDoList={this.state.currentUser.toDoList}/>}/> */}
           <Route exact path='/Settings' render={() =>
                           (<SettingsPage student={this.state.students[2]}/>)}/>
           <Route exact path='/Chat' render={() =>
-                          (<Chat />)}/>
+                          (<Chat currentUser={this.state.currentUser}/>)}/>
           <Route exact path='/Home' render={() =>
                           (<Home schedule={this.state.currentUser.schedule} currentUser={this.state.currentUser} removeToDo={this.removeToDo} name={this.state.currentUser.name} toDoList={this.state.currentUser.toDoList}/>)}/>
           <Route exact path='/PostRegistration' render={() =>
