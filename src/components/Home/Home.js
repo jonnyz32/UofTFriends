@@ -40,6 +40,8 @@ class Home extends Component {
                 bio: 'Third year cs student. Looking to meet some new people!'
             },
             searchQuery: "",
+            newCourse: "",
+            newBio: "",
             // chats: this.props.currentUser.courses,
             chats: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
             students: [],
@@ -172,7 +174,60 @@ class Home extends Component {
         this.setState({ chats: updatedChats })
     }
 
+    // Adding/Removing courses functionality
 
+	courseOnChange = (event) => {
+		this.setState({ newCourse: event.target.value.trim().toUpperCase() })
+	}
+
+    addCourse = () => {
+
+		if (this.state.chats.includes(this.state.newCourse) || (this.state.newCourse == "") || 
+				(this.state.currentUser.courses.length >= 6)) {
+			return
+		}
+
+        let updatedUser = {...this.state.currentUser}
+        updatedUser.courses = this.state.currentUser.courses.slice()
+		updatedUser.courses.push(this.state.newCourse)
+
+		let newChats = this.state.chats.slice()
+		newChats.push(this.state.newCourse)
+
+		this.setState({ currentUser: updatedUser, chats: newChats, newCourse: "" })
+	}
+
+	removeCourse = (event) => {
+
+		const courseToRemove = event.target.parentNode.firstChild.value
+		let coursesIndex = this.state.currentUser.courses.indexOf(courseToRemove)
+		let chatIndex = this.state.chats.indexOf(courseToRemove)
+
+		let updatedUser = {...this.state.currentUser}
+        updatedUser.courses = this.state.currentUser.courses.slice()
+		updatedUser.courses.splice(coursesIndex, 1)
+
+		let newChats = this.state.chats.slice()
+		newChats.splice(chatIndex, 1)
+
+		this.setState({ currentUser: updatedUser, chats: newChats })
+    }
+
+    bioOnChange = (event) => {
+		this.setState({ newBio: event.target.value.trim()})
+	}
+    
+    submitBio = () => {
+
+		if (this.state.newBio == "") {
+			return
+		}
+
+		let updatedUser = {...this.state.currentUser}
+		updatedUser.bio = this.state.newBio
+		this.setState({currentUser: updatedUser})
+	}
+    
     toggleSearchMode = (newView) => {
         this.setState({ viewFragment: newView })
     }
@@ -190,7 +245,9 @@ class Home extends Component {
             centerPage = <Students addChat={this.addChat} students={this.state.students} />
             rightPage = null
         } else if (this.state.viewFragment == "settings") {
-            centerPage = <SettingsPage currentUser={this.state.currentUser} chats={this.state.chats}/>
+            centerPage = <SettingsPage currentUser={this.state.currentUser} chats={this.state.chats} 
+                            courseOnChange={this.courseOnChange} addCourse={this.addCourse} removeCourse={this.removeCourse} 
+                            bioOnChange={this.bioOnChange} submitBio={this.submitBio}/>
             rightPage = null
         }
         else {
