@@ -3,8 +3,8 @@ import ChatStyle from './Chat.css'
 
 class Chat extends React.Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props);
     this.state = {
        name : this.props.currentUser.name,
        message : "",
