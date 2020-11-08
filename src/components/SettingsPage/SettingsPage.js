@@ -6,31 +6,53 @@ import logo from '../../images/Mobsquare.png'
 
 export class SettingsPage extends React.Component {
 
-  render() {
+	render() {
 
-    return (
-        <div className="Background"> 
+		return (
+			<div className="SettingsRoot">
 
-          <div className="SettingsHeader">
+				<div className="SettingsHeaderContainer">
+					<img className="SettingsAvatar" src={logo}></img>
+					<p className="SettingsName"> {this.props.currentUser.name} </p>
+				</div>
 
-            <img className="Avatar" src={logo}></img>
-            <div className="SettingsTitle">
-              <p className="Name"> {this.props.student.name} </p>
-            </div>
-            
-          </div>
+				<div className="SettingsBodyContainer">
 
-          <form className="CourseList">
+					<div className="SettingsScheduleContainer">
+						<div className="SettingsPictureContainer">
+							<img className="SettingsPicturePreview" value="confusedMan" src={this.props.image} alt="profilePicture" />
+							<select className="SettingsPictureSelect" onChange={this.props.handleSelectionChange}>
+								<option value="confusedMan">Confused Man</option>
+								<option value="happySun">Happy Sun</option>
+								<option value="sadMan">Sad Man</option>
+							</select>
+            			</div>
+					</div>
 
-            {this.props.student.courses.map((course) => (<Course course={course} />))}
-            <input className="Bio" type="text" value={this.props.student.bio}></input>
-            <br></br>
-            <button className="Submit">Save!</button>
-        
-          </form>
-        </div>
-    );
-  }
+					<div className="SettingsStudentInfo">
+
+						<form className="SettingsCoursesContainer">
+							{this.props.currentUser.courses.map((course) => (<Course course={course} removeCourse={this.props.removeCourse} />))}
+						</form>
+
+						<div className="SettingsAddCourseContainer">
+							<form className="SettingsAddCourseForm" onChange={this.props.courseOnChange}>
+								<input placeholder="Enter new course..." value={this.props.newCourse}></input>
+							</form>
+							<button className="SettingsAddCourseButton" onClick={this.props.addCourse}>Add</button>
+						</div>
+
+						<form className="SettingsBioContainer" onChange={this.props.bioOnChange}>
+							<textarea className="SettingsBio">{this.props.currentUser.bio}</textarea>
+						</form>
+
+						<button className="SettingsSubmitBio" onClick={this.props.submitBio}>Update Bio</button>
+					</div>
+
+				</div>
+			</div>
+		);
+	}
 }
 
 export default SettingsPage;

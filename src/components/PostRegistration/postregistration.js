@@ -1,59 +1,131 @@
 import React, {Component} from 'react';
-import ChatStyle from './postregistration.css'
 
-class PostRegistration extends React.Component {
+import Course from '../SettingsPage/Course';
 
-  constructor() {
-    super()
-    this.state = {}
+import PostRegistrationStyle from './postregistration.css'
+import confusedMan from '../../images/Mobsquare.png'
+import happySun from '../../images/happySun.png'
+import sadMan from '../../images/sadFace.jpg'
+
+class PostRegistration extends Component {
+
+  state = {
+    courses: [],
+    newCourse: "",
+    image: confusedMan
   }
 
-  handleInputChange = (event) => {
-    const target = event.target
-    const value = target.value
-    const name=target.name
-  }
-
-  selectMajor = (event) => {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
+  handleSelectionChange = (event) => {
+    const pic = event.target.value
+    let profilePic = confusedMan
+    switch(pic) {
+      case "confusedMan":
+        break;
+      case "happySun":
+        profilePic = happySun
+        break;
+      case "sadMan":
+        profilePic = sadMan
+        break;
+      default:
+        profilePic = sadMan
     }
+    this.setState({image: profilePic})
   }
+
+  addCourse = () => {
+      if (this.state.newCourse == "") {
+        return
+      }
+      this.state.courses.push(this.state.newCourse)
+      this.setState({newCourse: ""})
+	}
+
+	removeCourse = (event) => {
+      const courseToRemove = event.target.parentNode.firstChild.value
+      let coursesIndex = this.state.courses.indexOf(courseToRemove)
+
+      this.state.courses.splice(coursesIndex, 1)
+      this.setState({newCourse: ""})
+  }
+  
+  courseOnChange = (event) => {
+		this.setState({newCourse: event.target.value.trim().toUpperCase()})
+	}
 
   render() {
       return (
-        <div className="backgroundContainer"> 
-          <div className="profileContainer">
-            <input name="textBox" value={this.state.name} onChange={this.handleInputChange} placeholder="Date of Birth" type="text" /> <br></br>
-            <button className="profileButton" onClick={this.message}> Change Profile Picture</button> <br></br>
+        <div id="onboardingRoot">
+          <div className="onboardingContainer">
+            <h1>Before you begin using the website and making new friends, tell us a little bit about yourself!</h1>
+            <div className="profilePictureContainer">
+              <img className="onboardingProfilePicture" value="confusedMan" src={this.state.image} alt="profilePicture" />
+              <select className="profilePictureSelect" onChange={this.handleSelectionChange}>
+                <option value="confusedMan">Confused Man</option>
+                <option value="happySun">Happy Sun</option>
+                <option value="sadMan">Sad Man</option>
+              </select>
+              <label> YOU </label>
+            </div>
+
+            <div className="profileInfoContainer">
+              <br/>
+              <div>
+                <label>I am in </label>
+                <select name="degree">
+                  <option value disabled selected>select your degree</option>
+                  <option value="Agricultural Sciences">Agricultural Sciences</option>
+                  <option value="Arts and Humanities">Arts and Humanities</option>
+                  <option value="Biology">Biology</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Engineering">Engineering</option>
+                  <option value="Physics">Physics</option>
+                </select>,
+                <label> in my </label>
+                <select name="year">
+                  <option value disabled selected>select your year</option>
+                  <option value="first">first</option>
+                  <option value="second">second</option>
+                  <option value="third">third</option>
+                  <option value="fourth">fourth</option>
+                  <option value="fifth">fifth</option>
+                  <option value="sixth">sixth</option>
+                </select>
+                <label> year.</label>
+              </div>
+              <br/>
+
+              <label>This semester, I will take:</label>
+
+              <form className="onboardingCoursesContainer">
+                <label>Courses:</label>
+                {this.state.courses.map((course) => (<Course course={course} removeCourse={this.removeCourse} />))}
+              </form>
+
+              <div className="onboardingAddCourseContainer">
+                <form className="onboardingAddCourseForm" onChange={this.courseOnChange}>
+                  <input type="text" name="newCourse" placeholder="Enter new course..."></input>
+                </form>
+                <button className="onboardingAddCourseButton"  onClick={this.addCourse}>Add</button>
+              </div>
+
+              <br/>
+              <br/>
+              <div>
+                <label>My hobbies are </label>
+                <input type="text" name="courses" placeholder="Type in your interests" />
+              </div>
+            </div>
+
+            <br/>
+            <label id="bioTitle">Say something about yourself!</label>
+						<textarea className="onboardingBio"></textarea>
+
+            <div>
+              <button class="endOnboardingButton">Continue</button>
+            </div>
           </div>
-
-          <h1> Before you begin using the website and making new friends, tell us a little bit about yourself! </h1>
-          <img className="profilePicture" src={require('../../images/Mobsquare.png')}></img>
-
-          <div className="descContainer">
-            <div className= 'infoContainer'>
-              I'm a <input name="textBox" value={this.state.message} onChange={this.handleInputChange} placeholder="Major" type="text" /> major, in my <input name="textBox" value={this.state.name} onChange={this.handleInputChange} placeholder="Year" type="text" /> year
-            </div>
-
-            <div className= 'coursesContainer'>
-              This semester, I will take <input name="textBox" value={this.state.message} onChange={this.handleInputChange} placeholder="Courses" type="text" /> 
-              <button className="uploadScheduleButton" onClick={this.message}> or upload Calendar File </button>
-            </div>
-
-            <div className= 'bioContainer'>
-              My interests are <input name="textBox" value={this.state.message} onChange={this.handleInputChange} placeholder="Interests" type="text" />
-            </div>
-          </div>
-
-          <button className="saveButton" onClick={this.message}> Continue </button>
         </div>
       )
     }
