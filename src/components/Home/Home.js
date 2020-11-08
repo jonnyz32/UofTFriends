@@ -297,7 +297,8 @@ class Home extends Component {
                     <form onChange={this.onChange} onClick={() => this.toggleSearchMode("search")} onSubmit={this.filterStudents}>
                         <input type="text"></input>
                         <input className="submitQuery" type="submit" value="Ok"></input>
-                    </form>
+                    </form>       
+
                     {/* Navigation buttons */}
                     <a href="#" onClick={() => this.toggleSearchMode("settings")}><i className="fa fa-fw fa-user"></i>{this.state.currentUser.name}</a>
                     <a href="#" onClick={() => this.toggleSearchMode("home")}><i className="fa fa-fw fa-home"></i>Home</a>

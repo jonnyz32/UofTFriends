@@ -8,9 +8,9 @@ class StudentItem extends Component {
    
     return (
         <div className="Student">
-            <img className="Avatar" src={require('../../images/Mobsquare.png')}></img>
+            <img className="Avatar" src={require('../../images/Mobsquare.png')} alt="profilePic"></img>
             <div className="StudentInfo">
-              <p><h3>{this.props.name}</h3></p>
+              <span><h3>{this.props.name}</h3></span>
               <p>
                 Courses: {this.props.courses.join(", ")} <br></br>
                 Program: {this.props.program.join(", ")} <br></br>
