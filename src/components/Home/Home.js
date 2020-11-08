@@ -17,13 +17,18 @@ class Home extends Component {
                             courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
                             program: ['Computer Science Specialist'],
                             hobbies: ['Rock climbing'],
-                            schedule: [{
+                            schedule: [
+                                {
                             activity: 'CSC300',
                             time: '2-4pm'
                         },
                         {
                             activity: 'CSC309',
                             time: '6-7pm'
+                        },
+                        {
+                            activity: 'CSC400',
+                            time: '7-8pm'
                         }
                         ],
                 toDoList:[{
