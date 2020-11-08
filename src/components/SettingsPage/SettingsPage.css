@@ -41,6 +41,7 @@
     margin: auto;
     display: flex;
     justify-content: space-between;
+    background-color: red;
 }
 
 /* Container for courses and bio. */
@@ -55,7 +56,6 @@
     display: block;
     background-color: white;
     height: fit-content;
-
     padding-bottom: 15px;
     padding-top: 15px;
     margin-top: 20px;
@@ -135,7 +135,7 @@
     outline: none;
 }
 
-.SettingsSubmit {
+.SettingsSubmitBio {
     margin: auto;
     margin-top: 20px;
     height: 5%;
@@ -154,7 +154,7 @@
 .SettingsScheduleContainer {
     display: block;
     width: 48%;
-    height: 100%;
+    height: 95%;
     background-color: white;
     margin-top: 20px;
     border-radius: 50px;
