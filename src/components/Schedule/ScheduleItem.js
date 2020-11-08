@@ -11,11 +11,11 @@ class ScheduleItem extends Component {
     return (
       <div className="scheduleItem">
 
-          <div class='Time'>
+          <div className='Time'>
             <p>{this.props.time}</p>
           </div>
 
-          <div class='Activity'>
+          <div className='Activity'>
             <h2>{this.props.activity}</h2>
           </div>
          

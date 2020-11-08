@@ -5,12 +5,24 @@ import './Todolist.css';
 
 class ToDoList extends Component {
 
+  constructor(props){
+    super(props)
+    this.keyCount = 0
+  }
+
    state = {
      time: "",
      todoList: this.props.todoList,
      activity:""
 
    }
+
+   
+
+  newKey = () => {
+    this.keyCount += 1
+    return this.keyCount;
+  }
 
    handleInputChange = (event) => {
      const target = event.target
@@ -46,7 +58,7 @@ class ToDoList extends Component {
       <h2> To do list </h2>
       <div>
 
-     {this.props.todoList.map((toDoListItem) => <ToDoListItem removeToDo={this.props.removeToDo} name={this.props.name} activity={toDoListItem.activity}
+     {this.props.todoList.map((toDoListItem) => <ToDoListItem key={this.newKey()} removeToDo={this.props.removeToDo} name={this.props.name} activity={toDoListItem.activity}
                                                                    time={toDoListItem.time}
                                                                    />)}
       </div>
