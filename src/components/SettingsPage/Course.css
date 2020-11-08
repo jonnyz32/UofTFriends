@@ -1,8 +1,65 @@
-.Course {
-
-    font-weight: 400;
-    font-size: 18pt;
-    color: black;
-    width: 60%;
-    margin-top: 10px;
+/* Container for all courses. */
+.CourseCard {
+    display: flex;
+    font-size: 2.5vw;
+    color: rgb(121, 117, 117);
+    font-weight: 600;
+    margin: auto;
+    width: 80%;
+    height: fit-content;
+    margin-bottom: 15px;
+    text-align: left;
+    border: solid 2px rgb(121, 117, 117);
+    border-radius: 50px;
+    padding: 5px;
 }
+
+/* Container for course name.*/
+.CourseCardName{
+    font-size: 1.5vw;
+    color: rgb(121, 117, 117);
+    font-weight: 600;
+    text-align: left;
+
+    width: 80%;
+    border: none;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.CourseCardName:hover {
+    background-color:#213e3b;
+    color: white;
+}
+
+.CourseCardName:focus{
+    outline: none;
+    background-color:#213e3b;
+    color: white;
+}
+
+/* .removeCourseCard {
+    margin: auto;
+    margin-left: 10%;
+    text-align: left;
+    background-color: rgb(121, 117, 117);
+    color: white;
+
+    border: solid 2px black;
+    border-radius: 50px;
+    
+    height: 1.5vw;
+    width: 1.5vw;
+
+    font-size: 1vw;
+    font-weight: 800;
+} */
+
+.removeCourseCard {
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: url("../../images/delete.png") no-repeat center;
+}
+

@@ -1,10 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Home.css'
 import SideBar from '../SideNav/SideNav';
 import Students from '../Students/Students';
 import Chat from '../Chat/Chat';
 import Schedule from '../Schedule/Schedule';
 import TodoList from '../Todolist/Todolist'
+import SettingsPage from  '../SettingsPage/SettingsPage'
+
+import confusedMan from '../../images/Mobsquare.png'
+import happySun from '../../images/happySun.png'
+import sadMan from '../../images/sadFace.jpg'
 
 
 class Home extends Component {
@@ -14,7 +19,7 @@ class Home extends Component {
         this.state = {
                 viewFragment: "home",
                 currentUser: {name: 'Jonathan Zak',
-                            courses: [{name:'CSC300'}, {name:'CSC309'}, {name:'CSC311'}, {name:'CSC343'}, {name:'PHL245'}],
+                            courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
                             program: ['Computer Science Specialist'],
                             hobbies: ['Rock climbing'],
                             schedule: [
@@ -43,95 +48,79 @@ class Home extends Component {
 
             bio: 'Third year cs student. Looking to meet some new people!'},
                 searchQuery: "",
+                newCourse: "",
+                newBio: "",
+                image: confusedMan,
                 // chats: this.props.currentUser.courses,
                 chats: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
                 students: [],
                 studentsMasterList: [
-                    {name: 'Jonathan Zak',
-                    courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
-                    program: ['Computer Science Specialist'],
-                    hobbies: ['Rock climbing'],
-                    bio: 'Third year cs student. Looking to meet some new people!'},
+                    {
+                        name: 'Jonathan Zak',
+                        courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
+                        program: ['Computer Science Specialist'],
+                        hobbies: ['Rock climbing'],
+                        bio: 'Third year cs student. Looking to meet some new people!'
+                    },
 
-                    {name: 'Shadman Aziz',
-                    courses: ['Apm236', 'CSC309', 'Egy201', 'CSC343', 'CSC311'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    toDoList:[{
-                                activity: 'leg day',
-                                time: '4-5pm'
-                            },
-                            {
-                                activity: 'CSC309 group meeting',
-                                time: '8-9pm'
-                            }
-                          ],
-                          schedule: [{
-                          activity: 'CSC300',
-                          time: '2-4pm'
-                      },
-                      {
-                          activity: 'CSC309',
-                          time: '6-7pm'
-                      }
-                    ],
-                    bio: 'Leveling up in Fifa'},
+                    {
+                        name: 'Shadman Aziz',
+                        courses: ['Apm236', 'CSC309', 'Egy201', 'CSC343', 'CSC311'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    },
 
-                    {name: 'Meirbek Zeinulla',
-                    courses: ['CSC458', 'CSC309', 'MAT235', 'CSC343', 'CSC263'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'},
+                    {
+                        name: 'Meirbek Zeinulla',
+                        courses: ['CSC458', 'CSC309', 'MAT235', 'CSC343', 'CSC263'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    },
 
-                    {name: 'Adi Thakur',
-                    courses: ['Apm236', 'CSC309', 'Rel101', 'CSC343', 'Ast304'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'},
+                    {
+                        name: 'Adi Thakur',
+                        courses: ['Apm236', 'CSC309', 'Rel101', 'CSC343', 'Ast304'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    },
 
-                    {name: 'Cathy Aziz',
-                    courses: ['CSC108', 'Rel101', 'Mat235', 'MAT137', 'BIO101'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'},
+                    {
+                        name: 'Cathy Aziz',
+                        courses: ['CSC108', 'Rel101', 'Mat235', 'MAT137', 'BIO101'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    },
 
-                    {name: 'Jake Peralta',
-                    courses: ['psy101', 'phl200', 'phl245', 'csc400', 'pey100'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'},
+                    {
+                        name: 'Jake Peralta',
+                        courses: ['psy101', 'phl200', 'phl245', 'csc400', 'pey100'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    },
 
-                    {name: 'amy santiago',
-                    courses: ['cog201', 'psy101', 'Egy201', 'CSC343', 'CSC311'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'},
+                    {
+                        name: 'amy santiago',
+                        courses: ['cog201', 'psy101', 'Egy201', 'CSC343', 'CSC311'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    },
 
-                    {name: 'Phil dunphy',
-                    courses: ['Apm236', 'Rel101', 'MAT157', 'MAT247', 'CSC311'],
-                    program: ['Computer Science Major', 'Religion minor'],
-                    hobbies: ['Looking sexy'],
-                    bio: 'Leveling up in Fifa'}
-                  ]
-        };
-
+                    {
+                        name: 'Phil dunphy',
+                        courses: ['Apm236', 'Rel101', 'MAT157', 'MAT247', 'CSC311'],
+                        program: ['Computer Science Major', 'Religion minor'],
+                        hobbies: ['Looking sexy'],
+                        bio: 'Leveling up in Fifa'
+                    }
+                ]
+            };
     }
-
-    componentDidMount(){
-        //setChats
-
-    }
-
-    // setFilters = (event) => {
-    //     const {course, program, hobby, students} = this.state
-
-    //     event.preventDefault()
-    //     {this.setState({searchMode: true, students: students.filter(student =>
-    //         (student.courses.indexOf(course) > -1 || !course) &&
-    //         (student.program.indexOf(program) > -1 || !program) &&
-    //         (student.hobbies.indexOf(hobby) > -1 || !hobby)
-    //         )})}
-    // }
 
     // Update this.state.students to match search query.
     filterStudents = (event) => {
@@ -147,17 +136,17 @@ class Home extends Component {
     searchResults = () => {
 
         let queryMatches = []
-        const {studentsMasterList, searchQuery} = this.state
+        const { studentsMasterList, searchQuery } = this.state
 
         studentsMasterList.forEach(student => {
 
-            if (student.name.includes(searchQuery)              ||
-                this.contains(student.courses, searchQuery)     ||
-                this.contains(student.program, searchQuery)     ||
-                this.contains(student.hobbies, searchQuery)     ||
+            if (student.name.includes(searchQuery)          ||
+                this.contains(student.courses, searchQuery) ||
+                this.contains(student.program, searchQuery) ||
+                this.contains(student.hobbies, searchQuery) ||
                 student.bio.includes(searchQuery)) {
-                    queryMatches.push(student)
-                }
+                queryMatches.push(student)
+            }
         })
         return queryMatches
     }
@@ -179,45 +168,119 @@ class Home extends Component {
 
     // Update this.state.searchQuery every input event.
     onChange = (event) => {
-        this.setState({searchQuery: event.target.value.trim()})
+        this.setState({ searchQuery: event.target.value.trim() })
     }
 
     addChat = (chatName) => {
 
-        console.log("Chat: Adding Chat")
+        if (this.state.chats.includes(chatName.toUpperCase())) {
+			return
+		}
 
-        console.log("ChatName:", chatName)
         const updatedChats = this.state.chats;
-        updatedChats.push(chatName)
-        console.log("Updated:", updatedChats)
-        this.setState({chats: updatedChats})
-        console.log("State", this.state)
+        updatedChats.push(chatName.toUpperCase())
+        this.setState({ chats: updatedChats })
     }
 
+    // Adding/Removing courses functionality
 
+	courseOnChange = (event) => {
+		this.setState({ newCourse: event.target.value.trim().toUpperCase() })
+	}
+
+    addCourse = () => {
+
+		if (this.state.chats.includes(this.state.newCourse) || (this.state.newCourse == "") || 
+				(this.state.currentUser.courses.length >= 6)) {
+			return
+		}
+
+        let updatedUser = {...this.state.currentUser}
+        updatedUser.courses = this.state.currentUser.courses.slice()
+		updatedUser.courses.push(this.state.newCourse)
+
+		let newChats = this.state.chats.slice()
+		newChats.push(this.state.newCourse)
+
+		this.setState({ currentUser: updatedUser, chats: newChats, newCourse: "" })
+	}
+
+	removeCourse = (event) => {
+
+		const courseToRemove = event.target.parentNode.firstChild.value
+		let coursesIndex = this.state.currentUser.courses.indexOf(courseToRemove)
+		let chatIndex = this.state.chats.indexOf(courseToRemove)
+
+		let updatedUser = {...this.state.currentUser}
+        updatedUser.courses = this.state.currentUser.courses.slice()
+		updatedUser.courses.splice(coursesIndex, 1)
+
+		let newChats = this.state.chats.slice()
+		newChats.splice(chatIndex, 1)
+
+		this.setState({ currentUser: updatedUser, chats: newChats })
+    }
+
+    bioOnChange = (event) => {
+		this.setState({ newBio: event.target.value.trim()})
+	}
+    
+    submitBio = () => {
+
+		if (this.state.newBio == "") {
+			return
+		}
+
+		let updatedUser = {...this.state.currentUser}
+		updatedUser.bio = this.state.newBio
+		this.setState({currentUser: updatedUser})
+    }
+    
+    // Image selection handler.
+    handleSelectionChange = (event) => {
+        const pic = event.target.value
+        let profilePic = confusedMan
+        switch(pic) {
+          case "confusedMan":
+            break;
+          case "happySun":
+            profilePic = happySun
+            break;
+          case "sadMan":
+            profilePic = sadMan
+            break;
+          default:
+            profilePic = sadMan
+        }
+        this.setState({image: profilePic})
+      }
+    
     toggleSearchMode = (newView) => {
-        this.setState({viewFragment: newView})
+        this.setState({ viewFragment: newView })
     }
 
     render() {
-      console.log("name"+this.state.currentUser.name)
 
-        let centerPage=null
-        let rightPage=null
-      {if (this.state.viewFragment=="home"){
-          {console.log(this.state.currentUser.schedule)}
-           centerPage = <Schedule schedule={this.state.currentUser.schedule}/>
-           rightPage = <TodoList name={this.props.name} removeToDo={this.props.removeToDo} todoList={this.props.toDoList}/>
-      }
-      else if (this.state.viewFragment=="search"){
-          centerPage = <Students addChat={this.addChat} students={this.state.students}/>
-          rightPage = null
-      }
-      else {
-          centerPage = <Chat currentUser={this.state.currentUser} />;
-          rightPage = null
-      }
-    }
+        let centerPage = null
+        let rightPage = null
+        if (this.state.viewFragment == "home") {
+            { console.log(this.state.currentUser.schedule) }
+            centerPage = <Schedule schedule={this.state.currentUser.schedule} />
+            rightPage = <TodoList name={this.props.name} removeToDo={this.props.removeToDo} todoList={this.props.toDoList} />
+        }
+        else if (this.state.viewFragment == "search") {
+            centerPage = <Students addChat={this.addChat} students={this.state.students} />
+            rightPage = null
+        } else if (this.state.viewFragment == "settings") {
+            centerPage = <SettingsPage currentUser={this.state.currentUser} chats={this.state.chats} image={this.state.image}
+                            courseOnChange={this.courseOnChange} addCourse={this.addCourse} removeCourse={this.removeCourse} 
+                            bioOnChange={this.bioOnChange} submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange}/>
+            rightPage = null
+        }
+        else {
+            centerPage = <Chat currentUser={this.state.currentUser}/>
+            rightPage = null
+        }
 
         return (
 
@@ -234,12 +297,12 @@ class Home extends Component {
                         <input class="submitQuery" type="submit" value="Ok"></input>
                     </form>
                     {/* Navigation buttons */}
-                    <a href="#" id="accountButton"><i className="fa fa-fw fa-user"></i>{this.state.currentUser.name}</a>
-                    <a href="#" onClick={() => this.toggleSearchMode("home")}><i className="fa fa-fw fa-home"></i> Home</a>
+                    <a href="#" onClick={() => this.toggleSearchMode("settings")}><i className="fa fa-fw fa-user"></i>{this.state.currentUser.name}</a>
+                    <a href="#" onClick={() => this.toggleSearchMode("home")}><i className="fa fa-fw fa-home"></i>Home</a>
                 </nav>
 
                 <aside id="sidebarContainer">
-                    <SideBar toggleSearchMode={this.toggleSearchMode} chats={this.state.chats}/>
+                    <SideBar toggleSearchMode={this.toggleSearchMode} chats={this.state.chats} />
                 </aside>
 
                 <section id="fragmentContainer">
@@ -249,7 +312,7 @@ class Home extends Component {
 
             </div>
         );
-  }
+    }
 }
 
 export default Home;
