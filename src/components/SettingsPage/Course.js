@@ -1,6 +1,5 @@
 import React from 'react';
 import './Course.css';
-import deleteIcon from "../../images/delete.png"
 
 export class Course extends React.Component {
 

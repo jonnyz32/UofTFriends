@@ -81,7 +81,7 @@ export class SettingsPage extends React.Component {
 					</div>
 
 					<div className="SettingsScheduleContainer">
-						YO WHATS POPPING
+						Schedule and shit.
 					</div>
 
 				</div>
