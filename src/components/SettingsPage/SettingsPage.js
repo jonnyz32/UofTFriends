@@ -12,7 +12,7 @@ export class SettingsPage extends React.Component {
 			<div className="SettingsRoot">
 
 				<div className="SettingsHeaderContainer">
-					<img className="SettingsAvatar" src={logo}></img>
+					{/* <img className="SettingsAvatar" src={logo}></img> */}
 					<p className="SettingsName"> {this.props.currentUser.name} </p>
 				</div>
 

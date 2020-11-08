@@ -207,6 +207,8 @@ class Home extends Component {
 
 	removeCourse = (event) => {
 
+        console.log("Removing Course")
+
 		const courseToRemove = event.target.parentNode.firstChild.value
 		let coursesIndex = this.state.currentUser.courses.indexOf(courseToRemove)
 		let chatIndex = this.state.chats.indexOf(courseToRemove)
@@ -273,7 +275,7 @@ class Home extends Component {
             rightPage = null
         } else if (this.state.viewFragment == "settings") {
             centerPage = <SettingsPage currentUser={this.state.currentUser} chats={this.state.chats} image={this.state.image}
-                            courseOnChange={this.courseOnChange} addCourse={this.addCourse} removeCourse={this.removeCourse} 
+                            courseOnChange={this.courseOnChange} addCourse={this.addCourse} removeCourse={this.removeCourse} newCourse={this.state.newCourse}
                             bioOnChange={this.bioOnChange} submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange}/>
             rightPage = null
         }
@@ -294,7 +296,7 @@ class Home extends Component {
                     {/* Search Bar */}
                     <form onChange={this.onChange} onClick={() => this.toggleSearchMode("search")} onSubmit={this.filterStudents}>
                         <input type="text"></input>
-                        <input class="submitQuery" type="submit" value="Ok"></input>
+                        <input className="submitQuery" type="submit" value="Ok"></input>
                     </form>
                     {/* Navigation buttons */}
                     <a href="#" onClick={() => this.toggleSearchMode("settings")}><i className="fa fa-fw fa-user"></i>{this.state.currentUser.name}</a>
