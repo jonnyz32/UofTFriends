@@ -80,25 +80,12 @@ class PostRegistration extends Component {
 
 	addChat = (newCourse) => {
 		let oldState = this.state;
-		{console.log("state", oldState)}
 		this.setState(() => {
 			let currentUser = Object.assign({}, oldState.currentUser)
 			currentUser.groups[newCourse] = [];
-			return {currentUser};
+			return { currentUser };
 		}
 		)
-		// [
-		// 	{
-		// 		sender: "Michael",
-		// 		text: "Hey have you started the csc300 hw?",
-		// 		iscurrentsender: false
-		// 	},
-		// 	{
-		// 		sender: "Jonathan",
-		// 		text: "Nope been too busy with 309 :(",
-		// 		iscurrentsender: false
-		// 	}
-		// ]
 	}
 
 	removeCourse = (event) => {
