@@ -45,12 +45,12 @@
 
 /* Search Button */
 #nav form .submitQuery{
-    
+
     float: right;
     margin: auto;
     padding: 3px;
     margin-top: 2.5px;
-    width: 10%;    
+    width: 10%;
 }
 
 #nav form input:hover {
