@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StudentItem from '../StudentItem/StudentItem';
-import './../StudentItem/StudentItem.css';
+import '../StudentItem/StudentItem.css';
 
 
 class Students extends Component {

@@ -122,9 +122,14 @@ class Home extends Component {
 
 	addCourse = () => {
 
-		if (this.state.chats.includes(this.state.newCourse) || (this.state.newCourse == "") ||
-			(this.state.currentUser.courses.length >= 6)) {
+		if (this.state.currentUser.courses.length >= 6) {
 			alert("You can't add more than 6 courses!")
+			return
+		} else if (this.state.chats.includes(this.state.newCourse)) {
+			alert("You can't add the same course twice!")
+			return
+		} else if (this.state.newCourse == "") {
+			alert("Please enter a course!")
 			return
 		}
 
@@ -142,9 +147,12 @@ class Home extends Component {
 
 		console.log("Removing Course")
 
-		const courseToRemove = event.target.parentNode.firstChild.value
+		const courseToRemove = event.target.parentNode.firstChild.innerText
+		console.log(courseToRemove)
 		let coursesIndex = this.state.currentUser.courses.indexOf(courseToRemove)
 		let chatIndex = this.state.chats.indexOf(courseToRemove)
+
+		console.log("Indices:", coursesIndex, chatIndex)
 
 		let updatedUser = { ...this.state.currentUser }
 		updatedUser.courses = this.state.currentUser.courses.slice()

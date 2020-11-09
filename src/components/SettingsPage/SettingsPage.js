@@ -31,9 +31,9 @@ export class SettingsPage extends React.Component {
 
 					<div className="SettingsStudentInfo">
 
-						<form className="SettingsCoursesContainer">
+						<p className="SettingsCoursesContainer">
 							{this.props.currentUser.courses.map((course) => (<Course course={course} removeCourse={this.props.removeCourse} />))}
-						</form>
+						</p>
 
 						<div className="SettingsAddCourseContainer">
 							<form className="SettingsAddCourseForm" onChange={this.props.courseOnChange}>
