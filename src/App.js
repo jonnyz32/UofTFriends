@@ -191,6 +191,15 @@ class App extends Component {
 		}
 	}
 
+	updateUsers = (updatedUser) => {
+		for (var i = 0; i < this.state.users.length; i++) {
+			if (JSON.stringify(this.state.users[i].name) === JSON.stringify(updatedUser.name)) {
+				this.state.users[i] = updatedUser
+				return
+			}
+		}
+	}
+
 	render() {
 		return (
 			<div className="App">
@@ -205,7 +214,7 @@ class App extends Component {
 						<Route exact path='/Home' render={() =>
 							(<Home currentUser={this.state.currentUser} users={this.state.users} />)} />
 						<Route exact path='/PostRegistration' render={() =>
-							(<PostRegistration currentUser={this.state.currentUser} />)} />
+							(<PostRegistration currentUser={this.state.currentUser} updateUsers={this.updateUsers} />)} />
 						<Route exact path='/Admin' render={() =>
 							(<AdminPage />)} />
 					</Switch>

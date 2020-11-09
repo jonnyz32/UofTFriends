@@ -102,14 +102,16 @@ class PostRegistration extends Component {
 
 	completeOnboarding = () => {
 		let currentUser = this.state.currentUser
-		currentUser.program = this.state.program
+		currentUser.program = [this.state.program]
 		currentUser.year = this.state.year
 		currentUser.bio = this.state.bio
-		currentUser.hobbies = this.state.hobbies
+		currentUser.hobbies = [this.state.hobbies]
 		currentUser.image = this.state.image
+		currentUser.seenOnboarding = true
 
 		console.log(currentUser)
 		this.setState({ onboardingComplete: true })
+		this.props.updateUsers(currentUser)
 	}
 
 	render() {
