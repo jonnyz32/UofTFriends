@@ -8,20 +8,33 @@
     z-index: 0;
 }
 
-.adminNav {
+/* .adminNav {
     display: flex;
     justify-content: space-between;
     width: 100%;
     height: 5%;
     background-color: #555;
     overflow: auto;
-    /* line-height: 25px; */
     border-bottom: solid 5px #888888;
     overflow: hidden;
     z-index: -1;
 }
 
-.adminTitle {
+ */
+
+ .adminNav {
+    width: 100%;
+    min-height: 50px;
+    height: 5vh;
+    background-color: #555;
+    overflow: hidden;
+    border-bottom: solid 5px #888888;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+ }
+
+/* .adminTitle {
     margin: 0;
     padding: 0;
     text-align: left;
@@ -29,16 +42,32 @@
     font-size: 1.5vw;
     padding-top:5px;
     margin-left: 2%;
+} */
+
+
+.adminTitle {
+    margin: auto;
+    margin-left: 2%;
+    width: 80%;
+    text-align: left;
+    font-size: 1.5vw;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
 }
 
 .adminNav a {
+    padding: 15px;
     display: block;
-    text-align: centre;
+    float: right;
+    text-align: center;
     color: white;
     text-decoration: none;
-    font-size: 0.85vw;
-    padding: 15px;
-    margin-right: 2.5%;
+    font-size: 17px;
+    width: 10%;
+    height: 100%;
+    max-width: fit-content;
+    min-width: 100px;
 }
 
 /* Navbar links on mouse-over */

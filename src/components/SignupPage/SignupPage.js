@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import "./SignupPage.css"
 import { Route, Switch, BrowserRouter, Redirect, Link } from 'react-router-dom'
 
+const signedInState = {
+	NONE: 0,
+	STUDENT: 1,
+	ADMIN: 2
+}
+
 class Signup extends Component {
 
 	constructor(props) {
@@ -11,7 +17,7 @@ class Signup extends Component {
 			password: "",
 			users: this.props.users,
 			currentUser: "",
-			signedIn: false
+			signedIn: signedInState.NONE
 		}
 	}
 
@@ -21,12 +27,19 @@ class Signup extends Component {
 			password: this.state.password
 		}
 
+		if (verificationUser.name === "admin" && verificationUser.password === "admin") {
+			this.setState({
+				signedIn: signedInState.ADMIN
+			})
+			return
+		}
+
 		for (var i = 0; i < this.state.users.length; i++) {
 			if (JSON.stringify(this.state.users[i].name) === JSON.stringify(verificationUser.name) &&
 				(JSON.stringify(this.state.users[i].password) === JSON.stringify(verificationUser.password))) {
 				this.setState({
 					currentUser: this.state.users[i],
-					signedIn: 1
+					signedIn: signedInState.STUDENT
 				})
 				return
 			}
@@ -45,9 +58,20 @@ class Signup extends Component {
 	}
 
 	addUser = () => {
+
 		if (this.state.name === "" || this.state.password === "") {
 			alert("Username and password must not empty")
 			return
+		} else if (this.state.name === "admin") {
+			alert("You can't register as an admin!")
+			return
+		}
+
+		for (var i = 0; i < this.state.users.length; i++) {
+			if (JSON.stringify(this.state.users[i].name) === JSON.stringify(this.state.name)) {
+				alert("Username is already taken!")
+				return
+			}
 		}
 
 		const userList = this.state.users
@@ -74,13 +98,15 @@ class Signup extends Component {
 	}
 
 	render() {
-		if (this.state.signedIn == 1) {
+		if (this.state.signedIn == signedInState.STUDENT) {
 			this.props.toggleSignIn(this.state.currentUser, this.state.signedIn)
 			if (this.state.currentUser.seenOnboarding == 1) {
 				return <Redirect to={{ pathname: "/Home" }} />
 			} else {
 				return <Redirect to={{ pathname: "/PostRegistration" }} />
 			}
+		} else if (this.state.signedIn == signedInState.ADMIN) {
+			return <Redirect to={{ pathname: "/Admin" }} />
 		}
 
 		return (<div className="div">

@@ -61,7 +61,7 @@ export class AdminPage extends React.Component {
 		if (reportType === "Group") {
 			report = this.state.reportedGroups[reportIndex]
 		} else {
-			report = this.state.reportedStudents[reportIndex]
+			report = this.state.reportedUsers[reportIndex]
 		}
 		this.setState({ reportToShow: report })
 	}
@@ -73,7 +73,7 @@ export class AdminPage extends React.Component {
 		if (reportType === "Group") {
 			arrayToIterate = this.state.reportedGroups
 		} else {
-			arrayToIterate = this.state.reportedStudents
+			arrayToIterate = this.state.reportedUsers
 		}
 
 		for (let i = 0; i < arrayToIterate.length; i++) {
@@ -97,9 +97,9 @@ export class AdminPage extends React.Component {
 			arrayToSplice.splice(reportIndex, 1)
 			this.setState({ reportedGroups: arrayToSplice })
 		} else {
-			arrayToSplice = this.state.reportedStudents.slice()
+			arrayToSplice = this.state.reportedUsers.slice()
 			arrayToSplice.splice(reportIndex, 1)
-			this.setState({ reportedStudents: arrayToSplice })
+			this.setState({ reportedUsers: arrayToSplice })
 		}
 		this.setState({ reportToShow: null})
 	}
@@ -132,7 +132,7 @@ export class AdminPage extends React.Component {
 					</aside>
 					<aside className="reportedPanel">
 						<p>Reported Students</p>
-						{this.state.reportedStudents.map((report) => <ReportCard name={report.name} reason={report.reason} type={report.type}
+						{this.state.reportedUsers.map((report) => <ReportCard name={report.name} reason={report.reason} type={report.type}
 							reportedMessage={report.reportedMessage} viewReport={this.viewReport} />)}
 					</aside>
 				</section>
