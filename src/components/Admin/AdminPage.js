@@ -121,7 +121,7 @@ export class AdminPage extends React.Component {
 				
 				<nav className="adminNav">
 					<p className="adminTitle">ADMIN</p> 
-					<a onClick={this.logout}>Logout</a>
+					<a onClick={this.logout}><i className="fa fa-fw fa-power-off"></i>Logout</a>
 				</nav>
 
 				<section className="adminSidebar">
