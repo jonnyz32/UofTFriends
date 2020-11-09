@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './Todolist.css';
+
 
 class ToDoListItem extends Component {
 
@@ -10,7 +11,6 @@ class ToDoListItem extends Component {
 
 
  remove = (event) => {
-   this.props.removeToDo(this.state.name,this.props.activity);
    this.setState( {
      delete:true
    })
@@ -31,14 +31,13 @@ class ToDoListItem extends Component {
     return (
       <div className="ToDoListItem">
 
-          <div className='Time'>
+          <div class='Time'>
             {this.props.time}
           </div>
 
-          <div className='Activity'>
+          <div class='Activity'>
             {this.props.activity}
-            <input onClick={this.remove} type="checkbox"/>
-
+            <input onClick={this.remove} type="checkbox" hello />
           </div>
 
 
@@ -49,6 +48,7 @@ class ToDoListItem extends Component {
     );
   }
 }
+
 
 }
 
