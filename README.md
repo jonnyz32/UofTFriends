@@ -3,7 +3,7 @@ and communicate with other students in their courses or program.
 
 How to use:
 The starting page of the app is /signup. From this page you will be able to 
-login as an exsisting user or signup as a new user. If you want to login as 
+login as an existing user or signup as a new user. If you want to login as 
 an existing user, use the following credentials
 
 username: user
@@ -20,7 +20,7 @@ After signing up as a new user or logging in as an existing user, you will be
 brought to the home page of our site. From here you can see a list of 
 chats corresponding to the courses that you are currently enrolled in,
 your current schedule for the day (based on the courses you are enrolled in),
-a to-do list which you can add to, and a search bar to find other students. Lets 
+a to-do list which you can add to and remove as you please, and a search bar to find other students. Lets 
 go over each of these functionalities.
 
 Chats: 
@@ -28,8 +28,11 @@ Chats:
 Clicking on a chat in the sidebar will open up a corresponding chat view
 where you can send messages to that group/person.
 
-Searchbar: Here you can type in a course, program or student name
-to find other students matching that course, program, or name.
+
+Searchbar: Here you can type in a students name, or a particular course
+or program to find other students having that same name, taking 
+that same course, or enrolled in that same program.
+
 
 Ex: Typing in CSC30, will show all students with courses containing 
 the string CSC30 (CSC309, CSC300,...).

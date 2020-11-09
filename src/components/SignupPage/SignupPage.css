@@ -4,16 +4,24 @@
 
  height: 56px;
  border-radius: 4px;
+ color: black;
+
 
  top: 1000%;
  left: 10%;
  position: relative;
  display: block;
  text-align: center;
- background-color: #a6f6f1;
+ background-color: rgb(121, 117, 117);
 }
 .input:hover {
   background-color: white;
+}
+.input::placeholder {
+  color: darkgrey;
+}
+.input:hover::placeholder{
+  color: grey;
 }
 
 
@@ -22,8 +30,8 @@
  top: 30%;
  left: 35%;
  font-family: 'Raleway', sans-serif;
- color: #213e3b;
- background-color: #e8ffff;
+ color: black;
+
 
 }
 
@@ -40,26 +48,11 @@
   font-size: 14px;
   padding: 10px 30px;
   border-radius: 12px;
-  background-color: white;
-  color: #213e3b;
+  background-color: #f4f4f4;
+  color: black;
 }
 .header{
-  background-color: #e8ffff;
-  color: #213e3b;
-}
-.FAQ {
-  position: absolute;
-  top: 120%;
-  left: -100%;
-  font-size: 14px;
-  border-radius: 40%;
-  padding: 10px 10px;
-  background-color: #41aea9;
-  font-family: 'Comfortaa', cursive;
-  font-family: 'Raleway', sans-serif;
-  border-width: 1px;
-  border-color: black;
-  border-style: solid;
+  color: black;
 
 }
 .Contact:hover
@@ -70,18 +63,19 @@
    }
 .Contact{
   position: absolute;
-  top: 120%;
-  left: 170%;
+  top: 140%;
+  left: 40%;
   border-width: 1px;
   border-color: black;
   border-style: solid;
   text-decoration: none;
+  color: black;
 
 
   font-size: 14px;
   border-radius: 50%;
   padding: 8px 10px;
-  background-color: #41aea9;
+  background-color: rgb(121, 117, 117);
   font-family: 'Comfortaa', cursive;
   font-family: 'Raleway', sans-serif;
 }
