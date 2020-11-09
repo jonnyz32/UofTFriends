@@ -19,7 +19,7 @@
     min-height: 50px;
     height: 5vh;
     background-color: #555;
-    overflow: auto;
+    overflow: hidden;
     line-height: 25px;
     border-bottom: solid 5px #888888;
     box-sizing: border-box;
@@ -72,6 +72,7 @@
     text-decoration: none;
     font-size: 17px;
     width: 10%;
+    height: 100%;
     max-width: fit-content;
 }
 

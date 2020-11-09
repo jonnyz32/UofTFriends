@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom';
 import './Home.css'
+
 import SideBar from '../SideNav/SideNav';
 import Students from '../Students/Students';
 import Chat from '../Chat/Chat';
@@ -10,7 +12,6 @@ import SettingsPage from '../SettingsPage/SettingsPage'
 import confusedMan from '../../images/Mobsquare.png'
 import happySun from '../../images/happySun.png'
 import sadMan from '../../images/sadFace.jpg'
-
 
 class Home extends Component {
 
@@ -26,7 +27,8 @@ class Home extends Component {
 			image: confusedMan,
 			chats: this.props.currentUser.courses,
 			users: [],
-			usersMasterList: this.props.users
+			usersMasterList: this.props.users,
+			logout: false
 		};
 	}
 
@@ -220,14 +222,18 @@ class Home extends Component {
 
 	//   }
 
-
-
+	logout = () => {
+		this.setState({ logout: true})
+	}
 
 	render() {
 
 		let centerPage = null
 		let rightPage = null
-		if (this.state.viewFragment == "home") {
+
+		if (this.state.logout) {
+			return <Redirect to={{ pathname: "/SignUp" }}/>
+		} else if (this.state.viewFragment == "home") {
 			{ console.log(this.state.currentUser.schedule) }
 			centerPage = <Schedule schedule={this.state.currentUser.courses} />
 			rightPage = <TodoList name={this.props.currentUser.name} todoList={this.props.currentUser.toDoList} />
@@ -264,8 +270,9 @@ class Home extends Component {
 					</form>
 
 					{/* Navigation buttons */}
-					<a href="#" onClick={() => this.toggleSearchMode("settings")}><i className="fa fa-fw fa-user"></i>{this.state.currentUser.name}</a>
-					<a href="#" onClick={() => this.toggleSearchMode("home")}><i className="fa fa-fw fa-home"></i>Home</a>
+					<a onClick={this.logout}><i className="fa fa-fw fa-power-off"></i>Logout</a>
+					<a onClick={() => this.toggleSearchMode("settings")}><i className="fa fa-fw fa-user"></i>{this.state.currentUser.name}</a>
+					<a onClick={() => this.toggleSearchMode("home")}><i className="fa fa-fw fa-home"></i>Home</a>
 				</nav>
 
 				<aside id="sidebarContainer">
