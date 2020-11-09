@@ -4,7 +4,11 @@ and communicate with other students in their courses or program.
 How to use:
 The starting page of the app is /signup. From this page you will be able to 
 login as an existing user or signup as a new user. If you want to login as 
-an existing user, use the following credentials
+an existing user, you can choose from signing in as our admin user or 
+our regular user. To simplify things, we will show how to login as an admin
+at the end. Here is how to login as a regular user.
+
+Regular user:
 
 username: user
 password: password
@@ -50,4 +54,20 @@ profile settings page:
 From the profile settings page, you have the option to change your profile picture,
 add or remove courses from your currently enrolled courses, and update your bio.
 
+
+Now let's talk about the admin functionality. To sign in as an admin, use the following
+credentials:
+
+Admin:
+
+username: admin
+password: admin
+
+Once you are in the admin view, you will see a list of reported groups and students.
+You can click on any group or student, to get a quick description of their offense.
+You will also be presented with the option to ban the user/group or dismiss their
+offense.
+
+With both types of users, we provide the option to logout of your account
+via a button in the top right corner.
 
