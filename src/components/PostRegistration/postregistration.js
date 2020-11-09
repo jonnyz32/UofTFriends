@@ -125,12 +125,12 @@ class PostRegistration extends Component {
 
 					<div className="onboardingPictureContainer">
 						<ProfilePicture imageSrc={this.state.image} />
+						<label> YOU </label>
 						<select className="profilePictureSelect" onChange={this.handleImageSelect}>
 							<option value="confusedMan">Confused Man</option>
 							<option value="happySun">Happy Sun</option>
 							<option value="sadMan">Sad Man</option>
 						</select>
-						<label> YOU </label>
 					</div>
 
 					<br />
@@ -186,7 +186,7 @@ class PostRegistration extends Component {
 
 						<div>
 							<label>My hobbies are </label>
-							<input type="text" name="courses" placeholder="Type in your hobbies" onChange={this.handleHobbiesInput} />
+							<input type="text" name="courses" placeholder="type in your hobbies" onChange={this.handleHobbiesInput} />
 						</div>
 
 					</div>
@@ -194,7 +194,7 @@ class PostRegistration extends Component {
 					<br />
 
 					<label id="bioTitle">Say something about yourself!</label>
-					<textarea className="onboardingBio" onChange={this.handleBioInput} />
+					<textarea className="onboardingBio" placeholder="type in your bio" onChange={this.handleBioInput} />
 
 					<div>
 						<button class="endOnboardingButton" onClick={this.completeOnboarding}>Continue</button>

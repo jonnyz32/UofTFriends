@@ -196,7 +196,7 @@ class App extends Component {
 			<div className="App">
 				<BrowserRouter>
 					<Switch>
-						<Route exact path='/Signup' render={() =>
+						<Route exact path='/' render={() =>
 							(<Signup toggleSignIn={this.toggleSignIn} users={this.state.users} />)} />
 						<Route exact path='/Settings' render={() =>
 							(<SettingsPage user={this.currentUser} />)} />
@@ -207,7 +207,7 @@ class App extends Component {
 						<Route exact path='/PostRegistration' render={() =>
 							(<PostRegistration currentUser={this.state.currentUser} />)} />
 						<Route exact path='/Admin' render={() =>
-							(<AdminPage/>)} />
+							(<AdminPage />)} />
 					</Switch>
 				</BrowserRouter>
 			</div>

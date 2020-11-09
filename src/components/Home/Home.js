@@ -232,7 +232,7 @@ class Home extends Component {
 		let rightPage = null
 
 		if (this.state.logout) {
-			return <Redirect to={{ pathname: "/SignUp" }}/>
+			return <Redirect to={{ pathname: "/" }}/>
 		} else if (this.state.viewFragment == "home") {
 			{ console.log(this.state.currentUser.schedule) }
 			centerPage = <Schedule schedule={this.state.currentUser.courses} />
