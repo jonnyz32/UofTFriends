@@ -16,5 +16,9 @@
 }
 
 .ChatItem:hover {
+    cursor: pointer;
+}
+
+.ChatItem:hover {
     background-color:#213e3b;
 }

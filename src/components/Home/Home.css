@@ -60,6 +60,7 @@
 
 #nav form input:hover {
     border: 3px black solid;
+    cursor: pointer;
 }
 
 /* Navigation Icons */
@@ -79,6 +80,7 @@
 /* Navbar links on mouse-over */
 #nav a:hover {
     background-color: #000;
+    cursor: pointer;
 }
 
 /* What do you think this is? */
