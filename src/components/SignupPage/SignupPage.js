@@ -16,14 +16,14 @@ class Signup extends Component {
   	}
 
 	signIn = (event) => {
-		const verificationUser = { 
-			name: this.state.name, 
+		const verificationUser = {
+			name: this.state.name,
 			password: this.state.password
 		}
 
 		for (var i = 0; i < this.state.users.length; i++) {
 			if (JSON.stringify(this.state.users[i].name) === JSON.stringify(verificationUser.name)) {
-				this.setState({ 
+				this.setState({
 					currentUser: this.state.users[i],
 					signedIn: 1
 				})
@@ -84,7 +84,6 @@ class Signup extends Component {
 		<button className="button" onClick={this.addUser}> Sign Up </button>
 		<button className="button" onClick={this.signIn}> Sign In </button>
 
-		<a className="FAQ"> Frequently Asked Questions</a>
 		<a href="mailto:97sdmn@gmail.com" className="Contact"> Contact us</a>
 		</div>)
 	}
