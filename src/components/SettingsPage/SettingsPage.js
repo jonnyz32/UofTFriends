@@ -26,7 +26,7 @@ export class SettingsPage extends React.Component {
 								<option value="happySun">Happy Sun</option>
 								<option value="sadMan">Sad Man</option>
 							</select>
-            			</div>
+						</div>
 					</div>
 
 					<div className="SettingsStudentInfo">

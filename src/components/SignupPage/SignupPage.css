@@ -1,93 +1,86 @@
 .input {
- border-radius: 4px;
- color: black;
- left: 10%;
- position: relative;
- display: block;
- text-align: center;
- background-color: rgb(121, 117, 117);
- height: 14%;
- width: 80%;
- border-radius: 4px;
- color: black;
- left: 10%;
- position: relative;
- display: block;
- text-align: center;
+	border-radius: 4px;
+	color: black;
+	left: 10%;
+	position: relative;
+	display: block;
+	text-align: center;
+	background-color: rgb(121, 117, 117);
+	height: 14%;
+	width: 80%;
+	border-radius: 4px;
+	color: black;
+	left: 10%;
+	position: relative;
+	display: block;
+	text-align: center;
 }
 
 .input:hover {
-  background-color: white;
-}
-.input::placeholder {
-  color: darkgrey;
-}
-.input:hover::placeholder{
-  color: grey;
+	background-color: white;
 }
 
+.input::placeholder {
+	color: darkgrey;
+}
+
+.input:hover::placeholder {
+	color: grey;
+}
 
 .div {
-  height: 50vh;
-  width: 70vh;
-  overflow: visible;
-  margin: auto;
-  margin-top: 25vh;
-
-
+	height: 50vh;
+	width: 70vh;
+	overflow: visible;
+	margin: auto;
+	margin-top: 25vh;
 }
 
-.button:hover
-  {
-    color:white;
-    text-decoration:none;
-    cursor:pointer;
-    background-color: black;
-   }
+.button:hover {
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+	background-color: black;
+}
 
 .button {
-  margin-top: 3%;
-  font-size: 14px;
-  padding: 10px 30px;
-  border-radius: 12px;
-  background-color: #f4f4f4;
-  color: black;
-  width: 27%;
-  height: 9%;
-  display: inline-block;
-  border: 2px solid black;
+	margin-top: 3%;
+	font-size: 14px;
+	padding: 10px 30px;
+	border-radius: 12px;
+	background-color: #f4f4f4;
+	color: black;
+	width: 27%;
+	height: 9%;
+	display: inline-block;
+	border: 2px solid black;
 }
-.header{
-  color: black;
-  font-size: 50px;
 
+.header {
+	color: black;
+	font-size: 50px;
 }
-.Contact:hover
-  {
-    color:white;
-    text-decoration:none;
-    cursor:pointer;
-   }
 
-.Contact{
+.Contact:hover {
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
 
-  border-width: 1px;
-  border-color: black;
-  border-style: solid;
-  text-decoration: none;
-  color: black;
-  display: block;
-  width: 20%;
-  height: 5%;
-
-  margin: auto;
-
-
-  font-size: 14px;
-  border-radius: 50%;
-  background-color: rgb(121, 117, 117);
-  font-family: 'Raleway', sans-serif;
- 
-  padding-top: 1%;
-  margin-top: 10%;
+.Contact {
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+	text-decoration: none;
+	color: black;
+	display: block;
+	width: 20%;
+	height: 5%;
+	margin: auto;
+	font-size: 14px;
+	border-radius: 50%;
+	background-color: rgb(121, 117, 117);
+	font-family: 'Raleway', sans-serif;
+	padding-top: 1%;
+	margin-top: 10%;
 }

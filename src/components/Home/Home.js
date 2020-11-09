@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './Home.css'
 
 import SideBar from '../SideNav/SideNav';
@@ -86,20 +86,20 @@ class Home extends Component {
 
 		if (this.state.chats.includes(chatName.toUpperCase())) {
 			return
-        }
-        this.addGroup(chatName.toUpperCase())
+		}
+		this.addGroup(chatName.toUpperCase())
 		const updatedChats = this.state.chats.slice();
 		updatedChats.push(chatName.toUpperCase())
 		this.setState({ chats: updatedChats })
-    }
-    
-    addGroup = (newChat) => {
+	}
+
+	addGroup = (newChat) => {
 		let oldState = this.state;
-		{console.log("state", oldState)}
+		{ console.log("state", oldState) }
 		this.setState(() => {
 			let currentUser = Object.assign({}, oldState.currentUser)
 			currentUser.groups[newChat] = [];
-			return {currentUser};
+			return { currentUser };
 		}
 		)
 		// [
@@ -205,9 +205,9 @@ class Home extends Component {
 	}
 
 	toggleSearchMode = (newView, chatName) => {
-        {console.log("in toggle search mode")}
-        this.setState({currentChat: chatName, viewFragment: newView}, 
-            () => {console.log("current chat",this.state.currentChat)})
+		{ console.log("in toggle search mode") }
+		this.setState({ currentChat: chatName, viewFragment: newView },
+			() => { console.log("current chat", this.state.currentChat) })
 
 	}
 
@@ -223,7 +223,7 @@ class Home extends Component {
 	//   }
 
 	logout = () => {
-		this.setState({ logout: true})
+		this.setState({ logout: true })
 	}
 
 	render() {
@@ -232,7 +232,7 @@ class Home extends Component {
 		let rightPage = null
 
 		if (this.state.logout) {
-			return <Redirect to={{ pathname: "/" }}/>
+			return <Redirect to={{ pathname: "/" }} />
 		} else if (this.state.viewFragment == "home") {
 			{ console.log(this.state.currentUser.schedule) }
 			centerPage = <Schedule schedule={this.state.currentUser.courses} />
@@ -241,17 +241,17 @@ class Home extends Component {
 			centerPage = <Students addChat={this.addChat} users={this.state.users} />
 			rightPage = null
 		} else if (this.state.viewFragment == "settings") {
-			centerPage = <SettingsPage currentUser={this.state.currentUser} chats={this.state.chats} courseOnChange={this.courseOnChange} 
-				addCourse={this.addCourse} removeCourse={this.removeCourse} newCourse={this.state.newCourse} bioOnChange={this.bioOnChange} 
+			centerPage = <SettingsPage currentUser={this.state.currentUser} chats={this.state.chats} courseOnChange={this.courseOnChange}
+				addCourse={this.addCourse} removeCourse={this.removeCourse} newCourse={this.state.newCourse} bioOnChange={this.bioOnChange}
 				submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange} />
 			rightPage = null
 		} else {
 			let texts = this.state.currentUser.groups[this.state.currentChat]
-            console.log("texts", texts)
-            if (texts){
-                centerPage = <Chat currentUser={this.state.currentUser} texts={texts} />
-			    rightPage = null
-            }	
+			console.log("texts", texts)
+			if (texts) {
+				centerPage = <Chat currentUser={this.state.currentUser} texts={texts} />
+				rightPage = null
+			}
 		}
 
 		return (

@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './ChatItem.css';
 
 
 class ChatItem extends Component {
+	
+	render() {
 
-  render() {
-   
-    return (
-      <div className="ChatItem" onClick={() => this.props.toggleSearchMode("chat", this.props.chatName.toUpperCase())}>
-         <p>{this.props.chatName.toUpperCase()}</p>
-      </div>
-   
-    );
-  }
+		return (
+			<div className="ChatItem" onClick={() => this.props.toggleSearchMode("chat", this.props.chatName.toUpperCase())}>
+				<p>{this.props.chatName.toUpperCase()}</p>
+			</div>
+
+		);
+	}
 }
 
 export default ChatItem;

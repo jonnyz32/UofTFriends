@@ -1,110 +1,121 @@
 /* Root element of the main page. */
+
 .outerDiv {
-	background-color:#f4f4f4;
-	color:#555;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:16px;
-	line-height:1.6em;
-    margin:0;
-    width: 100%;
-    height: 100%;
-    display: inline-block;
-    overflow: hidden;
-    box-sizing: border-box;
+	background-color: #f4f4f4;
+	color: #555;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	line-height: 1.6em;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	overflow: hidden;
+	box-sizing: border-box;
 }
 
+
 /* Navbar. */
+
 #nav {
-    width: 100%;
-    min-height: 50px;
-    height: 5vh;
-    background-color: #555;
-    overflow: hidden;
-    line-height: 25px;
-    border-bottom: solid 5px #888888;
-    box-sizing: border-box;
+	width: 100%;
+	min-height: 50px;
+	height: 5vh;
+	background-color: #555;
+	overflow: hidden;
+	line-height: 25px;
+	border-bottom: solid 5px #888888;
+	box-sizing: border-box;
 }
 
 #nav form {
-    position: absolute;
-    display: inline-block;
-    height: 2.5vh;
-    min-height: 25px;
-    width: 40%;
-    left: 30%;
-    margin-top: 10px;
+	position: absolute;
+	display: inline-block;
+	height: 2.5vh;
+	min-height: 25px;
+	width: 40%;
+	left: 30%;
+	margin-top: 10px;
 }
+
 
 /* Search Bar */
+
 #nav form input {
-    display: inline-block;
-    width: 88%;
-    height: 100%;
-    padding-left: 25px;
-    border: 1px solid white;
-    border-radius: 100px;
-    outline: none;
-    box-sizing: border-box;
+	display: inline-block;
+	width: 88%;
+	height: 100%;
+	padding-left: 25px;
+	border: 1px solid white;
+	border-radius: 100px;
+	outline: none;
+	box-sizing: border-box;
 }
 
-/* Search Button */
-#nav form .submitQuery{
 
-    float: right;
-    margin: auto;
-    padding: 3px;
-    margin-top: 1.5px;
-    width: 10%;    
-    min-height: 25px;
+/* Search Button */
+
+#nav form .submitQuery {
+	float: right;
+	margin: auto;
+	padding: 3px;
+	margin-top: 1.5px;
+	width: 10%;
+	min-height: 25px;
 }
 
 #nav form input:hover {
-    border: 3px black solid;
-    cursor: pointer;
+	border: 3px black solid;
+	cursor: pointer;
 }
+
 
 /* Navigation Icons */
+
 #nav a {
-    display: block;
-    float: right;
-    text-align: center;
-    padding: 10px;
-    color: white;
-    text-decoration: none;
-    font-size: 17px;
-    width: 10%;
-    height: 100%;
-    max-width: fit-content;
+	display: block;
+	float: right;
+	text-align: center;
+	padding: 10px;
+	color: white;
+	text-decoration: none;
+	font-size: 17px;
+	width: 10%;
+	height: 100%;
+	max-width: fit-content;
 }
+
 
 /* Navbar links on mouse-over */
+
 #nav a:hover {
-    background-color: #000;
-    cursor: pointer;
+	background-color: #000;
+	cursor: pointer;
 }
+
 
 /* What do you think this is? */
-#sidebarContainer {
-    margin: 0;
-    width: 20%;
-    height: 95vh;
-    box-sizing: border-box;
-    overflow: auto;
-    float: left;
 
-    background-color: #d3d3d3;
-    border-right: solid 5px #888888;
+#sidebarContainer {
+	margin: 0;
+	width: 20%;
+	height: 95vh;
+	box-sizing: border-box;
+	overflow: auto;
+	float: left;
+	background-color: #d3d3d3;
+	border-right: solid 5px #888888;
 }
+
 
 /* Container for the fragments (Search results, chat window, etc.) */
 
 #fragmentContainer {
-    margin: 0;
-    width: 80%;
-    height: 95vh;
-    box-sizing: border-box;
-    overflow: auto;
-
-    background-color: #d3d3d3;
-    display: block;
+	margin: 0;
+	width: 80%;
+	height: 95vh;
+	box-sizing: border-box;
+	overflow: auto;
+	background-color: #d3d3d3;
+	display: block;
 }

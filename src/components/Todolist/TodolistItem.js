@@ -1,55 +1,39 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Todolist.css';
-
 
 class ToDoListItem extends Component {
 
-  state={
-    name: this.props.name,
-    delete: false
-  }
+	state = {
+		name: this.props.name,
+		delete: false
+	}
 
+	remove = (event) => {
+		this.setState({
+			delete: true
+		})
+	}
 
- remove = (event) => {
-   this.setState( {
-     delete:true
-   })
- }
+	render() {
+		if (this.state.delete) {
+			return null
+		} else {
+			return (
+				<div className="ToDoListItem">
 
+					<div class='Time'>
+						{this.props.time}
+					</div>
 
+					<div class='Activity'>
+						{this.props.activity}
+						<input onClick={this.remove} type="checkbox" hello />
+					</div>
 
-
-  render() {
-    if(this.state.delete){
-      return null
-
-    }
-
-    else {
-
-
-    return (
-      <div className="ToDoListItem">
-
-          <div class='Time'>
-            {this.props.time}
-          </div>
-
-          <div class='Activity'>
-            {this.props.activity}
-            <input onClick={this.remove} type="checkbox" hello />
-          </div>
-
-
-
-
-      </div>
-
-    );
-  }
-}
-
-
+				</div>
+			);
+		}
+	}
 }
 
 export default ToDoListItem;

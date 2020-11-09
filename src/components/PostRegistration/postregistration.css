@@ -9,135 +9,136 @@
 }
 
 .onboardingContainer h1 {
-    text-align: center;
-    font-family: sans-serif;
-    padding: 10px 0;
-    margin-top: 0;
-    margin-bottom: 0;
+	text-align: center;
+	font-family: sans-serif;
+	padding: 10px 0;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .profilePictureContainer {
-    background-color: transparent;
+	background-color: transparent;
 }
 
-.profilePictureContainer label, #bioTitle {
-    display: block;
-    text-align: center;
-    font: 25px sans-serif;
-    text-emphasis: bold;
+.profilePictureContainer label,
+#bioTitle {
+	display: block;
+	text-align: center;
+	font: 25px sans-serif;
+	text-emphasis: bold;
 }
 
 .profilePictureSelect {
-    margin: 0.2em 0;
-    font-size: 25px;
-    background-color: silver;
-    border-radius: 15px;
+	margin: 0.2em 0;
+	font-size: 25px;
+	background-color: silver;
+	border-radius: 15px;
 }
 
 .onboardingPictureContainer .profilePictureContainer .profilePicture {
-    display: block;
-    border-radius: 50%;
-    width: 10%;
-    margin: auto;
+	display: block;
+	border-radius: 50%;
+	width: 10%;
+	margin: auto;
 }
 
 .profileInfoContainer {
-    text-align: center;
-    font: 25px sans-serif;
+	text-align: center;
+	font: 25px sans-serif;
 }
 
 .profileInfoContainer input[type="text"] {
-    font-size: 25px;
-    border-radius: 15px;
-    border-width: 1px;
-    background-color: silver;
-    outline: none;
+	font-size: 25px;
+	border-radius: 15px;
+	border-width: 1px;
+	background-color: silver;
+	outline: none;
 }
 
 .profileInfoContainer select {
-    font-size: 25px;
-    background-color: silver;
-    border-radius: 15px;
+	font-size: 25px;
+	background-color: silver;
+	border-radius: 15px;
 }
 
-.onboardingContainer ::placeholder{
-    color: dimgray
+.onboardingContainer ::placeholder {
+	color: dimgray
 }
 
 .onboardingPictureContainer label {
-    display: block;
-    margin: auto;
-    font-size: 2em;
-    font-weight: bold;
+	display: block;
+	margin: auto;
+	font-size: 2em;
+	font-weight: bold;
 }
 
 .endOnboardingButton {
-    margin: 1em 0;
-    font-size: 45px;
-    border-color: white;
-    border-radius: 15px;
-    background-color: silver;
-    outline: none;
+	margin: 1em 0;
+	font-size: 45px;
+	border-color: white;
+	border-radius: 15px;
+	background-color: silver;
+	outline: none;
 }
 
 .onboardingBio {
-    display: block;
-    width: 50%;
-    height: 50%;
-    text-align: left;
-    margin: auto;
+	display: block;
+	width: 50%;
+	height: 50%;
+	text-align: left;
+	margin: auto;
 	border: solid 2px rgb(121, 117, 117);
 	background-color: silver;
-    border-radius: 50px;
-    padding: 20px;
-    font-size: x-large;
+	border-radius: 50px;
+	padding: 20px;
+	font-size: x-large;
 	resize: none;
 }
 
-.onboardingBio:focus{
-    outline: none;
+.onboardingBio:focus {
+	outline: none;
 }
 
 .onboardingAddCourseContainer {
-    display: block;
-    margin: auto;
-    width: 50%;
-    border-radius: 15px;
+	display: block;
+	margin: auto;
+	width: 50%;
+	border-radius: 15px;
 }
 
 .onboardingCoursesContainer {
-    display: block;
-    height: fit-content;
-    padding-bottom: 20px;
-    margin: auto;
-    background-color: white;
-    width: 50%;
-    border-radius: 15px;
-    margin-bottom: 15px;
+	display: block;
+	height: fit-content;
+	padding-bottom: 20px;
+	margin: auto;
+	background-color: white;
+	width: 50%;
+	border-radius: 15px;
+	margin-bottom: 15px;
 }
 
 .onboardingCoursesContainer label {
-    color: black;
+	color: black;
 }
 
 .onboardingAddCourseForm {
-    display: inline;
+	display: inline;
 }
 
-.onboardingAddCourseForm input{
-    border-radius: 15px;
-    font-size: 0.9vw;
-    outline: none;
-    width: 45%;
+.onboardingAddCourseForm input {
+	border-radius: 15px;
+	font-size: 0.9vw;
+	outline: none;
+	width: 45%;
 }
 
 .onboardingAddCourseButton {
-    display: inline;
-    width: 45%;
-    border-radius: 15px;
-    font-size: 25px;
-    border-radius: 15px;
-    border-width: 1px;
-    background-color: silver;
-    outline: none;
+	display: inline;
+	width: 45%;
+	border-radius: 15px;
+	font-size: 25px;
+	border-radius: 15px;
+	border-width: 1px;
+	background-color: silver;
+	outline: none;
 }

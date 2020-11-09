@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import StudentItem from '../StudentItem/StudentItem';
 import '../StudentItem/StudentItem.css';
 
-
 class Students extends Component {
 
 	constructor(props) {
@@ -14,7 +13,6 @@ class Students extends Component {
 		this.keyCount += 1
 		return this.keyCount;
 	}
-
 
 	render() {
 

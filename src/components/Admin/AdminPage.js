@@ -2,7 +2,7 @@ import React from 'react';
 import ReportCard from './ReportCard';
 import ViewReport from './ViewReport'
 import './AdminPage.css';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 export class AdminPage extends React.Component {
 
@@ -101,26 +101,26 @@ export class AdminPage extends React.Component {
 			arrayToSplice.splice(reportIndex, 1)
 			this.setState({ reportedUsers: arrayToSplice })
 		}
-		this.setState({ reportToShow: null})
+		this.setState({ reportToShow: null })
 	}
 
 	logout = () => {
-		this.setState({ logout: true})
+		this.setState({ logout: true })
 	}
 
 	render() {
 
-		if(this.state.logout){
-			return <Redirect to={{ pathname: "/SignUp" }}/>
+		if (this.state.logout) {
+			return <Redirect to={{ pathname: "/SignUp" }} />
 		}
 
 		return (
 
 			<div className="adminRoot">
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-				
+
 				<nav className="adminNav">
-					<p className="adminTitle">ADMIN</p> 
+					<p className="adminTitle">ADMIN</p>
 					<a onClick={this.logout}><i className="fa fa-fw fa-power-off"></i>Logout</a>
 				</nav>
 

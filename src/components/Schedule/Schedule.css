@@ -1,46 +1,44 @@
 .schedule {
-    margin-top: 10%;
-    margin-left: 13%;
-    width: 30%;
-    float: left;
+	margin-top: 10%;
+	margin-left: 13%;
+	width: 30%;
+	float: left;
 }
 
 .schedule .header {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    background-color: inherit;
-    margin-top: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	background-color: inherit;
+	margin-top: 0px;
 }
 
 .schedule .header h2 {
-    margin-top: 0px;
-    color: #213e3b;
+	margin-top: 0px;
+	color: #213e3b;
 }
 
 .scheduleItem {
-    border: 1px solid black;
-    clear: both;
-    border-radius: 10px;
-    background-color: white;
-    overflow: hidden;
-    margin: .5%;
+	border: 1px solid black;
+	clear: both;
+	border-radius: 10px;
+	background-color: white;
+	overflow: hidden;
+	margin: .5%;
 }
+
 
 /* .Activity {
     margin-left: 15%;
 } */
 
 .Activity h2 {
-    margin-top: 4.75%;
-    text-align: right;
-    margin-right: 20%;
+	margin-top: 4.75%;
+	text-align: right;
+	margin-right: 20%;
 }
-
 
 .Time {
-    float: left;
-    margin-left: 6%;
-    margin-top: 1%;
-
+	float: left;
+	margin-left: 6%;
+	margin-top: 1%;
 }
-
