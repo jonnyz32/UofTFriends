@@ -2,7 +2,7 @@ import React from 'react';
 import ReportCard from './ReportCard';
 import ViewReport from './ViewReport'
 import './AdminPage.css';
-
+import {Redirect} from 'react-router-dom';
 
 export class AdminPage extends React.Component {
 
@@ -49,7 +49,8 @@ export class AdminPage extends React.Component {
 				reason: "Extremely rude.",
 				reportedMessage: "I'm a realtor, buy a house."
 			}],
-		reportToShow: null
+		reportToShow: null,
+		logout: false
 	}
 
 	viewReport = (reportName, reportType) => {
@@ -103,7 +104,15 @@ export class AdminPage extends React.Component {
 		this.setState({ reportToShow: null})
 	}
 
+	logout = () => {
+		this.setState({ logout: true})
+	}
+
 	render() {
+
+		if(this.state.logout){
+			return <Redirect to={{ pathname: "/SignUp" }}/>
+		}
 
 		return (
 
@@ -112,7 +121,7 @@ export class AdminPage extends React.Component {
 				
 				<nav className="adminNav">
 					<p className="adminTitle">ADMIN</p> 
-					<a>Logout</a>
+					<a onClick={this.logout}>Logout</a>
 				</nav>
 
 				<section className="adminSidebar">

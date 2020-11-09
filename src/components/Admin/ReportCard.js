@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './ReportCard.css';
 
-
 export class ReportCard extends Component {
 
 
