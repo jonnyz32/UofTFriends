@@ -6,6 +6,7 @@ import Home from './components/Home/Home';
 import SettingsPage from './components/SettingsPage/SettingsPage';
 import Chat from './components/Chat/Chat';
 import PostRegistration from './components/PostRegistration/postregistration';
+import AdminPage from './components/Admin/AdminPage';
 
 class App extends Component {
   state = {
@@ -143,6 +144,8 @@ class App extends Component {
                           (<Home schedule={this.state.currentUser.schedule} currentUser={this.state.currentUser} removeToDo={this.removeToDo} name={this.state.currentUser.name} toDoList={this.state.currentUser.toDoList}/>)}/>
           <Route exact path='/PostRegistration' render={() =>
                           (<PostRegistration/>)}/>
+          <Route exact path='/Admin' render={() =>
+                          (<AdminPage/>)}/>
         </Switch>
       </BrowserRouter>
 
