@@ -229,7 +229,7 @@ class Home extends Component {
 		let rightPage = null
 		if (this.state.viewFragment == "home") {
 			{ console.log(this.state.currentUser.schedule) }
-			centerPage = <Schedule schedule={this.state.currentUser.schedule} />
+			centerPage = <Schedule schedule={this.state.currentUser.courses} />
 			rightPage = <TodoList name={this.props.currentUser.name} todoList={this.props.currentUser.toDoList} />
 		} else if (this.state.viewFragment == "search") {
 			centerPage = <Students addChat={this.addChat} users={this.state.users} />
