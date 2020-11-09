@@ -1,102 +1,92 @@
 import React, {Component} from 'react';
 import "./SignupPage.css"
-import { Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
-import { Link } from "react-router-dom";
-
-
-
-
+import { Route, Switch, BrowserRouter, Redirect, Link} from 'react-router-dom'
 
 class Signup extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password:"",
-      email:"",
-      users : this.props.users,
-      currentUser:"",
-      signedIn:false
+	constructor(props) {
+		super(props)
+		this.state = {
+			name: "",
+			password: "",
+			users : this.props.users,
+			currentUser: "",
+			signedIn: false
+		}
+  	}
 
-    };
+	signIn = (event) => {
+		const verificationUser = { 
+			name: this.state.name, 
+			password: this.state.password
+		}
 
-  }
+		for (var i = 0; i < this.state.users.length; i++) {
+			if (JSON.stringify(this.state.users[i].name) === JSON.stringify(verificationUser.name)) {
+				this.setState({ 
+					currentUser: this.state.users[i],
+					signedIn: 1
+				})
+			}
+		}
+  	}
 
+	handleInputChange = (event) => {
+		const target = event.target
+		const value = target.value
+		const name=target.name
 
-  SignIn = (event) => {
-    const verificationUser = {username: this.state.username, password: this.state.password, email: this.state.email}
-    for (var i=0; i<this.state.users.length; i++) {
-     if (JSON.stringify(this.state.users[i].name) === JSON.stringify(verificationUser.username) ) {
-             alert("EQUALS");
+		this.setState({
+			[name]:value
+		})
+  	}
 
-             this.setState({
-               currentUser:this.state.users[i],
-               signedIn:1
-             }
+  	addUser = () => {
+		const userList = this.state.users
+		const newUser = {
+			name: this.state.name,
+			password: this.state.password,
+			seenOnboarding: false,
+			courses: [],
+			schedule: [],
+			toDoList: [],
+			image: ""
+		}
 
+		console.log(newUser)
+		userList.push(newUser)
 
-             )
+		console.log(userList)
+		this.setState ({
+			users : userList
+		})
 
-
-
-
-      }
-}
-  }
-
-
-
-  handleInputChange = (event) => {
-    const target = event.target
-    const value = target.value
-    const name=target.name
-
-    this.setState({
-
-      [name]:value
-    }
-
-    )
-  }
-
-  addStudent = () => {
-    const userList = this.state.users
-    const newUser = {username: this.state.username, password: this.state.password, email: this.state.email}
-    userList.push(newUser)
-    this.setState ({
-      users : userList
-    });
-
-    console.log(newUser.username)
-
-  }
+		this.signIn()
+  	}
 
     render() {
+		if (this.state.signedIn == 1) {
+			this.props.toggleSignIn(this.state.currentUser, this.state.signedIn)
+			if (this.state.currentUser.seenOnboarding == 1) {
+				return <Redirect to={{ pathname: "/Home" }}/>
+			} else {
+				return <Redirect to={{ pathname: "/PostRegistration" }}/>
+			}
+		}
 
-      if(this.state.signedIn==1){
-        this.props.toggleSignIn(this.state.currentUser,this.state.signedIn)
-        return <Redirect to={{ pathname: "/Home" }}/>
-      }
-      return(<div className="div">
+		return(<div className="div">
 
+		<h1 className="header"> Sign Up to Friends-at-UofT </h1>
+		<input type="text" value= {this.state.name} onChange={this.handleInputChange} className="input" name="name" placeholder="Username"/>
+		<input type="text" value= {this.state.password} onChange={this.handleInputChange} className="input" name="password" placeholder="Password"/>
 
-        <h1 className="header"> Sign Up to Friends-at-UofT </h1>
-        <input type="text" value= {this.state.username} onChange={this.handleInputChange} className="input" name="username" placeholder="User Name"/>
-        <input type="text" value= {this.state.password} onChange={this.handleInputChange} className="input" name="password" placeholder="Password"/>
-        <input type="text" value= {this.state.email} onChange={this.handleInputChange} className="input" name="email" placeholder="UofT Email"/>
+		<button className="button" onClick={this.addUser}> Sign Up </button>
+		<button className="button" onClick={this.signIn}> Sign In </button>
 
-
-        <button className="button" onClick={this.addUser}> Sign Up </button>
-        <button className="button" onClick={this.SignIn}> Sign In </button>
-
-
-        <a className="FAQ"> Frequently Asked Questions</a>
-        <a href="mailto:97sdmn@gmail.com" className="Contact"> Contact us</a>
-        </div>);
-    }
+		<a className="FAQ"> Frequently Asked Questions</a>
+		<a href="mailto:97sdmn@gmail.com" className="Contact"> Contact us</a>
+		</div>)
+	}
 }
-
-//<Link to={'/SearchBar'}> <button>Go to search bar</button></Link>
 
 export default Signup

@@ -18,7 +18,7 @@ export class AdminPage extends React.Component {
 				type: "Group",
 				reason: "Whole lotta cheating",
 			}],
-		reportedStudents: [
+		reportedUsers: [
 			{
 				name: "Jonathan Zak",
 				type: "Student",
@@ -47,7 +47,7 @@ export class AdminPage extends React.Component {
 				name: "Meirbek Zeinulla",
 				type: "Student",
 				reason: "Extremely rude.",
-				reportedMessage: "I'm a realtor, buy a house."
+				reportedMessage: "Good evening, may I please have some more soup?"
 			}],
 		reportToShow: null,
 		logout: false

@@ -3,16 +3,15 @@ import './Course.css';
 
 export class Course extends React.Component {
 
-    render() {
+	render() {
+		return (
+			<div className="CourseCard">
+				<input className="CourseCardName" value={this.props.course}></input>
+				<button className="removeCourseCard" onClick={this.props.removeCourse}></button>
+			</div>
 
-        return (
-            <div className="CourseCard">
-                <input className="CourseCardName" value={this.props.course}></input>
-                <button className="removeCourseCard" onClick={this.props.removeCourse}></button>
-            </div>
-            
-        );  
-    }
-  }
-  
+		);
+	}
+}
+
 export default Course

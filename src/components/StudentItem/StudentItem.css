@@ -34,7 +34,7 @@
 .StudentInfo h3 {
     margin-top: 0px;
 }
-.Avatar {
+.Student .profilePictureContainer .profilePicture {
     width: 90px;
     height: 90px;
     border-radius: 50%;
