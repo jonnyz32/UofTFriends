@@ -22,8 +22,8 @@ class App extends Component {
 				courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
 				program: ['Computer Science Specialist'],
 				year: "third",
-        hobbies: ['Rock climbing'],
-        toDoList: [{
+				hobbies: ['Rock climbing'],
+				toDoList: [{
 					activity: 'leg day',
 					time: '4-5pm'
 				},
