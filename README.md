@@ -2,7 +2,7 @@ Our app is a platform for University of Toronto students to connect
 and communicate with other students in their courses or program.
 
 How to use:
-The starting page of the app is /signup. From this page you will be able to 
+The starting page of the app is "/", which is the signup page. From this page you will be able to 
 login as an existing user or signup as a new user. If you want to login as 
 an existing user, you can choose from signing in as our admin user or 
 our regular user. To simplify things, we will show how to login as an admin
