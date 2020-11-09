@@ -21,8 +21,13 @@ class Schedule extends Component {
     return this.time;
   }
 
+  resetTime = () => {
+    this.time = -1;
+  }
+
 
   render() {
+    this.resetTime()
     let time = ['9-10am', '12-2pm', '4-6pm', '6-7pm', '7-7:30pm', '8-9pm']
    
     return (

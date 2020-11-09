@@ -23,6 +23,15 @@ class App extends Component {
 				program: ['Computer Science Specialist'],
 				year: "third",
 				hobbies: ['Rock climbing'],
+				toDoList: [{
+					activity: 'leg day',
+					time: '4-5pm'
+				},
+				{
+					activity: 'CSC309 group meeting',
+					time: '8-9pm'
+				}
+				],
 				bio: 'Third year cs student. Looking to meet some new people!',
 				image: confusedMan,
 				seenOnboarding: true,
