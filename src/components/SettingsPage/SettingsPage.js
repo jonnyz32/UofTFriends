@@ -12,7 +12,7 @@ export class SettingsPage extends React.Component {
 			<div className="SettingsRoot">
 
 				<div className="SettingsHeaderContainer">
-					<img className="SettingsAvatar" src={logo}></img>
+					{/* <img className="SettingsAvatar" src={logo}></img> */}
 					<p className="SettingsName"> {this.props.currentUser.name} </p>
 				</div>
 
@@ -22,6 +22,7 @@ export class SettingsPage extends React.Component {
 						<div className="SettingsPictureContainer">
 							<img className="SettingsPicturePreview" value="confusedMan" src={this.props.image} alt="profilePicture" />
 							<select className="SettingsPictureSelect" onChange={this.props.handleSelectionChange}>
+								<option value="" selected disabled hidden>Select Image</option>
 								<option value="confusedMan">Confused Man</option>
 								<option value="happySun">Happy Sun</option>
 								<option value="sadMan">Sad Man</option>

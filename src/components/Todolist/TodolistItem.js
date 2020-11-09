@@ -38,7 +38,8 @@ class ToDoListItem extends Component {
 
           <div className='Activity'>
             {this.props.activity}
-            <input onClick={this.remove} type="checkbox" />
+            <input onClick={this.remove} type="checkbox"/>
+
           </div>
 
 
