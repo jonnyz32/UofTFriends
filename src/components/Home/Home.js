@@ -88,7 +88,7 @@ class Home extends Component {
 			return
         }
         this.addGroup(chatName.toUpperCase())
-		const updatedChats = this.state.chats;
+		const updatedChats = this.state.chats.slice();
 		updatedChats.push(chatName.toUpperCase())
 		this.setState({ chats: updatedChats })
     }
