@@ -207,7 +207,7 @@ class App extends Component {
 						<Route exact path='/PostRegistration' render={() =>
 							(<PostRegistration currentUser={this.state.currentUser} />)} />
 						<Route exact path='/Admin' render={() =>
-							(<AdminPage/>)} />
+							(<AdminPage />)} />
 					</Switch>
 				</BrowserRouter>
 			</div>
