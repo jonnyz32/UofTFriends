@@ -9,56 +9,193 @@ import PostRegistration from './components/PostRegistration/postregistration';
 
 class App extends Component {
   state = {
-    currentUser: {name: 'Jonathan Zak',
+    currentUser:  {name: 'user',
     courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
     program: ['Computer Science Specialist'],
     hobbies: ['Rock climbing'],
-    schedule: [{
-                activity: 'CSC300',
-                time: '2-4pm'
-              },
-              {
-                activity: 'CSC309',
-                time: '6-7pm'
-              }
-              ],
+    schedule: [
+        {
+    activity: 'CSC300',
+    time: '2-4pm'
+},
+{
+    activity: 'CSC309',
+    time: '6-7pm'
+},
+{
+    activity: 'CSC400',
+    time: '7-8pm'
+}
+],
     toDoList:[{
-                activity: 'leg day',
-                time: '4-5pm'
-              },
-              {
-                activity: 'CSC309 group meeting',
-                time: '8-9pm'
-              }
-              ],
-    bio: 'Third year cs student. Looking to meet some new people!'},
+            activity: 'leg day',
+            time: '4-5pm'
+        },
+        {
+            activity: 'CSC309 group meeting',
+            time: '8-9pm'
+        }
+        ],
+
+    bio: 'Third year cs student. Looking to meet some new people!',
+    groups: {
+    CSC300: [
+    {
+      sender: "Michael",
+      text: "Hey have you started the csc300 hw?",
+      iscurrentsender: false
+    },
+    {
+      sender: "Jonathan",
+      text: "Nope been too busy with 309 :(",
+      iscurrentsender: false
+    }
+    ],
+    CSC309: [
+    {
+      sender: "Aziz",
+      text: "What did you guys get on the proposal?",
+      iscurrentsender: false
+    },
+    {
+      sender: "Jonathan",
+      text: "3/3!",
+      iscurrentsender: false
+    }
+    ],
+    CSC311: [
+    {
+      sender: "Adi",
+      text: "This course make me want to cry",
+      iscurrentsender: false
+    },
+    {
+      sender: "Jonathan",
+      text: "Me toooooo",
+      iscurrentsender: false
+    }
+    ],
+    CSC343: [
+    {
+      sender: "Meirbek",
+      text: "What about reading week??",
+      iscurrentsender: false
+    },
+    {
+      sender: "Jonathan",
+      text: "We don't get one :'(",
+      iscurrentsender: false
+    }
+    ],
+    PHL245: [
+    {
+      sender: "Aziz",
+      text: "I love this class",
+      iscurrentsender: false
+    },
+    {
+      sender: "Jonathan",
+      text: "yep, easy A",
+      iscurrentsender: false
+    }
+    ]
+    }
+
+    },
     students: [
-        {name: 'Jonathan Zak',
+        {name: 'user',
         courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
         program: ['Computer Science Specialist'],
         hobbies: ['Rock climbing'],
-        schedule: [{
-                    activity: 'CSC300',
-                    time: '2-4pm'
-                  },
-                  {
-                    activity: 'CSC309',
-                    time: '6-7pm'
-                  }
-                  ],
+        schedule: [
+            {
+        activity: 'CSC300',
+        time: '2-4pm'
+    },
+    {
+        activity: 'CSC309',
+        time: '6-7pm'
+    },
+    {
+        activity: 'CSC400',
+        time: '7-8pm'
+    }
+    ],
         toDoList:[{
-                    activity: 'leg day',
-                    time: '4-5pm'
-                  },
-                  {
-                    activity: 'CSC309 group meeting',
-                    time: '8-9pm'
-                  }
-                  ],
+                activity: 'leg day',
+                time: '4-5pm'
+            },
+            {
+                activity: 'CSC309 group meeting',
+                time: '8-9pm'
+            }
+            ],
 
+        bio: 'Third year cs student. Looking to meet some new people!',
+        groups: {
+        CSC300: [
+        {
+          sender: "Michael",
+          text: "Hey have you started the csc300 hw?",
+          iscurrentsender: false
+        },
+        {
+          sender: "Jonathan",
+          text: "Nope been too busy with 309 :(",
+          iscurrentsender: false
+        }
+        ],
+        CSC309: [
+        {
+          sender: "Aziz",
+          text: "What did you guys get on the proposal?",
+          iscurrentsender: false
+        },
+        {
+          sender: "Jonathan",
+          text: "3/3!",
+          iscurrentsender: false
+        }
+        ],
+        CSC311: [
+        {
+          sender: "Adi",
+          text: "This course make me want to cry",
+          iscurrentsender: false
+        },
+        {
+          sender: "Jonathan",
+          text: "Me toooooo",
+          iscurrentsender: false
+        }
+        ],
+        CSC343: [
+        {
+          sender: "Meirbek",
+          text: "What about reading week??",
+          iscurrentsender: false
+        },
+        {
+          sender: "Jonathan",
+          text: "We don't get one :'(",
+          iscurrentsender: false
+        }
+        ],
+        PHL245: [
+        {
+          sender: "Aziz",
+          text: "I love this class",
+          iscurrentsender: false
+        },
+        {
+          sender: "Jonathan",
+          text: "yep, easy A",
+          iscurrentsender: false
+        }
+        ]
+        }
 
-
-        bio: 'Third year cs student. Looking to meet some new people!'},
+        },
 
         {name: 'Shadman Aziz',
         courses: ['Apm236', 'CSC309', 'Egy201', 'CSC343', 'CSC311'],
@@ -125,6 +262,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("current user", this.state.currentUser)
 
 
     return (
@@ -140,7 +278,7 @@ class App extends Component {
           <Route exact path='/Chat' render={() =>
                           (<Chat currentUser={this.state.currentUser}/>)}/>
           <Route exact path='/Home' render={() =>
-                          (<Home schedule={this.state.currentUser.schedule} currentUser={this.state.currentUser} removeToDo={this.removeToDo} name={this.state.currentUser.name} toDoList={this.state.currentUser.toDoList}/>)}/>
+                          (<Home students={this.state.students} schedule={this.state.currentUser.schedule} currentUser={this.state.currentUser} removeToDo={this.removeToDo} name={this.state.currentUser.name} toDoList={this.state.currentUser.toDoList}/>)}/>
           <Route exact path='/PostRegistration' render={() =>
                           (<PostRegistration/>)}/>
         </Switch>
