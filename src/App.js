@@ -18,6 +18,7 @@ class App extends Component {
 		users: [
 			{
 				name: 'user',
+				password: 'password',
 				courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
 				program: ['Computer Science Specialist'],
 				year: "third",
@@ -115,6 +116,7 @@ class App extends Component {
 			},
 			{
 				name: 'Shadman Aziz',
+				password: 'password',
 				courses: ['Apm236', 'CSC309', 'Egy201', 'CSC343', 'CSC311'],
 				program: ['Computer Science Major', 'Religion minor'],
 				year: "third",
@@ -126,6 +128,7 @@ class App extends Component {
 
 			{
 				name: 'Meirbek Zeinulla',
+				password: 'password',
 				courses: ['CSC458', 'CSC309', 'MAT235', 'CSC343', 'CSC263'],
 				program: ['Computer Science Major', 'Religion minor'],
 				year: "first",
@@ -137,6 +140,7 @@ class App extends Component {
 
 			{
 				name: 'Adi Thakur',
+				password: 'password',
 				courses: ['Apm236', 'CSC309', 'Rel101', 'CSC343', 'Ast304'],
 				program: ['Computer Science Major', 'Religion minor'],
 				year: "third",
@@ -148,6 +152,7 @@ class App extends Component {
 
 			{
 				name: 'Cathy Aziz',
+				password: 'password',
 				courses: ['CSC108', 'Rel101', 'Mat235', 'MAT137', 'BIO101'],
 				program: ['Computer Science Major', 'Religion minor'],
 				year: "fourth",
@@ -159,6 +164,7 @@ class App extends Component {
 
 			{
 				name: 'Jake Peralta',
+				password: 'password',
 				courses: ['psy101', 'phl200', 'phl245', 'csc400', 'pey100'],
 				program: ['Computer Science Major', 'Religion minor'],
 				year: "fifth",
@@ -170,6 +176,7 @@ class App extends Component {
 
 			{
 				name: 'amy santiago',
+				password: 'password',
 				courses: ['cog201', 'psy101', 'Egy201', 'CSC343', 'CSC311'],
 				program: ['Computer Science Major', 'Religion minor'],
 				year: "fourth",
@@ -181,6 +188,7 @@ class App extends Component {
 
 			{
 				name: 'Phil dunphy',
+				password: 'password',
 				courses: ['Apm236', 'Rel101', 'MAT157', 'MAT247', 'CSC311'],
 				program: ['Computer Science Major', 'Religion minor'],
 				year: "fourth",
