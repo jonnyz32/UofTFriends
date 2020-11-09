@@ -6,7 +6,7 @@ export class Course extends React.Component {
 	render() {
 		return (
 			<div className="CourseCard">
-				<input className="CourseCardName" value={this.props.course}></input>
+				<p className="CourseCardName">{this.props.course}</p>
 				<button className="removeCourseCard" onClick={this.props.removeCourse}></button>
 			</div>
 
