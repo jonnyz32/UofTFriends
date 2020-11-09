@@ -48,7 +48,7 @@ class Home extends Component {
 
 		usersMasterList.forEach(user => {
 
-			if ((user.name.includes(searchQuery) ||
+			if ((user.name.toUpperCase().includes(searchQuery.toUpperCase()) ||
 				this.contains(user.courses, searchQuery) ||
 				this.contains(user.program, searchQuery) ||
 				this.contains(user.hobbies, searchQuery) ||

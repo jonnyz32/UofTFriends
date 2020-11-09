@@ -1,5 +1,5 @@
 Our app is a platform for University of Toronto students to connect
-and communicate with other student in their courses or program.
+and communicate with other students in their courses or program.
 
 How to use:
 The starting page of the app is /signup. From this page you will be able to 
@@ -9,11 +9,12 @@ an existing user, use the following credentials
 username: user
 password: password
 
-If you want to signup as a new user, you will be brought to our signup page
-where you can choose a profile picture and then input your program, year,
-and the courses in which you are currently enrolled. You will also have 
-the option to list a couple of your hobbies as well as give yourself
-a brief bio.
+If you want to signup as a new user, type in your desired
+username and password and then click the signup button.
+You will be brought to our signup page where you can choose a profile
+picture and then input your program, year, and the courses in which 
+you are currently enrolled. You will also have the option to list a 
+couple of your hobbies as well as give yourself a brief bio.
 
 After signing up as a new user or logging in as an existing user, you will be 
 brought to the home page of our site. From here you can see a list of 
@@ -27,8 +28,8 @@ Chats:
 Clicking on a chat in the sidebar will open up a corresponding chat view
 where you can send messages to that group/person.
 
-Searchbar: Here you can type in a course or program to find other students
-taking that same course or enrolled in that same program.
+Searchbar: Here you can type in a course, program or student name
+to find other students matching that course, program, or name.
 
 Ex: Typing in CSC30, will show all students with courses containing 
 the string CSC30 (CSC309, CSC300,...).
