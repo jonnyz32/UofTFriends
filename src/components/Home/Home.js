@@ -18,6 +18,7 @@ class Home extends Component {
         super(props);
         this.state = {
                 viewFragment: "home",
+                currentChat: null,
                 currentUser: {name: 'Jonathan Zak',
                             courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
                             program: ['Computer Science Specialist'],
@@ -46,7 +47,71 @@ class Home extends Component {
                         }
                         ],
 
-            bio: 'Third year cs student. Looking to meet some new people!'},
+            bio: 'Third year cs student. Looking to meet some new people!',
+            groups: {
+                CSC300: [
+                    {
+                      sender: "Michael",
+                      text: "Hey have you started the csc300 hw?",
+                      iscurrentsender: false
+                    },
+                    {
+                      sender: "Jonathan",
+                      text: "Nope been too busy with 309 :(",
+                      iscurrentsender: false
+                    }
+                  ],
+                  CSC309: [
+                    {
+                      sender: "Aziz",
+                      text: "What did you guys get on the proposal?",
+                      iscurrentsender: false
+                    },
+                    {
+                      sender: "Jonathan",
+                      text: "3/3!",
+                      iscurrentsender: false
+                    }
+                  ],
+                  CSC311: [
+                    {
+                      sender: "Adi",
+                      text: "This course make me want to cry",
+                      iscurrentsender: false
+                    },
+                    {
+                      sender: "Jonathan",
+                      text: "Me toooooo",
+                      iscurrentsender: false
+                    }
+                  ],
+                  CSC343: [
+                    {
+                      sender: "Meirbek",
+                      text: "What about reading week??",
+                      iscurrentsender: false
+                    },
+                    {
+                      sender: "Jonathan",
+                      text: "We don't get one :'(",
+                      iscurrentsender: false
+                    }
+                  ],
+                  PHL245: [
+                    {
+                      sender: "Aziz",
+                      text: "I love this class",
+                      iscurrentsender: false
+                    },
+                    {
+                      sender: "Jonathan",
+                      text: "yep, easy A",
+                      iscurrentsender: false
+                    }
+                  ]
+            }
+           
+            },
                 searchQuery: "",
                 newCourse: "",
                 newBio: "",
@@ -255,9 +320,24 @@ class Home extends Component {
         this.setState({image: profilePic})
       }
     
-    toggleSearchMode = (newView) => {
-        this.setState({ viewFragment: newView })
+    toggleSearchMode = (newView, chatName) => {
+        this.setState({ viewFragment: newView, currentChat: chatName })
+     
     }
+
+    // changeChat = (currentChat, newChat) => {
+    //     const messageList = this.state.currentUser.groups[this.state.currentChat]
+        
+       
+    
+    //     messageList.push(newChat)
+        
+    //     this.setState ({currentUser.groups[currentChat] : messageList})
+      
+    //   }
+      
+    
+
 
     render() {
 
@@ -278,7 +358,15 @@ class Home extends Component {
             rightPage = null
         }
         else {
-            centerPage = <Chat currentUser={this.state.currentUser}/>
+            console.log("in else")
+            // console.log(this.state.currentUser.groups)
+            // console.log(this.state.currentChat)
+            // console.log(this.state.currentUser.groups[this.state.currentChat])
+            // console.log(this.state.currentUser.groups.csc300)
+            let texts=this.state.currentUser.groups[this.state.currentChat]
+            console.log("texts", texts)
+         
+            centerPage = <Chat currentUser={this.state.currentUser} texts={texts}/>
             rightPage = null
         }
 
@@ -306,6 +394,7 @@ class Home extends Component {
                 </aside>
 
                 <section id="fragmentContainer">
+                    {console.log("rerendering...")}
                     {centerPage}
                     {rightPage}
                 </section>

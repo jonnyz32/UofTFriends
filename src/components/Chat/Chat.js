@@ -8,23 +8,29 @@ class Chat extends React.Component {
     this.state = {
        name : this.props.currentUser.name,
        message : "",
-       texts: [
-           {
-             sender: "Aziz",
-             text: "Hello UofT student",
-             iscurrentsender: false
-           },
-           {
-             sender: "Jonathan",
-             text: "Hi back",
-             iscurrentsender: false
-           }
-         ]
+       texts: this.props.texts,
+
+      //  texts: [
+      //      {
+      //        sender: "Aziz",
+      //        text: "Hello UofT student",
+      //        iscurrentsender: false
+      //      },
+      //      {
+      //        sender: "Jonathan",
+      //        text: "Hi back",
+      //        iscurrentsender: false
+      //      }
+      //    ]
+
+     
     }
+
+    
   }
 
   message = () => {
-    const messageList = this.state.texts
+    const messageList = this.props.texts
     if(this.state.message !=""){
     const newMessage = {sender: this.state.name, text: this.state.message, iscurrentsender:true}
 
@@ -51,10 +57,12 @@ class Chat extends React.Component {
 
 
       render() {
+        console.log("in chat", this.state.texts)
         return (
           <div className= 'messagesBox'>
 
-            <Texts  texts={this.state.texts}/>
+
+            <Texts  texts={this.props.texts}/>
             <input className="messageInput"  name="message" value={this.state.message} onChange={this.handleInputChange} placeholder="message" type="text" />
             <button className="messageButton" onClick={this.message}> send chat </button>
 
