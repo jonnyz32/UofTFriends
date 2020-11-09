@@ -84,11 +84,34 @@ class Home extends Component {
 
 		if (this.state.chats.includes(chatName.toUpperCase())) {
 			return
-		}
-
+        }
+        this.addGroup(chatName.toUpperCase())
 		const updatedChats = this.state.chats;
 		updatedChats.push(chatName.toUpperCase())
 		this.setState({ chats: updatedChats })
+    }
+    
+    addGroup = (newChat) => {
+		let oldState = this.state;
+		{console.log("state", oldState)}
+		this.setState(() => {
+			let currentUser = Object.assign({}, oldState.currentUser)
+			currentUser.groups[newChat] = [];
+			return {currentUser};
+		}
+		)
+		// [
+		// 	{
+		// 		sender: "Michael",
+		// 		text: "Hey have you started the csc300 hw?",
+		// 		iscurrentsender: false
+		// 	},
+		// 	{
+		// 		sender: "Jonathan",
+		// 		text: "Nope been too busy with 309 :(",
+		// 		iscurrentsender: false
+		// 	}
+		// ]
 	}
 
 	// Adding/Removing courses functionality
@@ -172,7 +195,9 @@ class Home extends Component {
 	}
 
 	toggleSearchMode = (newView, chatName) => {
-		this.setState({ viewFragment: newView, currentChat: chatName })
+        {console.log("in toggle search mode")}
+        this.setState({currentChat: chatName, viewFragment: newView}, 
+            () => {console.log("current chat",this.state.currentChat)})
 
 	}
 
@@ -208,10 +233,11 @@ class Home extends Component {
 			rightPage = null
 		} else {
 			let texts = this.state.currentUser.groups[this.state.currentChat]
-			console.log("texts", texts)
-
-			centerPage = <Chat currentUser={this.state.currentUser} texts={texts} />
-			rightPage = null
+            console.log("texts", texts)
+            if (texts){
+                centerPage = <Chat currentUser={this.state.currentUser} texts={texts} />
+			    rightPage = null
+            }	
 		}
 
 		return (

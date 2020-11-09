@@ -48,6 +48,7 @@ class Signup extends Component {
 			password: this.state.password,
 			seenOnboarding: false,
 			courses: [],
+			groups: {},
 			schedule: [],
 			toDoList: [],
 			image: ""
