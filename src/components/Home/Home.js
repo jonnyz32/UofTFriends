@@ -39,7 +39,7 @@ class Home extends Component {
 
 		event.preventDefault()
 		this.setState({
-			searchMode: true,
+			viewFragment: "search",
 			users: this.searchResults()
 		})
 	}
@@ -287,7 +287,7 @@ class Home extends Component {
 				{/* Navbar */}
 				<nav id="nav">
 					{/* Search Bar */}
-					<form onChange={this.onChange} onClick={() => this.toggleSearchMode("search")} onSubmit={this.filterUsers}>
+					<form onChange={this.onChange} onSubmit={this.filterUsers}>
 						<input type="text"></input>
 						<input className="submitQuery" type="submit" value="Ok"></input>
 					</form>
