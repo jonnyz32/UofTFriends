@@ -69,7 +69,14 @@ class PostRegistration extends Component {
 	}
 
 	addCourse = () => {
-		if (this.state.newCourse == "") {
+		if (this.state.currentUser.courses.length >= 6) {
+			alert("You can't add more than 6 courses!")
+			return
+		} else if (this.state.currentUser.courses.includes(this.state.newCourse)) {
+			alert("You can't add the same course twice!")
+			return
+		} else if (this.state.newCourse == "") {
+			alert("Please enter a course!")
 			return
 		}
 
@@ -178,7 +185,7 @@ class PostRegistration extends Component {
 
 						<div className="onboardingAddCourseContainer">
 							<form className="onboardingAddCourseForm" onChange={this.courseOnChange}>
-								<input type="text" name="newCourse" placeholder="Enter new course..."></input>
+								<input type="text" name="newCourse" placeholder="Enter new course..." value={this.state.newCourse}></input>
 							</form>
 							<button className="onboardingAddCourseButton" onClick={this.addCourse}>Add</button>
 						</div>

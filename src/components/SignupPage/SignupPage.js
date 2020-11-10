@@ -113,7 +113,7 @@ class Signup extends Component {
 
 			<h1 className="header"> Sign Up to Friends-at-UofT </h1>
 			<input type="text" value={this.state.name} onChange={this.handleInputChange} className="input" name="name" placeholder="Username" />
-			<input type="text" value={this.state.password} onChange={this.handleInputChange} className="input" name="password" placeholder="Password" />
+			<input type="password" value={this.state.password} onChange={this.handleInputChange} className="input" name="password" placeholder="Password" />
 
 			<button className="button" onClick={this.addUser}> Sign Up </button>
 			<button className="button" onClick={this.signIn}> Sign In </button>
