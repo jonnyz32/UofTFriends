@@ -118,7 +118,7 @@ class PostRegistration extends Component {
 
 		console.log(currentUser)
 		this.setState({ onboardingComplete: true })
-		this.props.updateUsers(currentUser)
+		this.props.updateUser(currentUser)
 	}
 
 	render() {

@@ -24,7 +24,6 @@ class Home extends Component {
 			searchQuery: "",
 			newCourse: "",
 			newBio: "",
-			image: confusedMan,
 			chats: this.props.currentUser.courses,
 			users: [],
 			usersMasterList: this.props.users,
