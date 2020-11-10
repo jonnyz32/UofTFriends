@@ -12,11 +12,52 @@
 }
 
 .ToDoListItem {
-	background-color: white;
-	width: 100%;
-	border: 1px solid black;
-	font-family: Arial, Helvetica, sans-serif;
-	border-radius: 10px;
-	margin-bottom: .4%;
-	padding: 5%;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+    border: 1px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.TodolistNewTaskTray {
+    display: flex;
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+.TodolistNewTaskTray input{
+    margin: 0px;
+    width: 47%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+}
+
+.Todolist button {
+    margin-top: 15px;
+}
+
+
+.Activity {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Activity input {
+    margin: auto;
+}
+
+.Activity p {
+    padding: 0px;
+    margin: 0px;
+    margin: auto;
+    padding: 5px;
+    text-align: left;
 }

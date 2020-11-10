@@ -28,7 +28,9 @@ class Home extends Component {
 			chats: this.props.currentUser.courses,
 			users: [],
 			usersMasterList: this.props.users,
-			logout: false
+			logout: false,
+			time: "",
+			activity: ""
 		};
 	}
 
@@ -100,20 +102,7 @@ class Home extends Component {
 			let currentUser = Object.assign({}, oldState.currentUser)
 			currentUser.groups[newChat] = [];
 			return { currentUser };
-		}
-		)
-		// [
-		// 	{
-		// 		sender: "Michael",
-		// 		text: "Hey have you started the csc300 hw?",
-		// 		iscurrentsender: false
-		// 	},
-		// 	{
-		// 		sender: "Jonathan",
-		// 		text: "Nope been too busy with 309 :(",
-		// 		iscurrentsender: false
-		// 	}
-		// ]
+		})
 	}
 
 	// Adding/Removing courses functionality
@@ -134,6 +123,8 @@ class Home extends Component {
 			alert("Please enter a course!")
 			return
 		}
+
+		this.addGroup(this.state.newCourse.toUpperCase())
 
 		let updatedUser = { ...this.state.currentUser }
 		updatedUser.courses = this.state.currentUser.courses.slice()
@@ -211,19 +202,50 @@ class Home extends Component {
 
 	}
 
-	// changeChat = (currentChat, newChat) => {
-	//     const messageList = this.state.currentUser.groups[this.state.currentChat]
-
-
-
-	//     messageList.push(newChat)
-
-	//     this.setState ({currentUser.groups[currentChat] : messageList})
-
-	//   }
-
 	logout = () => {
 		this.setState({ logout: true })
+	}
+
+	// Todo functionality
+	handleInputChange = (event) => {
+
+		const target = event.target
+		const value = target.value
+		const name = target.name
+
+		this.setState({ [name]: value })
+	}
+
+	addNewTodo = () => {
+
+		const newTodo = { activity: this.state.activity, time: this.state.time }
+
+		let updatedUser = { ...this.state.currentUser }
+		updatedUser.toDoList = this.state.currentUser.toDoList.slice()
+		updatedUser.toDoList.push(newTodo)
+
+		this.setState({ currentUser: updatedUser });
+		this.setState({ activity: "", time: "" })
+	}
+
+	removeToDo = (event) => {
+
+		const toDoToRemove = event.target.parentNode.firstChild.innerText
+		console.log("Removing todo: ", toDoToRemove)
+		let toDoIndex = -1
+
+		for (let index = 0; index < this.state.currentUser.toDoList.length; index++) {
+			const element = this.state.currentUser.toDoList[index];
+			if (element.activity === toDoToRemove) {
+				toDoIndex = index
+			}
+		}
+
+		let updatedUser = { ...this.state.currentUser }
+		updatedUser.toDoList = this.state.currentUser.toDoList.slice()
+		updatedUser.toDoList.splice(toDoIndex, 1)
+
+		this.setState({ currentUser: updatedUser })
 	}
 
 	render() {
@@ -236,7 +258,8 @@ class Home extends Component {
 		} else if (this.state.viewFragment == "home") {
 			{ console.log(this.state.currentUser.schedule) }
 			centerPage = <Schedule schedule={this.state.currentUser.courses} />
-			rightPage = <TodoList name={this.props.currentUser.name} todoList={this.props.currentUser.toDoList} />
+			rightPage = <TodoList name={this.state.currentUser.name} toDoList={this.state.currentUser.toDoList} activity={this.state.activity} time={this.state.time}
+				addNewTodo={this.addNewTodo} removeToDo={this.removeToDo} handleInputChange={this.handleInputChange} />
 		} else if (this.state.viewFragment == "search") {
 			centerPage = <Students addChat={this.addChat} users={this.state.users} />
 			rightPage = null

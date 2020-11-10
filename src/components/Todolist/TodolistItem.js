@@ -3,36 +3,21 @@ import './Todolist.css';
 
 class ToDoListItem extends Component {
 
-	state = {
-		name: this.props.name,
-		delete: false
-	}
-
-	remove = (event) => {
-		this.setState({
-			delete: true
-		})
-	}
-
 	render() {
-		if (this.state.delete) {
-			return null
-		} else {
-			return (
-				<div className="ToDoListItem">
 
-					<div class='Time'>
-						{this.props.time}
-					</div>
+		return (
+			<div className="ToDoListItem">
 
-					<div class='Activity'>
-						{this.props.activity}
-						<input onClick={this.remove} type="checkbox" hello />
-					</div>
-
+				<div className='Time'>
+					{this.props.time}
 				</div>
-			);
-		}
+
+				<div className='Activity'>
+					<p>{this.props.activity}</p>
+					<input onClick={this.props.removeToDo} type="checkbox" checked={false}/>
+				</div>
+			</div>
+		);
 	}
 }
 

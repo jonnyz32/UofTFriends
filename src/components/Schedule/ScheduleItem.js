@@ -7,20 +7,14 @@ class ScheduleItem extends Component {
 
 		return (
 			<div className="scheduleItem">
-
-				<div className='Time'>
+				<div className='ScheduleTime'>
 					<p>{this.props.time}</p>
 				</div>
 
 				<div className='Activity'>
-					<h2>{this.props.activity}</h2>
+					<h2 className="ScheduleActivityHeader">{this.props.activity}</h2>
 				</div>
-
-
-
-
 			</div>
-
 		);
 	}
 }

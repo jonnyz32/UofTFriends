@@ -18,27 +18,26 @@
 }
 
 .scheduleItem {
-	border: 1px solid black;
-	clear: both;
-	border-radius: 10px;
-	background-color: white;
-	overflow: hidden;
-	margin: .5%;
+    border: 1px solid black;
+    clear: both;
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+    margin: .5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ScheduleActivityHeader {
+    text-align: right;
+    margin: auto;
+    padding-right: 15px;
 }
 
 
-/* .Activity {
-    margin-left: 15%;
-} */
-
-.Activity h2 {
-	margin-top: 4.75%;
-	text-align: right;
-	margin-right: 20%;
+.ScheduleTime {
+    float: left;
+    margin-left: 6%;
+    margin-top: 1%;
 }
 
-.Time {
-	float: left;
-	margin-left: 6%;
-	margin-top: 1%;
-}
