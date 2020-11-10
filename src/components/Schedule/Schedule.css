@@ -3,6 +3,10 @@
 	margin-left: 13%;
 	width: 30%;
 	float: left;
+	background-color: rgb(121, 117, 117);
+	padding: 20px;
+	border-radius: 50px;
+	min-height: 500px;
 }
 
 .schedule .header {
@@ -14,30 +18,30 @@
 
 .schedule .header h2 {
 	margin-top: 0px;
-	color: #213e3b;
+	color: white;
+	font-weight: 700;
+	font-size: 2vw;
 }
 
 .scheduleItem {
-    border: 1px solid black;
-    clear: both;
-    border-radius: 10px;
-    background-color: white;
-    overflow: hidden;
-    margin: .5%;
-    display: flex;
-    justify-content: space-between;
+	border: 1px solid black;
+	clear: both;
+	border-radius: 10px;
+	background-color: white;
+	overflow: hidden;
+	margin: 1vh;
+	display: flex;
+	justify-content: space-between;
 }
 
 .ScheduleActivityHeader {
-    text-align: right;
-    margin: auto;
-    padding-right: 15px;
+	text-align: right;
+	margin: auto;
+	padding-right: 15px;
 }
-
 
 .ScheduleTime {
-    float: left;
-    margin-left: 6%;
-    margin-top: 1%;
+	float: left;
+	margin-left: 6%;
+	margin-top: 1%;
 }
-
