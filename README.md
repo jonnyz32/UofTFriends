@@ -2,7 +2,7 @@ Our app is a platform for University of Toronto students to connect
 and communicate with other students in their courses or program.
 
 How to use:
-The starting page of the app is "/", which is the signup page. From this page you will be able to 
+Launch the app using npm start and you will arrive at our signup page. From this page you will be able to 
 login as an existing user or signup as a new user. If you want to login as 
 an existing user, you can choose from signing in as our admin user or 
 our regular user. To simplify things, we will show how to login as an admin
@@ -11,7 +11,7 @@ at the end. Here is how to login as a regular user.
 Regular user:
 
 username: user
-password: password
+password: user
 
 If you want to signup as a new user, type in your desired
 username and password and then click the signup button.
@@ -24,8 +24,8 @@ After signing up as a new user or logging in as an existing user, you will be
 brought to the home page of our site. From here you can see a list of 
 chats corresponding to the courses that you are currently enrolled in,
 your current schedule for the day (based on the courses you are enrolled in),
-a to-do list which you can add to and remove as you please, and a search bar to find other students. Lets 
-go over each of these functionalities.
+a to-do list which you can add to and remove as you please, and a search bar to 
+find other students. Lets go over each of these functionalities.
 
 Chats: 
 
@@ -37,12 +37,11 @@ Searchbar: Here you can type in a students name, or a particular course
 or program to find other students having that same name, taking 
 that same course, or enrolled in that same program.
 
-
 Ex: Typing in CSC30, will show all students with courses containing 
 the string CSC30 (CSC309, CSC300,...).
 
 Add chat: Clicking on the chat button next to a student, will add a chat 
-to the sidebar for the corresponding student
+to the sidebar for the corresponding student.
 
 
 From the home page we see two links on the navbar corresponding to the home page
