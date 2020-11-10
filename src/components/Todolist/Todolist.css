@@ -45,7 +45,19 @@
 	border-radius: 10px;
 }
 
-.Todolist button {
+.TodolistButton {
+	font-size: 1vw;
+	border-radius: 12px;
+	background-color: #f4f4f4;
+	color: black;
+	min-width: 105px;
+	min-height: 30px;
+	width: 27%;
+	height: 5%;
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
+	border: 2px solid black;
 	margin-top: 15px;
 }
 

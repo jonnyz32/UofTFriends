@@ -17,7 +17,7 @@ class ToDoList extends Component {
 					<input name="time" type='text' value={this.props.time} onChange={this.props.handleInputChange} placeholder='Time for new task' />
 				</div>
 
-				<button className="button" onClick={this.props.addNewTodo}> Add </button>
+				<button className="TodolistButton" onClick={this.props.addNewTodo}> Add </button>
 			</div>
 
 		);
