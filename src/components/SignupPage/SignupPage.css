@@ -1,73 +1,71 @@
-.input {
+.signUpInput {
 	border-radius: 4px;
 	color: black;
-	left: 10%;
-	position: relative;
 	display: block;
 	text-align: center;
+	font-size: 1.75vw;
+	margin: auto;
 	background-color: rgb(121, 117, 117);
-	height: 14%;
-	width: 80%;
-	border-radius: 4px;
-	color: black;
-	left: 10%;
-	position: relative;
-	display: block;
-	text-align: center;
+	min-height: 25px;
+	height: 7%;
+	min-width: 200px;
+	width: 60%;
 }
 
-.input:hover {
+.signUpInput:hover {
 	background-color: white;
 }
 
-.input::placeholder {
+.signUpInput::placeholder {
 	color: darkgrey;
 }
 
-.input:hover::placeholder {
+.signUpInput:hover::placeholder {
 	color: grey;
 }
 
-.div {
-	height: 50vh;
-	width: 70vh;
-	overflow: visible;
+.signUpRoot {
+	height: 100vh;
+	width: 100vh;
 	margin: auto;
 	margin-top: 25vh;
 }
 
-.button:hover {
+.signUpButton:hover {
 	color: white;
 	text-decoration: none;
 	cursor: pointer;
 	background-color: black;
 }
 
-.button {
+.signUpButton {
 	margin-top: 3%;
-	font-size: 14px;
-	padding: 10px 30px;
+	font-size: 1.75vw;
 	border-radius: 12px;
 	background-color: #f4f4f4;
 	color: black;
+	min-width: 105px;
+	min-height: 30px;
 	width: 27%;
-	height: 9%;
+	height: 5%;
 	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
 	border: 2px solid black;
 }
 
-.header {
-	color: black;
-	font-size: 50px;
+.signUpHeader {
+	color: #555;
+	font-size: 3.5em;
 }
 
-.Contact:hover {
+.signUpContactUs:hover {
 	color: white;
 	text-decoration: none;
 	cursor: pointer;
 }
 
-.Contact {
+.signUpContactUs {
 	border-width: 1px;
 	border-color: black;
 	border-style: solid;

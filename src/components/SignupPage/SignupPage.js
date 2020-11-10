@@ -109,17 +109,16 @@ class Signup extends Component {
 			return <Redirect to={{ pathname: "/Admin" }} />
 		}
 
-		return (<div className="div">
+		return (
+			<div className="signUpRoot">
+				<h1 className="signUpHeader"> Welcome! </h1>
+				<input type="text" value={this.state.name} onChange={this.handleInputChange} className="signUpInput" name="name" placeholder="Username" />
+				<input type="password" value={this.state.password} onChange={this.handleInputChange} className="signUpInput" name="password" placeholder="Password" />
 
-			<h1 className="header"> Sign Up to Friends-at-UofT </h1>
-			<input type="text" value={this.state.name} onChange={this.handleInputChange} className="input" name="name" placeholder="Username" />
-			<input type="password" value={this.state.password} onChange={this.handleInputChange} className="input" name="password" placeholder="Password" />
-
-			<button className="button" onClick={this.addUser}> Sign Up </button>
-			<button className="button" onClick={this.signIn}> Sign In </button>
-
-			<a href="mailto:97sdmn@gmail.com" className="Contact"> Contact us</a>
-		</div>)
+				<button className="signUpButton" onClick={this.addUser}> Sign Up </button>
+				<button className="signUpButton" onClick={this.signIn}> Sign In </button>
+			</div>
+		)
 	}
 }
 
