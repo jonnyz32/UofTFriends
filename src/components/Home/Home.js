@@ -216,6 +216,10 @@ class Home extends Component {
 	}
 
 	addNewTodo = () => {
+		if (this.state.activity === "" || this.state.time === "") {
+			alert("Please enter an activity AND time!")
+			return
+		}
 
 		const newTodo = { activity: this.state.activity, time: this.state.time }
 

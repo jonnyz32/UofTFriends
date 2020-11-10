@@ -82,7 +82,7 @@
 
 .messagesBox {
 	width: 80%;
-	height: 85%;
+	height: 100vh;
 	margin: auto;
 	margin-top: 1.5vh;
 	padding-top: 0px;
