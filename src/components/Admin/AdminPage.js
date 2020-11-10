@@ -111,7 +111,7 @@ export class AdminPage extends React.Component {
 	render() {
 
 		if (this.state.logout) {
-			return <Redirect to={{ pathname: "/SignUp" }} />
+			return <Redirect to={{ pathname: "/" }} />
 		}
 
 		return (
