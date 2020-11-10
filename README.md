@@ -11,7 +11,7 @@ at the end. Here is how to login as a regular user.
 Regular user:
 
 username: user
-password: password
+password: user
 
 If you want to signup as a new user, type in your desired
 username and password and then click the signup button.
