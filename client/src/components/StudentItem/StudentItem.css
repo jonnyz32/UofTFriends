@@ -1,0 +1,78 @@
+/* Search result student card. */
+
+.Students {
+	height: fit-content;
+	width: 100%;
+	overflow: hidden;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.Student {
+	display: flex;
+	background-color: white;
+	padding: 15px;
+	margin: auto;
+	width: 80%;
+	margin-bottom: 15px;
+	padding: 15px;
+	border-radius: 50px;
+	height: fit-content;
+	justify-content: space-between;
+	/* Decorations */
+	box-shadow: 10px 10px 8px #888888;
+}
+
+.StudentInfo {
+	width: 50%;
+	display: block;
+	height: fit-content;
+	margin: auto;
+	float: left;
+}
+
+.StudentInfo p {
+	text-align: left;
+}
+
+.StudentInfo span {
+	text-align: left;
+}
+
+.StudentInfo h3 {
+	margin-top: 0px;
+}
+
+.Student .profilePictureContainer .profilePicture {
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	display: block;
+	float: left;
+}
+
+
+/* Button to chat with given student. */
+
+.Student button {
+	display: block;
+	float: left;
+	height: 38px;
+	font-size: 14px;
+	padding: 10px 30px;
+	border-radius: 12px;
+	background-color: white;
+	color: #213e3b;
+	margin: auto;
+}
+
+.Student button:hover {
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+	background-color: black;
+}
+
+.studentContainer {
+	position: relative;
+}

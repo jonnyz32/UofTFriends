@@ -1,0 +1,84 @@
+.signUpInput {
+	border-radius: 4px;
+	color: black;
+	display: block;
+	text-align: center;
+	font-size: 1.75vw;
+	margin: auto;
+	background-color: rgb(121, 117, 117);
+	min-height: 25px;
+	height: 7%;
+	min-width: 200px;
+	width: 60%;
+}
+
+.signUpInput:hover {
+	background-color: white;
+}
+
+.signUpInput::placeholder {
+	color: darkgrey;
+}
+
+.signUpInput:hover::placeholder {
+	color: grey;
+}
+
+.signUpRoot {
+	height: 100vh;
+	width: 100vh;
+	margin: auto;
+	margin-top: 25vh;
+}
+
+.signUpButton:hover {
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+	background-color: black;
+}
+
+.signUpButton {
+	margin-top: 3%;
+	font-size: 1.75vw;
+	border-radius: 12px;
+	background-color: #f4f4f4;
+	color: black;
+	min-width: 105px;
+	min-height: 30px;
+	width: 27%;
+	height: 5%;
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
+	border: 2px solid black;
+}
+
+.signUpHeader {
+	color: #555;
+	font-size: 3.5em;
+}
+
+.signUpContactUs:hover {
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.signUpContactUs {
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+	text-decoration: none;
+	color: black;
+	display: block;
+	width: 20%;
+	height: 5%;
+	margin: auto;
+	font-size: 14px;
+	border-radius: 50%;
+	background-color: rgb(121, 117, 117);
+	font-family: 'Raleway', sans-serif;
+	padding-top: 1%;
+	margin-top: 10%;
+}

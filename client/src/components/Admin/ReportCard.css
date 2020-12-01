@@ -1,0 +1,25 @@
+.ReportCardContainer{
+    display: flex;
+    width: 90%;
+    background-color: white;
+    margin: auto;
+    margin-top: 15px;
+    box-shadow: 5px 10px 8px #888888;   
+}
+
+.ReportCardContainer button {
+    width: 100%;
+    font-size: 1.75vw;
+    font-weight: 600;
+    padding: 15px;
+    text-align: left;   
+    color: #555555;
+    outline: none;
+    border: none;
+    background-color: white;
+}
+
+.ReportCardContainer button:focus {
+    background-color:#213e3b;
+    color: white;
+}
