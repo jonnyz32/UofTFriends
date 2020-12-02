@@ -81,19 +81,49 @@ class PostRegistration extends Component {
 		}
 
 		this.state.currentUser.courses.push(this.state.newCourse)
+		console.log("in add course")
 		this.addChat(this.state.newCourse)
 		this.setState({ newCourse: "" })
 	}
 
-	addChat = (newCourse) => {
-		let oldState = this.state;
-		this.setState(() => {
-			let currentUser = Object.assign({}, oldState.currentUser)
-			currentUser.groups[newCourse] = [];
-			return { currentUser };
-		}
-		)
+	addChat = (newCourse) =>  {
+		console.log("in add chat")
+		this.getGroupId(newCourse)
+	
 	}
+
+	getGroupId = (course) => {
+		let oldState = this.state;
+		let data = {"course": course}
+		fetch("/PostRegistration", {
+			method: 'POST', 
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		  }).then(res => {
+			if (res.status == 200){
+				console.log("status 200")
+				return res.json()
+			}
+			else{
+				alert("could not get groupid")
+			}
+			}).then(groupId => {
+				this.setState(() => {
+					let currentUser = Object.assign({}, oldState.currentUser)
+					console.log("groupId", groupId)
+					currentUser.groups[groupId._id] = {"name":"","messages":[]};
+					return { currentUser };
+				}
+				)
+			})
+			
+			.catch(error =>{
+				console.log(error)
+			})
+	}
+	
 
 	removeCourse = (event) => {
 		const courseToRemove = event.target.parentNode.firstChild.value

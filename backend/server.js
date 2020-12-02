@@ -118,6 +118,26 @@ app.post('/Home', async (req, res) => {
 	
 })
 
+app.post('/PostRegistration', async (req, res) => {
+
+	try{
+		let id = await Group.findOne({name:req.body.course}, {_id:1})
+		console.log("id is", id)
+		res.send(id)
+
+	} catch (error){
+		log(error)
+		if (isMongoError(error)){
+			res.status(500).send("Internal server error")
+		}
+		else {
+			res.status(400).send("Bad request")
+		}
+
+	}
+})
+	
+
 
 ////// Add chat group
 // app.post('/Home', async (req, res) => {
