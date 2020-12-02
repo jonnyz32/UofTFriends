@@ -24,13 +24,61 @@ class Home extends Component {
 			searchQuery: "",
 			newCourse: "",
 			newBio: "",
-			chats: this.props.currentUser.courses,
+			// chats: this.props.currentUser.courses,
+			chats: [],
 			users: [],
 			usersMasterList: this.props.users,
 			logout: false,
 			time: "",
 			activity: ""
 		};
+	}
+
+	componentDidMount(){
+		this.fetchGroups()
+	}
+
+	fetchGroups = () => {
+		let oldState = this.state;
+		const groups = Object.keys(this.state.currentUser.groups)
+		console.log("groups:", groups)
+		const data = {"groups": groups,
+					  "mode": "fetchGroups"}
+
+		fetch("/Home", {
+			method: 'POST', 
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		  }).then(res => {
+			if (res.status == 200){
+				return res.json()
+			}
+			else{
+				alert("could not get groups")
+			}
+		})
+			.then(json => {
+				// console.log(typeof json, json)
+				// console.log(typeof json.body, json.body)
+				// console.log(typeof JSON.stringify(json), JSON.stringify(json))
+				// console.log(typeof JSON.stringify(json.body), JSON.stringify(json.body))
+				// console.log(typeof JSON.stringify(json[0].messages), JSON.stringify(json[0].messages))
+				// console.log(typeof json[0].messages, json[0].messages)
+
+				console.log("json", json)
+				console.log("groups:", groups)
+				json.forEach(keyValue => {
+					this.state.currentUser.groups[keyValue[0]].name = keyValue[1]
+				})
+				console.log("groups in fetch groups", groups)
+				this.setState({groups: this.state.currentUser.groups})
+			})
+			.catch(error =>{
+				console.log(error)
+			})
+
 	}
 
 	// Update this.state.users to match search query.
@@ -83,15 +131,49 @@ class Home extends Component {
 		this.setState({ searchQuery: event.target.value.trim() })
 	}
 
-	addChat = (chatName) => {
-
-		if (this.state.chats.includes(chatName.toUpperCase())) {
+	addChat = (studentName) => {
+		const groups = Object.keys(this.state.currentUser.groups)
+		if (groups.includes(studentName.toUpperCase())) {
 			return
 		}
-		this.addGroup(chatName.toUpperCase())
-		const updatedChats = this.state.chats.slice();
-		updatedChats.push(chatName.toUpperCase())
-		this.setState({ chats: updatedChats })
+		let oldState = this.state;
+		let data = {"otherUser": studentName,
+					"currentUser": this.state.currentUser.name,
+				    "mode": "addChat"}
+
+		
+		// this.addGroup(chatName.toUpperCase())
+		// const updatedChats = this.state.chats.slice();
+		// updatedChats.push(studentName.toUpperCase())
+		// this.setState({ chats: updatedChats })
+
+		fetch("/Home", {
+			method: 'POST', 
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		  }).then(res => {
+			if (res.status == 200){
+				return res.json()
+			}
+			else{
+				alert("could not get chat")
+			}
+		})
+			.then(json => {
+				this.setState(() => {
+					let currentUser = Object.assign({}, oldState.currentUser)
+					let id = json[0]
+					currentUser.groups[id] = []
+				}
+				)
+				this.fetchGroups()
+				return this.state.currentUser.groups ;
+			})
+			.catch(error =>{
+				console.log(error)
+			})
 	}
 
 	addGroup = (newChat) => {
@@ -104,8 +186,10 @@ class Home extends Component {
 		})
 	}
 
-	getMessages = (groupName) => {
-		let data = {"groupId": groupName}
+	getMessages = (groupId) => {
+		console.log("in get messages, key is", groupId)
+		let data = {"groupId": groupId,
+					"mode": "getMessages"}
 		let oldState = this.state;
 		console.log("in get messages")
 		fetch("/Home", {
@@ -127,13 +211,11 @@ class Home extends Component {
 				console.log(typeof json.body, json.body)
 				console.log(typeof JSON.stringify(json), JSON.stringify(json))
 				console.log(typeof JSON.stringify(json.body), JSON.stringify(json.body))
-				console.log(typeof JSON.stringify(json[0].messages), JSON.stringify(json[0].messages))
-				console.log(typeof json[0].messages, json[0].messages)
 
 
 				this.setState(() => {
 					let currentUser = Object.assign({}, oldState.currentUser)
-					currentUser.groups[groupName] = json[0].messages
+					currentUser.groups[groupId].messages = json.messages
 					return { currentUser };
 				}
 				)
@@ -234,9 +316,9 @@ class Home extends Component {
 		this.setState({ currentUser: updatedUser })
 	}
 
-	toggleSearchMode = (newView, chatName) => {
+	toggleSearchMode = (newView, chatId) => {
 		{ console.log("in toggle search mode") }
-		this.setState({ currentChat: chatName, viewFragment: newView },
+		this.setState({ currentChat: chatId, viewFragment: newView },
 			() => { console.log("current chat", this.state.currentChat) })
 
 	}
@@ -312,7 +394,7 @@ class Home extends Component {
 				submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange} />
 			rightPage = null
 		} else {
-			let texts = this.state.currentUser.groups[this.state.currentChat]
+			let texts = this.state.currentUser.groups[this.state.currentChat].messages
 			console.log("texts", texts)
 			if (texts) {
 				centerPage = <Chat currentUser={this.state.currentUser} texts={texts} />
@@ -342,7 +424,7 @@ class Home extends Component {
 				</nav>
 
 				<aside id="sidebarContainer">
-					<SideBar getMessages={this.getMessages} toggleSearchMode={this.toggleSearchMode} chats={this.state.chats} currentUser={this.props.currentUser}/>
+					<SideBar getMessages={this.getMessages} toggleSearchMode={this.toggleSearchMode} chats={this.state.currentUser.groups} currentUser={this.props.currentUser}/>
 				</aside>
 
 				<section id="fragmentContainer">

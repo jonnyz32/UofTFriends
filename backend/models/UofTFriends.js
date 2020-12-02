@@ -9,7 +9,7 @@ const Message = new mongoose.Schema({
 
 const GroupsSchema = new mongoose.Schema({
     name: String,
-    members: [{studentId: String}],
+    members: [String],
     messages: [{Message}]
 });
 
