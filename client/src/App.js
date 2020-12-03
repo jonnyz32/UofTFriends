@@ -37,64 +37,64 @@ class App extends Component {
 				seenOnboarding: true,
 				groups: {
 					CSC300: [
-						{
-							sender: "Michael",
-							text: "Hey have you started the csc300 hw?",
-							iscurrentsender: false
-						},
-						{
-							sender: "Jonathan",
-							text: "Nope been too busy with 309 :(",
-							iscurrentsender: false
-						}
+						// {
+						// 	sender: "Michael",
+						// 	text: "Hey have you started the csc300 hw?",
+						// 	iscurrentsender: false
+						// },
+						// {
+						// 	sender: "Jonathan",
+						// 	text: "Nope been too busy with 309 :(",
+						// 	iscurrentsender: false
+						// }
 					],
 					CSC309: [
-						{
-							sender: "Aziz",
-							text: "What did you guys get on the proposal?",
-							iscurrentsender: false
-						},
-						{
-							sender: "Jonathan",
-							text: "3/3!",
-							iscurrentsender: false
-						}
+						// {
+						// 	sender: "Aziz",
+						// 	text: "What did you guys get on the proposal?",
+						// 	iscurrentsender: false
+						// },
+						// {
+						// 	sender: "Jonathan",
+						// 	text: "3/3!",
+						// 	iscurrentsender: false
+						// }
 					],
 					CSC311: [
-						{
-							sender: "Adi",
-							text: "This course make me want to cry",
-							iscurrentsender: false
-						},
-						{
-							sender: "Jonathan",
-							text: "Me toooooo",
-							iscurrentsender: false
-						}
+						// {
+						// 	sender: "Adi",
+						// 	text: "This course make me want to cry",
+						// 	iscurrentsender: false
+						// },
+						// {
+						// 	sender: "Jonathan",
+						// 	text: "Me toooooo",
+						// 	iscurrentsender: false
+						// }
 					],
 					CSC343: [
-						{
-							sender: "Meirbek",
-							text: "What about reading week??",
-							iscurrentsender: false
-						},
-						{
-							sender: "Jonathan",
-							text: "We don't get one :'(",
-							iscurrentsender: false
-						}
+						// {
+						// 	sender: "Meirbek",
+						// 	text: "What about reading week??",
+						// 	iscurrentsender: false
+						// },
+						// {
+						// 	sender: "Jonathan",
+						// 	text: "We don't get one :'(",
+						// 	iscurrentsender: false
+						// }
 					],
 					PHL245: [
-						{
-							sender: "Aziz",
-							text: "I love this class",
-							iscurrentsender: false
-						},
-						{
-							sender: "Jonathan",
-							text: "yep, easy A",
-							iscurrentsender: false
-						}
+						// {
+						// 	sender: "Aziz",
+						// 	text: "I love this class",
+						// 	iscurrentsender: false
+						// },
+						// {
+						// 	sender: "Jonathan",
+						// 	text: "yep, easy A",
+						// 	iscurrentsender: false
+						// }
 					]
 				}
 

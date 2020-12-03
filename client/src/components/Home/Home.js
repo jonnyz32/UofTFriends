@@ -104,6 +104,67 @@ class Home extends Component {
 		})
 	}
 
+	addMessages = (currentChat,sender,message) => {
+		let data = {"groupId": currentChat,"sender":sender,"message":message}
+		console.log("in add messages")
+		fetch("/Chat", {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		  }).then(res => {
+			if (res.status == 200){
+				return res.json()
+			}
+			else{
+				alert("could not add chat")
+			}
+		})
+			.then(json => {
+
+			  console.log("added to chats:"+ json)
+			})
+			.catch(error =>{
+				console.log(error)
+			})
+	}
+
+
+	getMessages = (groupName) => {
+		let data = {"groupId": groupName}
+		let oldState = this.state;
+		fetch("/Home", {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		  }).then(res => {
+			if (res.status == 200){
+				return res.json()
+			}
+			else{
+				alert("could not get chat")
+			}
+		})
+			.then(json => {
+
+
+
+				this.setState(() => {
+					let currentUser = Object.assign({}, oldState.currentUser)
+					currentUser.groups[groupName] = json[0].messages
+					return { currentUser };
+				}
+				)
+			})
+			.catch(error =>{
+				console.log(error)
+			})
+	}
+
+
 	// Adding/Removing courses functionality
 
 	courseOnChange = (event) => {
@@ -275,7 +336,7 @@ class Home extends Component {
 			let texts = this.state.currentUser.groups[this.state.currentChat]
 			console.log("texts", texts)
 			if (texts) {
-				centerPage = <Chat currentUser={this.state.currentUser} texts={texts} />
+				centerPage = <Chat addMessages={this.addMessages} currentChat={this.state.currentChat} currentUser={this.state.currentUser} texts={texts} />
 				rightPage = null
 			}
 		}
@@ -302,7 +363,7 @@ class Home extends Component {
 				</nav>
 
 				<aside id="sidebarContainer">
-					<SideBar toggleSearchMode={this.toggleSearchMode} chats={this.state.chats} />
+					<SideBar getMessages={this.getMessages} toggleSearchMode={this.toggleSearchMode} chats={this.state.chats} currentUser={this.props.currentUser}/>
 				</aside>
 
 				<section id="fragmentContainer">
