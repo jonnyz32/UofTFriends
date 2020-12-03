@@ -4,13 +4,13 @@ const mongoose = require('mongoose');
 
 const Message = new mongoose.Schema({
     sender: String,
-    Message: String,
+    text: String,
 });
 
 const GroupsSchema = new mongoose.Schema({
     name: String,
     members: [{studentId: String}],
-    messages: [{Message}]
+    messages: [Message]
 });
 
 // Reservations will be embedded in the Restaurant model

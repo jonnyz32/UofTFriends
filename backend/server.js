@@ -1,11 +1,11 @@
-/* 
- * This code is provided solely for the personal and private use of students 
- * taking the CSC309H course at the University of Toronto. Copying for purposes 
- * other than this use is expressly prohibited. All forms of distribution of 
- * this code, including but not limited to public repositories on GitHub, 
- * GitLab, Bitbucket, or any other online platform, whether as given or with 
- * any changes, are expressly prohibited. 
-*/  
+/*
+ * This code is provided solely for the personal and private use of students
+ * taking the CSC309H course at the University of Toronto. Copying for purposes
+ * other than this use is expressly prohibited. All forms of distribution of
+ * this code, including but not limited to public repositories on GitHub,
+ * GitLab, Bitbucket, or any other online platform, whether as given or with
+ * any changes, are expressly prohibited.
+*/
 
 /* E4 server.js */
 'use strict';
@@ -30,12 +30,8 @@ function isMongoError(error) { // checks for first error returned by promise rej
 
 app.post('/Home', async (req, res) => {
 	try{
-		log("hello world")
-		log("in get")
-		log(req.body)
 		const groupId = req.body.groupId
 		const messages = await Group.find({name: groupId}, {messages: 1, _id: 0})
-		log(JSON.stringify(messages[0].messages))
 		res.send(messages)
 
 	}
@@ -49,11 +45,36 @@ app.post('/Home', async (req, res) => {
 		}
 
 	}
-	
+
+})
+
+app.post('/Chat', async (req, res) => {
+	try{
+		log("in chat Post")
+		log("req.body inside chat"+JSON.stringify(req.body) +" sender "+req.body.sender +"message"+ req.body.message)
+		const groupId = req.body.groupId
+		const groupToAdd = await Group.find({name: groupId})
+		console.log(groupToAdd[0]._id)
+		const messages = await Group.findOneAndUpdate({_id: groupToAdd[0]._id},{$push: {messages:{sender:req.body.sender,text:req.body.message}}},{new: true, useFindAndModify: false})
+		log(JSON.stringify(messages))
+		res.send(messages)
+
+	}
+	catch (error) {
+		log(error)
+		if (isMongoError(error)){
+			res.status(500).send("Internal server error")
+		}
+		else {
+			res.status(400).send("Bad request")
+		}
+
+	}
+
 })
 
 // app.post('/Home', async (req, res) => {
-  
+
 //     const group = new Group({
 //         name: req.body.name,
 //         members: req.body.members,
