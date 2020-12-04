@@ -45,7 +45,7 @@ class Home extends Component {
 		const data = {"groups": groups,
 					  "mode": "fetchGroups"}
 
-		fetch("/Home", {
+		fetch("/fetchGroups", {
 			method: 'POST', 
 			headers: {
 			  'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ class Home extends Component {
 		let oldState = this.state;
 		let data = {"otherUser": studentName,
 					"currentUser": this.state.currentUser.name,
-				    "mode": "addChat"}
+				    }
 
 		
 		// this.addGroup(chatName.toUpperCase())
@@ -147,7 +147,7 @@ class Home extends Component {
 		// updatedChats.push(studentName.toUpperCase())
 		// this.setState({ chats: updatedChats })
 
-		fetch("/Home", {
+		fetch("/addChat", {
 			method: 'POST', 
 			headers: {
 			  'Content-Type': 'application/json',
@@ -214,10 +214,10 @@ class Home extends Component {
 	}
 
 
-	getMessages = (groupName) => {
-		let data = {"groupId": groupName}
+	getMessages = (groupId) => {
+		let data = {"groupId": groupId}
 		let oldState = this.state;
-		fetch("/Home", {
+		fetch("/Messages", {
 			method: 'POST',
 			headers: {
 			  'Content-Type': 'application/json',
@@ -251,6 +251,40 @@ class Home extends Component {
 			})
 	}
 
+	getGroupId = (course) => {
+		let oldState = this.state;
+		let data = {"course": course}
+		fetch("/PostRegistration", {
+			method: 'POST', 
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		  }).then(res => {
+			if (res.status == 200){
+				console.log("status 200")
+				return res.json()
+			}
+			else{
+				alert("could not get groupid")
+			}
+			}).then(groupId => {
+				this.setState(() => {
+					let currentUser = Object.assign({}, oldState.currentUser)
+					console.log("groupId", groupId)
+					currentUser.groups[groupId._id] = {"name":"","messages":[]};
+					return { currentUser };
+				}
+				)
+			}).then(currentUser => {
+				this.fetchGroups()
+			})
+			
+			.catch(error =>{
+				console.log(error)
+			})
+	}
+
 
 	// Adding/Removing courses functionality
 
@@ -258,7 +292,7 @@ class Home extends Component {
 		this.setState({ newCourse: event.target.value.trim().toUpperCase() })
 	}
 
-	addCourse = () => {
+	addCourse = async () => {
 
 		if (this.state.currentUser.courses.length >= 6) {
 			alert("You can't add more than 6 courses!")
@@ -271,8 +305,9 @@ class Home extends Component {
 			return
 		}
 
-		this.addGroup(this.state.newCourse.toUpperCase())
+		// this.addGroup(this.state.newCourse.toUpperCase())
 
+		let newCourse = this.state.newCourse
 		let updatedUser = { ...this.state.currentUser }
 		updatedUser.courses = this.state.currentUser.courses.slice()
 		updatedUser.courses.push(this.state.newCourse)
@@ -280,7 +315,8 @@ class Home extends Component {
 		let newChats = this.state.chats.slice()
 		newChats.push(this.state.newCourse)
 
-		this.setState({ currentUser: updatedUser, chats: newChats, newCourse: "" })
+		this.setState({ currentUser: updatedUser, chats: newChats, newCourse: "" }, () => this.getGroupId(newCourse))
+		
 	}
 
 	removeCourse = (event) => {
@@ -417,7 +453,7 @@ class Home extends Component {
 		} else if (this.state.viewFragment == "settings") {
 			centerPage = <SettingsPage currentUser={this.state.currentUser} chats={this.state.chats} courseOnChange={this.courseOnChange}
 				addCourse={this.addCourse} removeCourse={this.removeCourse} newCourse={this.state.newCourse} bioOnChange={this.bioOnChange}
-				submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange} />
+				submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange}/>
 			rightPage = null
 		} else {
 			let texts = this.state.currentUser.groups[this.state.currentChat].messages

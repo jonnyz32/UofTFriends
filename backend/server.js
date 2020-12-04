@@ -30,9 +30,9 @@ function isMongoError(error) { // checks for first error returned by promise rej
 
 
 ////// Get chat messages
-app.post('/Home', async (req, res) => {
+app.post('/Messages', async (req, res) => {
 
-	if (req.body.mode == "getMessages"){
+	// if (req.body.mode == "getMessages"){
 		try{
 			log("hello world")
 			log("in get")
@@ -55,8 +55,11 @@ app.post('/Home', async (req, res) => {
 	
 		}
 
-	} else if (req.body.mode == "addChat"){
-			try{
+	})
+	
+app.post('/addChat', async (req, res) => {	
+	
+	try{
 		log("in addChat")
 		log(req.body)
 		const otherUser = req.body.otherUser
@@ -64,7 +67,7 @@ app.post('/Home', async (req, res) => {
 
 		const group = new Group({
 			        name: otherUser,
-			        members: [otherUser, currentUser],
+			        members: [{studentId: otherUser}, {studentId: currentUser}],
 			        messages: []
 				})
 
@@ -80,9 +83,9 @@ app.post('/Home', async (req, res) => {
 			res.status(400).send("Bad request")
 		}
 
-	} 
-
-	} else if (req.body.mode == "fetchGroups"){
+	}}) 
+	
+app.post('/fetchGroups', async (req, res) =>{
 		try{
 			log("in fetchgroups")
 			log(req.body)
@@ -112,11 +115,11 @@ app.post('/Home', async (req, res) => {
 			}
 	
 		} 
-	}
+	})
 
 
 	
-})
+
 
 app.post('/PostRegistration', async (req, res) => {
 
@@ -143,9 +146,9 @@ app.post('/Chat', async (req, res) => {
 		log("in chat Post")
 		log("req.body inside chat"+JSON.stringify(req.body) +" sender "+req.body.sender +"message"+ req.body.message)
 		const groupId = req.body.groupId
-		const groupToAdd = await Group.find({name: groupId})
-		console.log(groupToAdd[0]._id)
-		const messages = await Group.findOneAndUpdate({_id: groupToAdd[0]._id},{$push: {messages:{sender:req.body.sender,text:req.body.message}}},{new: true, useFindAndModify: false})
+		// const groupToAdd = await Group.findById(groupId)
+		// console.log(groupToAdd[0]._id)
+		const messages = await Group.findOneAndUpdate({_id: groupId},{$push: {messages:{sender:req.body.sender,text:req.body.message}}},{new: true, useFindAndModify: false})
 		log(JSON.stringify(messages))
 		res.send(messages)
 
