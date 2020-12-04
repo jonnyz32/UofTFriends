@@ -12,11 +12,11 @@ class Chat extends React.Component {
 		}
 	}
 
-	message = () => {
+	message = async () => {
 		const messageList = this.props.texts
 		if (this.state.message != "") {
+				await this.props.addMessages(this.props.currentChat,this.state.name,this.state.message)
 			const newMessage = { sender: this.state.name, text: this.state.message, iscurrentsender: true }
-
 			messageList.push(newMessage)
 			this.setState({
 				texts: messageList,
@@ -43,7 +43,7 @@ class Chat extends React.Component {
 		console.log("in chat", this.state.texts)
 		return (
 			<div className='messagesBox'>
-				<Texts texts={this.props.texts} />
+				<Texts texts={this.props.texts} currentUser={this.props.currentUser} />
 				<span className="messageInputTray">
 					<input className="messageInput" name="message" value={this.state.message} onChange={this.handleInputChange} placeholder="message" type="text" />
 					<button className="messageButton" onClick={this.message}> Send </button>
@@ -56,11 +56,11 @@ class Chat extends React.Component {
 class Texts extends React.Component {
 
 	render() {
+		console.log("this.props.texts",this.props.currentUser.name)
 		return (
 			<div className="messages">
-				{console.log("this.props.texts",this.props.texts)}
 				{this.props.texts.map(text => {
-					if (text.iscurrentsender) {
+					if (text.sender==this.props.currentUser.name) {
 						return (
 							<div key={text.sender}>
 								<div className="currentUser sender">

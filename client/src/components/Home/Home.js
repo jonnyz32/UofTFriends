@@ -186,14 +186,39 @@ class Home extends Component {
 		})
 	}
 
-	getMessages = (groupId) => {
-		console.log("in get messages, key is", groupId)
-		let data = {"groupId": groupId,
-					"mode": "getMessages"}
+	
+	addMessages = (currentChat,sender,message) => {
+		let data = {"groupId": currentChat,"sender":sender,"message":message}
+		console.log("in add messages")
+		fetch("/Chat", {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		  }).then(res => {
+			if (res.status == 200){
+				return res.json()
+			}
+			else{
+				alert("could not add chat")
+			}
+		})
+			.then(json => {
+
+			  console.log("added to chats:"+ json)
+			})
+			.catch(error =>{
+				console.log(error)
+			})
+	}
+
+
+	getMessages = (groupName) => {
+		let data = {"groupId": groupName}
 		let oldState = this.state;
-		console.log("in get messages")
 		fetch("/Home", {
-			method: 'POST', 
+			method: 'POST',
 			headers: {
 			  'Content-Type': 'application/json',
 			},
@@ -207,6 +232,7 @@ class Home extends Component {
 			}
 		})
 			.then(json => {
+
 				console.log(typeof json, json)
 				console.log(typeof json.body, json.body)
 				console.log(typeof JSON.stringify(json), JSON.stringify(json))
@@ -224,7 +250,7 @@ class Home extends Component {
 				console.log(error)
 			})
 	}
-			
+
 
 	// Adding/Removing courses functionality
 
@@ -397,7 +423,7 @@ class Home extends Component {
 			let texts = this.state.currentUser.groups[this.state.currentChat].messages
 			console.log("texts", texts)
 			if (texts) {
-				centerPage = <Chat currentUser={this.state.currentUser} texts={texts} />
+				centerPage = <Chat addMessages={this.addMessages} currentChat={this.state.currentChat} currentUser={this.state.currentUser} texts={texts} />
 				rightPage = null
 			}
 		}
