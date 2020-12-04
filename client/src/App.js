@@ -35,12 +35,10 @@ class App extends Component {
 				bio: 'Third year cs student. Looking to meet some new people!',
 				image: confusedMan,
 				seenOnboarding: true,
-				groups: {"5fc69ba84c82db94b79c764c":{"name":"","messages":[]}, 
-						 "5fc6be2f43d80c268cb62d3b":{"name":"","messages":[]}, 
-						 "5fc6bf4d43d80c268cb62d3d":{"name":"","messages":[]}, 
-						 "5fc6bf9443d80c268cb62d3e":{"name":"","messages":[]}, 
-						 "5fc6c04943d80c268cb62d3f":{"name":"","messages":[]}, 
-						 "5fc6f3a6df5743113061f9e3":{"name":"","messages":[]}, 
+				groups: {"5fc69ba84c82db94b79c764c":{"name":"","messages":[]},
+						 "5fc6be2f43d80c268cb62d3b":{"name":"","messages":[]},
+						 "5fc6bf4d43d80c268cb62d3d":{"name":"","messages":[]},
+						 "5fc6bf9443d80c268cb62d3e":{"name":"","messages":[]}
 					// CSC300: [
 					// 	// {
 					// 	// 	sender: "Michael",

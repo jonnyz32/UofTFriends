@@ -42,7 +42,7 @@ app.post('/Messages', async (req, res) => {
 			const messages = await Group.findById(groupId, {messages: 1, _id: 0})
 			// log(JSON.stringify(messages[0].messages))
 			res.send(messages)
-	
+
 		}
 		catch (error) {
 			log(error)
@@ -52,13 +52,13 @@ app.post('/Messages', async (req, res) => {
 			else {
 				res.status(400).send("Bad request")
 			}
-	
+
 		}
 
 	})
-	
-app.post('/addChat', async (req, res) => {	
-	
+
+app.post('/addChat', async (req, res) => {
+
 	try{
 		log("in addChat")
 		log(req.body)
@@ -83,17 +83,19 @@ app.post('/addChat', async (req, res) => {
 			res.status(400).send("Bad request")
 		}
 
-	}}) 
-	
+	}})
+
 app.post('/fetchGroups', async (req, res) =>{
 		try{
 			log("in fetchgroups")
 			log(req.body)
 			const groups = req.body.groups
-	
-			let groupNames = [] 
+
+			let groupNames = []
 			for (let i = 0; i < groups.length; i++){
+				console.log("groups[i] is:" +groups[i])
 				let name = await Group.findById(groups[i])
+				console.log("name is "+name)
 				let keyValue = [name._id, name.name]
 				console.log(keyValue)
 				groupNames.push(keyValue)
@@ -104,7 +106,7 @@ app.post('/fetchGroups', async (req, res) =>{
 			log(groupNames)
 			res.send(groupNames)
 
-			
+
 		} catch (error) {
 			log(error)
 			if (isMongoError(error)){
@@ -113,12 +115,12 @@ app.post('/fetchGroups', async (req, res) =>{
 			else {
 				res.status(400).send("Bad request")
 			}
-	
-		} 
+
+		}
 	})
 
 
-	
+
 
 
 app.post('/PostRegistration', async (req, res) => {
@@ -165,7 +167,7 @@ app.post('/Chat', async (req, res) => {
 	}
 
 })
-	
+
 
 
 ////// Add chat group
@@ -197,7 +199,7 @@ app.post('/Chat', async (req, res) => {
 // 	}
 
 // 	}
-	
+
 // )
 
 // app.post('/Home', async (req, res) => {
