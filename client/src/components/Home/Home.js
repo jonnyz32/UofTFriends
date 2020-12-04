@@ -34,7 +34,7 @@ class Home extends Component {
 		};
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		this.fetchGroups()
 	}
 
@@ -42,20 +42,22 @@ class Home extends Component {
 		let oldState = this.state;
 		const groups = Object.keys(this.state.currentUser.groups)
 		console.log("groups:", groups)
-		const data = {"groups": groups,
-					  "mode": "fetchGroups"}
+		const data = {
+			"groups": groups,
+			"mode": "fetchGroups"
+		}
 
 		fetch("/fetchGroups", {
-			method: 'POST', 
+			method: 'POST',
 			headers: {
-			  'Content-Type': 'application/json',
+				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(data),
-		  }).then(res => {
-			if (res.status == 200){
+		}).then(res => {
+			if (res.status == 200) {
 				return res.json()
 			}
-			else{
+			else {
 				alert("could not get groups")
 			}
 		})
@@ -73,9 +75,9 @@ class Home extends Component {
 					this.state.currentUser.groups[keyValue[0]].name = keyValue[1]
 				})
 				console.log("groups in fetch groups", groups)
-				this.setState({groups: this.state.currentUser.groups})
+				this.setState({ groups: this.state.currentUser.groups })
 			})
-			.catch(error =>{
+			.catch(error => {
 				console.log(error)
 			})
 
@@ -137,27 +139,28 @@ class Home extends Component {
 			return
 		}
 		let oldState = this.state;
-		let data = {"otherUser": studentName,
-					"currentUser": this.state.currentUser.name,
-				    }
+		let data = {
+			"otherUser": studentName,
+			"currentUser": this.state.currentUser.name,
+		}
 
-		
+
 		// this.addGroup(chatName.toUpperCase())
 		// const updatedChats = this.state.chats.slice();
 		// updatedChats.push(studentName.toUpperCase())
 		// this.setState({ chats: updatedChats })
 
 		fetch("/addChat", {
-			method: 'POST', 
+			method: 'POST',
 			headers: {
-			  'Content-Type': 'application/json',
+				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(data),
-		  }).then(res => {
-			if (res.status == 200){
+		}).then(res => {
+			if (res.status == 200) {
 				return res.json()
 			}
-			else{
+			else {
 				alert("could not get chat")
 			}
 		})
@@ -169,9 +172,9 @@ class Home extends Component {
 				}
 				)
 				this.fetchGroups()
-				return this.state.currentUser.groups ;
+				return this.state.currentUser.groups;
 			})
-			.catch(error =>{
+			.catch(error => {
 				console.log(error)
 			})
 	}
@@ -186,48 +189,48 @@ class Home extends Component {
 		})
 	}
 
-	
-	addMessages = (currentChat,sender,message) => {
-		let data = {"groupId": currentChat,"sender":sender,"message":message}
+
+	addMessages = (currentChat, sender, message) => {
+		let data = { "groupId": currentChat, "sender": sender, "message": message }
 		console.log("in add messages")
 		fetch("/Chat", {
 			method: 'POST',
 			headers: {
-			  'Content-Type': 'application/json',
+				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(data),
-		  }).then(res => {
-			if (res.status == 200){
+		}).then(res => {
+			if (res.status == 200) {
 				return res.json()
 			}
-			else{
+			else {
 				alert("could not add chat")
 			}
 		})
 			.then(json => {
 
-			  console.log("added to chats:"+ json)
+				console.log("added to chats:" + json)
 			})
-			.catch(error =>{
+			.catch(error => {
 				console.log(error)
 			})
 	}
 
 
 	getMessages = (groupId) => {
-		let data = {"groupId": groupId}
+		let data = { "groupId": groupId }
 		let oldState = this.state;
 		fetch("/Messages", {
 			method: 'POST',
 			headers: {
-			  'Content-Type': 'application/json',
+				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(data),
-		  }).then(res => {
-			if (res.status == 200){
+		}).then(res => {
+			if (res.status == 200) {
 				return res.json()
 			}
-			else{
+			else {
 				alert("could not get chat")
 			}
 		})
@@ -246,41 +249,41 @@ class Home extends Component {
 				}
 				)
 			})
-			.catch(error =>{
+			.catch(error => {
 				console.log(error)
 			})
 	}
 
 	getGroupId = (course) => {
 		let oldState = this.state;
-		let data = {"course": course}
+		let data = { "course": course }
 		fetch("/PostRegistration", {
-			method: 'POST', 
+			method: 'POST',
 			headers: {
-			  'Content-Type': 'application/json',
+				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(data),
-		  }).then(res => {
-			if (res.status == 200){
+		}).then(res => {
+			if (res.status == 200) {
 				console.log("status 200")
 				return res.json()
 			}
-			else{
+			else {
 				alert("could not get groupid")
 			}
-			}).then(groupId => {
-				this.setState(() => {
-					let currentUser = Object.assign({}, oldState.currentUser)
-					console.log("groupId", groupId)
-					currentUser.groups[groupId._id] = {"name":"","messages":[]};
-					return { currentUser };
-				}
-				)
-			}).then(currentUser => {
-				this.fetchGroups()
-			})
-			
-			.catch(error =>{
+		}).then(groupId => {
+			this.setState(() => {
+				let currentUser = Object.assign({}, oldState.currentUser)
+				console.log("groupId", groupId)
+				currentUser.groups[groupId._id] = { "name": "", "messages": [] };
+				return { currentUser };
+			}
+			)
+		}).then(currentUser => {
+			this.fetchGroups()
+		})
+
+			.catch(error => {
 				console.log(error)
 			})
 	}
@@ -316,7 +319,7 @@ class Home extends Component {
 		newChats.push(this.state.newCourse)
 
 		this.setState({ currentUser: updatedUser, chats: newChats, newCourse: "" }, () => this.getGroupId(newCourse))
-		
+
 	}
 
 	removeCourse = (event) => {
@@ -453,7 +456,7 @@ class Home extends Component {
 		} else if (this.state.viewFragment == "settings") {
 			centerPage = <SettingsPage currentUser={this.state.currentUser} chats={this.state.chats} courseOnChange={this.courseOnChange}
 				addCourse={this.addCourse} removeCourse={this.removeCourse} newCourse={this.state.newCourse} bioOnChange={this.bioOnChange}
-				submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange}/>
+				submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange} />
 			rightPage = null
 		} else {
 			let texts = this.state.currentUser.groups[this.state.currentChat].messages
@@ -475,7 +478,7 @@ class Home extends Component {
 				<nav id="nav">
 					{/* Search Bar */}
 					<form onChange={this.onChange} onSubmit={this.filterUsers}>
-						<input type="text"></input>
+						<input type="text" placeholder="Search for other students....."></input>
 						<input className="submitQuery" type="submit" value="Ok"></input>
 					</form>
 
@@ -486,7 +489,7 @@ class Home extends Component {
 				</nav>
 
 				<aside id="sidebarContainer">
-					<SideBar getMessages={this.getMessages} toggleSearchMode={this.toggleSearchMode} chats={this.state.currentUser.groups} currentUser={this.props.currentUser}/>
+					<SideBar getMessages={this.getMessages} toggleSearchMode={this.toggleSearchMode} chats={this.state.currentUser.groups} currentUser={this.props.currentUser} />
 				</aside>
 
 				<section id="fragmentContainer">

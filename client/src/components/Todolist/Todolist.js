@@ -13,8 +13,8 @@ class ToDoList extends Component {
 					{this.props.toDoList.map((toDoListItem) => <ToDoListItem name={this.props.name} activity={toDoListItem.activity} time={toDoListItem.time} removeToDo={this.props.removeToDo} />)}
 				</div>
 				<div className="TodolistNewTaskTray">
-					<input name="activity" type='text' value={this.props.activity} onChange={this.props.handleInputChange} placeholder='New task' />
-					<input name="time" type='text' value={this.props.time} onChange={this.props.handleInputChange} placeholder='Time for new task' />
+					<input name="activity" type='text' value={this.props.activity} onChange={this.props.handleInputChange} placeholder='New task...' />
+					<input name="time" type='text' value={this.props.time} onChange={this.props.handleInputChange} placeholder='Time for new task...' />
 				</div>
 
 				<button className="TodolistButton" onClick={this.props.addNewTodo}> Add </button>

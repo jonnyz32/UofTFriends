@@ -29,19 +29,15 @@
 	border-radius: 10px;
 	background-color: white;
 	overflow: hidden;
-	margin: 1vh;
+	margin: auto;
+	margin-top: 1vh;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
-}
-
-.ScheduleActivityHeader {
-	text-align: right;
-	margin: auto;
-	padding-right: 15px;
+	align-items: center;
 }
 
 .ScheduleTime {
 	float: left;
-	margin-left: 6%;
-	margin-top: 1%;
+	margin-left: 15px;
 }

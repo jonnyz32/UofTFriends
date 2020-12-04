@@ -18,15 +18,19 @@
 /* Navbar. */
 
 #nav {
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
 	width: 100%;
-	min-height: 50px;
 	height: 5vh;
+	min-height: 50px;
+	
 	background-color: #555;
 	overflow: hidden;
-	line-height: 25px;
 	border-bottom: solid 5px #888888;
 	box-sizing: border-box;
 	margin-bottom: 0px;
+	
 }
 
 #nav form {
@@ -36,12 +40,10 @@
 	min-height: 25px;
 	width: 40%;
 	left: 30%;
-	margin-top: 10px;
 }
 
 
 /* Search Bar */
-
 #nav form input {
 	display: inline-block;
 	width: 88%;
@@ -53,14 +55,11 @@
 	box-sizing: border-box;
 }
 
-
 /* Search Button */
-
 #nav form .submitQuery {
-	float: right;
 	margin: auto;
+	margin-left: 5px;
 	padding: 3px;
-	margin-top: 1.5px;
 	width: 10%;
 	min-height: 25px;
 }
@@ -70,33 +69,26 @@
 	cursor: pointer;
 }
 
-
 /* Navigation Icons */
-
 #nav a {
-	display: block;
-	float: right;
-	text-align: center;
-	padding: 10px;
+	display: flex;
+	align-items: center;
+
+	padding: 0px 10px;
+	height: 100%;
+
 	color: white;
 	text-decoration: none;
 	font-size: 17px;
-	width: 10%;
-	height: 100%;
-	max-width: fit-content;
 }
 
-
 /* Navbar links on mouse-over */
-
 #nav a:hover {
 	background-color: #000;
 	cursor: pointer;
 }
 
-
 /* What do you think this is? */
-
 #sidebarContainer {
 	margin: 0;
 	width: 20%;
@@ -110,7 +102,6 @@
 
 
 /* Container for the fragments (Search results, chat window, etc.) */
-
 #fragmentContainer {
 	margin: 0;
 	width: 80%;
