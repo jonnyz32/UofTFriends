@@ -28,14 +28,107 @@ function isMongoError(error) { // checks for first error returned by promise rej
 	return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
 }
 
-app.post('/Home', async (req, res) => {
-	try{
-		const groupId = req.body.groupId
-		const messages = await Group.find({name: groupId}, {messages: 1, _id: 0})
-		res.send(messages)
 
-	}
-	catch (error) {
+////// Get chat messages
+app.post('/Messages', async (req, res) => {
+
+	// if (req.body.mode == "getMessages"){
+		try{
+			log("hello world")
+			log("in get")
+			log(req.body)
+			const groupId = req.body.groupId
+			console.log(groupId)
+			const messages = await Group.findById(groupId, {messages: 1, _id: 0})
+			// log(JSON.stringify(messages[0].messages))
+			res.send(messages)
+	
+		}
+		catch (error) {
+			log(error)
+			if (isMongoError(error)){
+				res.status(500).send("Internal server error")
+			}
+			else {
+				res.status(400).send("Bad request")
+			}
+	
+		}
+
+	})
+	
+app.post('/addChat', async (req, res) => {	
+	
+	try{
+		log("in addChat")
+		log(req.body)
+		const otherUser = req.body.otherUser
+		const currentUser = req.body.currentUser
+
+		const group = new Group({
+			        name: otherUser,
+			        members: [{studentId: otherUser}, {studentId: currentUser}],
+			        messages: []
+				})
+
+		let result = await group.save()
+		let keyValue = [result._id, result.name]
+		res.send(keyValue)
+	} catch (error) {
+		log(error)
+		if (isMongoError(error)){
+			res.status(500).send("Internal server error")
+		}
+		else {
+			res.status(400).send("Bad request")
+		}
+
+	}}) 
+	
+app.post('/fetchGroups', async (req, res) =>{
+		try{
+			log("in fetchgroups")
+			log(req.body)
+			const groups = req.body.groups
+	
+			let groupNames = [] 
+			for (let i = 0; i < groups.length; i++){
+				let name = await Group.findById(groups[i])
+				let keyValue = [name._id, name.name]
+				console.log(keyValue)
+				groupNames.push(keyValue)
+				}
+				// name.forEach(element => {
+				// 	console.log(element)
+				// });
+			log(groupNames)
+			res.send(groupNames)
+
+			
+		} catch (error) {
+			log(error)
+			if (isMongoError(error)){
+				res.status(500).send("Internal server error")
+			}
+			else {
+				res.status(400).send("Bad request")
+			}
+	
+		} 
+	})
+
+
+	
+
+
+app.post('/PostRegistration', async (req, res) => {
+
+	try{
+		let id = await Group.findOne({name:req.body.course}, {_id:1})
+		console.log("id is", id)
+		res.send(id)
+
+	} catch (error){
 		log(error)
 		if (isMongoError(error)){
 			res.status(500).send("Internal server error")
@@ -53,9 +146,9 @@ app.post('/Chat', async (req, res) => {
 		log("in chat Post")
 		log("req.body inside chat"+JSON.stringify(req.body) +" sender "+req.body.sender +"message"+ req.body.message)
 		const groupId = req.body.groupId
-		const groupToAdd = await Group.find({name: groupId})
-		console.log(groupToAdd[0]._id)
-		const messages = await Group.findOneAndUpdate({_id: groupToAdd[0]._id},{$push: {messages:{sender:req.body.sender,text:req.body.message}}},{new: true, useFindAndModify: false})
+		// const groupToAdd = await Group.findById(groupId)
+		// console.log(groupToAdd[0]._id)
+		const messages = await Group.findOneAndUpdate({_id: groupId},{$push: {messages:{sender:req.body.sender,text:req.body.message}}},{new: true, useFindAndModify: false})
 		log(JSON.stringify(messages))
 		res.send(messages)
 
@@ -72,6 +165,40 @@ app.post('/Chat', async (req, res) => {
 	}
 
 })
+	
+
+
+////// Add chat group
+// app.post('/Home', async (req, res) => {
+// 	try{
+// 		log("hello world")
+// 		log("in get")
+// 		log(req.body)
+// 		const studentId = req.body.name
+// 		const currentUser = req.body.currentUser
+
+// 		const group = new Group({
+// 			        name: studentId,
+// 			        members: [{studentId, currentUser}],
+// 			        messages: []
+// 				})
+
+// 		let result = await group.save()
+// 		res.send(result)
+// 	} catch (error) {
+// 		log(error)
+// 		if (isMongoError(error)){
+// 			res.status(500).send("Internal server error")
+// 		}
+// 		else {
+// 			res.status(400).send("Bad request")
+// 		}
+
+// 	}
+
+// 	}
+	
+// )
 
 // app.post('/Home', async (req, res) => {
 

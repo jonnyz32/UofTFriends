@@ -24,8 +24,10 @@ class ChatItem extends Component {
 
 		return (
 			<div className="ChatItem" onClick={async () => {
-				await this.props.getMessages(this.props.chatName.toUpperCase())
-				this.props.toggleSearchMode("chat", this.props.chatName.toUpperCase())
+				// await this.props.getMessages(this.props.chatName.toUpperCase())
+				console.log("chat item key is", this.props.id)
+				await this.props.getMessages(this.props.id)
+				this.props.toggleSearchMode("chat", this.props.id)
 				
 				}}>
 				<p>{this.props.chatName.toUpperCase()}</p>

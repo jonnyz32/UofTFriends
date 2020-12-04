@@ -35,67 +35,72 @@ class App extends Component {
 				bio: 'Third year cs student. Looking to meet some new people!',
 				image: confusedMan,
 				seenOnboarding: true,
-				groups: {
-					CSC300: [
-						// {
-						// 	sender: "Michael",
-						// 	text: "Hey have you started the csc300 hw?",
-						// 	iscurrentsender: false
-						// },
-						// {
-						// 	sender: "Jonathan",
-						// 	text: "Nope been too busy with 309 :(",
-						// 	iscurrentsender: false
-						// }
-					],
-					CSC309: [
-						// {
-						// 	sender: "Aziz",
-						// 	text: "What did you guys get on the proposal?",
-						// 	iscurrentsender: false
-						// },
-						// {
-						// 	sender: "Jonathan",
-						// 	text: "3/3!",
-						// 	iscurrentsender: false
-						// }
-					],
-					CSC311: [
-						// {
-						// 	sender: "Adi",
-						// 	text: "This course make me want to cry",
-						// 	iscurrentsender: false
-						// },
-						// {
-						// 	sender: "Jonathan",
-						// 	text: "Me toooooo",
-						// 	iscurrentsender: false
-						// }
-					],
-					CSC343: [
-						// {
-						// 	sender: "Meirbek",
-						// 	text: "What about reading week??",
-						// 	iscurrentsender: false
-						// },
-						// {
-						// 	sender: "Jonathan",
-						// 	text: "We don't get one :'(",
-						// 	iscurrentsender: false
-						// }
-					],
-					PHL245: [
-						// {
-						// 	sender: "Aziz",
-						// 	text: "I love this class",
-						// 	iscurrentsender: false
-						// },
-						// {
-						// 	sender: "Jonathan",
-						// 	text: "yep, easy A",
-						// 	iscurrentsender: false
-						// }
-					]
+				groups: {"5fc69ba84c82db94b79c764c":{"name":"","messages":[]}, 
+						 "5fc6be2f43d80c268cb62d3b":{"name":"","messages":[]}, 
+						 "5fc6bf4d43d80c268cb62d3d":{"name":"","messages":[]}, 
+						 "5fc6bf9443d80c268cb62d3e":{"name":"","messages":[]}, 
+						 "5fc6c04943d80c268cb62d3f":{"name":"","messages":[]}, 
+						 "5fc6f3a6df5743113061f9e3":{"name":"","messages":[]}, 
+					// CSC300: [
+					// 	// {
+					// 	// 	sender: "Michael",
+					// 	// 	text: "Hey have you started the csc300 hw?",
+					// 	// 	iscurrentsender: false
+					// 	// },
+					// 	// {
+					// 	// 	sender: "Jonathan",
+					// 	// 	text: "Nope been too busy with 309 :(",
+					// 	// 	iscurrentsender: false
+					// 	// }
+					// ],
+					// CSC309: [
+					// 	// {
+					// 	// 	sender: "Aziz",
+					// 	// 	text: "What did you guys get on the proposal?",
+					// 	// 	iscurrentsender: false
+					// 	// },
+					// 	// {
+					// 	// 	sender: "Jonathan",
+					// 	// 	text: "3/3!",
+					// 	// 	iscurrentsender: false
+					// 	// }
+					// ],
+					// CSC311: [
+					// 	// {
+					// 	// 	sender: "Adi",
+					// 	// 	text: "This course make me want to cry",
+					// 	// 	iscurrentsender: false
+					// 	// },
+					// 	// {
+					// 	// 	sender: "Jonathan",
+					// 	// 	text: "Me toooooo",
+					// 	// 	iscurrentsender: false
+					// 	// }
+					// ],
+					// CSC343: [
+					// 	// {
+					// 	// 	sender: "Meirbek",
+					// 	// 	text: "What about reading week??",
+					// 	// 	iscurrentsender: false
+					// 	// },
+					// 	// {
+					// 	// 	sender: "Jonathan",
+					// 	// 	text: "We don't get one :'(",
+					// 	// 	iscurrentsender: false
+					// 	// }
+					// ],
+					// PHL245: [
+					// 	// {
+					// 	// 	sender: "Aziz",
+					// 	// 	text: "I love this class",
+					// 	// 	iscurrentsender: false
+					// 	// },
+					// 	// {
+					// 	// 	sender: "Jonathan",
+					// 	// 	text: "yep, easy A",
+					// 	// 	iscurrentsender: false
+					// 	// }
+					// ]
 				}
 
 			},
@@ -200,6 +205,7 @@ class App extends Component {
 			}
 		}
 	}
+
 
 	render() {
 		return (
