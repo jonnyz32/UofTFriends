@@ -45,7 +45,7 @@ class Chat extends React.Component {
 			<div className='messagesBox'>
 				<Texts texts={this.props.texts} currentUser={this.props.currentUser} />
 				<span className="messageInputTray">
-					<input className="messageInput" name="message" value={this.state.message} onChange={this.handleInputChange} placeholder="message" type="text" />
+					<input className="messageInput" name="message" value={this.state.message} onChange={this.handleInputChange} placeholder="Enter a message..." type="text" />
 					<button className="messageButton" onClick={this.message}> Send </button>
 				</span>
 			</div>
@@ -62,11 +62,11 @@ class Texts extends React.Component {
 				{this.props.texts.map(text => {
 					if (text.sender == this.props.currentUser.name) {
 						return (
-							<div key={text.sender} className="textContainer">
-								<div className="currentUser sender">
+							<div key={text.sender} className="userMsgContainer">
+								<div className="msgSender">
 									{text.sender}
 								</div>
-								<div className="currentUser text">
+								<div className="msgText">
 									{text.text}
 								</div>
 							</div>
@@ -74,11 +74,11 @@ class Texts extends React.Component {
 					}
 					else {
 						return (
-							<div key={text.sender} className="textContainer">
-								<div className="sender">
+							<div key={text.sender} className="msgContainer">
+								<div className="msgSender">
 									{text.sender}
 								</div>
-								<div className="text">
+								<div className="msgText">
 									{text.text}
 								</div>
 							</div>
