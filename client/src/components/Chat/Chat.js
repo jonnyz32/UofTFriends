@@ -8,9 +8,10 @@ class Chat extends React.Component {
 		this.state = {
 			name: this.props.currentUser.name,
 			message: "",
-			texts: this.props.texts
 		}
 	}
+
+
 
 	message = async () => {
 		const messageList = this.props.texts
@@ -19,7 +20,6 @@ class Chat extends React.Component {
 			const newMessage = { sender: this.state.name, text: this.state.message, iscurrentsender: true }
 			messageList.push(newMessage)
 			this.setState({
-				texts: messageList,
 				message: ""
 			});
 		}
@@ -40,10 +40,10 @@ class Chat extends React.Component {
 
 
 	render() {
-		console.log("in chat", this.state.texts)
+		console.log("in chat props text", this.props.currentUser.groups[this.props.currentChat].messages)
 		return (
 			<div className='messagesBox'>
-				<Texts texts={this.props.texts} currentUser={this.props.currentUser} />
+				<Texts texts={this.props.currentUser.groups[this.props.currentChat].messages} currentUser={this.props.currentUser} />
 				<span className="messageInputTray">
 					<input className="messageInput" name="message" value={this.state.message} onChange={this.handleInputChange} placeholder="Enter a message..." type="text" />
 					<button className="messageButton" onClick={this.message}> Send </button>
@@ -56,7 +56,9 @@ class Chat extends React.Component {
 class Texts extends React.Component {
 
 	render() {
+
 		console.log("this.props.texts", this.props.currentUser.name)
+		console.log("this.props.texts",this.props.texts)
 		return (
 			<div className="messages">
 				{this.props.texts.map(text => {

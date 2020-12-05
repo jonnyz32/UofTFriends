@@ -144,7 +144,6 @@ class Home extends Component {
 			"currentUser": this.state.currentUser.name,
 		}
 
-
 		// this.addGroup(chatName.toUpperCase())
 		// const updatedChats = this.state.chats.slice();
 		// updatedChats.push(studentName.toUpperCase())
@@ -190,8 +189,8 @@ class Home extends Component {
 	}
 
 
-	addMessages = (currentChat, sender, message) => {
-		let data = { "groupId": currentChat, "sender": sender, "message": message }
+	addMessages = (currentChat,sender,message) => {
+		let data = {"groupId": currentChat,"sender":sender,"message":message}
 		console.log("in add messages")
 		fetch("/Chat", {
 			method: 'POST',
@@ -245,11 +244,36 @@ class Home extends Component {
 				this.setState(() => {
 					let currentUser = Object.assign({}, oldState.currentUser)
 					currentUser.groups[groupId].messages = json.messages
-					return { currentUser };
+					return { currentUser};
 				}
 				)
 			})
 			.catch(error => {
+				console.log(error)
+			})
+	}
+
+	getMessagesChat = (groupId) => {
+		let data = {"groupId": groupId}
+		let oldState = this.state;
+		fetch("/Messages", {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		  }).then(res => {
+			if (res.status == 200){
+				return res.json()
+			}
+			else{
+				alert("could not get chat")
+			}
+		})
+			.then(json => {
+        return json.messages
+			})
+			.catch(error =>{
 				console.log(error)
 			})
 	}
@@ -271,19 +295,19 @@ class Home extends Component {
 			else {
 				alert("could not get groupid")
 			}
-		}).then(groupId => {
-			this.setState(() => {
-				let currentUser = Object.assign({}, oldState.currentUser)
-				console.log("groupId", groupId)
-				currentUser.groups[groupId._id] = { "name": "", "messages": [] };
-				return { currentUser };
-			}
-			)
-		}).then(currentUser => {
-			this.fetchGroups()
-		})
+			}).then(groupId => {
+				this.setState(() => {
+					let currentUser = Object.assign({}, oldState.currentUser)
+					console.log("groupId", groupId)
+					currentUser.groups[groupId._id] = {"name":"","messages":[]};
+					return { currentUser };
+				}
+				)
+			}).then(currentUser => {
+				this.fetchGroups()
+			})
 
-			.catch(error => {
+			.catch(error =>{
 				console.log(error)
 			})
 	}
@@ -383,8 +407,10 @@ class Home extends Component {
 
 	toggleSearchMode = (newView, chatId) => {
 		{ console.log("in toggle search mode") }
+		this.render()
 		this.setState({ currentChat: chatId, viewFragment: newView },
 			() => { console.log("current chat", this.state.currentChat) })
+
 
 	}
 
@@ -459,10 +485,10 @@ class Home extends Component {
 				submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange} />
 			rightPage = null
 		} else {
-			let texts = this.state.currentUser.groups[this.state.currentChat].messages
-			console.log("texts", texts)
+		  let texts = this.state.currentUser.groups[this.state.currentChat].messages
+			console.log("texts in home", texts)
 			if (texts) {
-				centerPage = <Chat addMessages={this.addMessages} currentChat={this.state.currentChat} currentUser={this.state.currentUser} texts={texts} />
+				centerPage = <Chat getMessagesChat={this.getMessagesChat} addMessages={this.addMessages} currentChat={this.state.currentChat} currentUser={this.state.currentUser} texts={texts} />
 				rightPage = null
 			}
 		}
