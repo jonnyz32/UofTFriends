@@ -14,7 +14,7 @@ class ToDoListItem extends Component {
 
 				<div className='Activity'>
 					<p>{this.props.activity}</p>
-					<input onClick={this.props.removeToDo} type="checkbox" checked={false}/>
+					<input onClick={this.props.removeToDo} type="checkbox" checked={false} />
 				</div>
 			</div>
 		);

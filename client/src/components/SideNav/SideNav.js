@@ -17,16 +17,16 @@ class SideBar extends Component {
 	render() {
 		let groupKeys = Object.keys(this.props.chats)
 		console.log("group keys:", groupKeys)
-	
+
 
 		return (
 
 			<div className="Chats">
-				<h1 className="ChatHeader">Groups</h1>
+				<h1 className="ChatHeader">Chats</h1>
 
 
-				{groupKeys.map((groupKey) => <ChatItem key={groupKey} id={groupKey} getMessages={this.props.getMessages} currentUser={this.props.currentUser} 
-				toggleSearchMode={this.props.toggleSearchMode} chatName={this.props.chats[groupKey].name} />)}
+				{groupKeys.map((groupKey) => <ChatItem key={groupKey} id={groupKey} getMessages={this.props.getMessages} currentUser={this.props.currentUser}
+					toggleSearchMode={this.props.toggleSearchMode} chatName={this.props.chats[groupKey].name} />)}
 			</div>
 		);
 	}
