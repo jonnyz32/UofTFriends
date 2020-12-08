@@ -210,7 +210,7 @@ class PostRegistration extends Component {
 
 						<form className="onboardingCoursesContainer">
 							<label>Courses:</label>
-							{/* {this.state.currentUser.courses.map((course) => (<Course course={course} removeCourse={this.removeCourse} />))} */}
+							{this.state.currentUser.courses.map((course) => (<Course course={course} removeCourse={this.removeCourse} />))}
 						</form>
 
 						<div className="onboardingAddCourseContainer">
