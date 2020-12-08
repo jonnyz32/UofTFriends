@@ -39,49 +39,6 @@ class Home extends Component {
 		this.fetchGroups()
 	}
 
-	// fetchGroups = () => {
-	// 	let oldState = this.state;
-	// 	const id = this.state.currentUser.id
-	// 	console.log("id:", id)
-	// 	const data = {
-	// 		"id": id
-	// 	}
-
-	// 	fetch("/fetchGroupIds", {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 		},
-	// 		body: JSON.stringify(data),
-	// 	}).then(res => {
-	// 		if (res.status == 200) {
-	// 			return res.json()
-	// 		}
-	// 		else {
-	// 			alert("could not get groups")
-	// 		}
-	// 	})
-	// 		.then(json => {
-	// 			// console.log(typeof json, json)
-	// 			// console.log(typeof json.body, json.body)
-	// 			// console.log(typeof JSON.stringify(json), JSON.stringify(json))
-	// 			// console.log(typeof JSON.stringify(json.body), JSON.stringify(json.body))
-	// 			// console.log(typeof JSON.stringify(json[0].messages), JSON.stringify(json[0].messages))
-	// 			// console.log(typeof json[0].messages, json[0].messages)
-
-	// 			console.log("json", json)
-	// 			console.log("groups:", groups)
-	// 			json.forEach(keyValue => {
-	// 				this.state.currentUser.groups[keyValue[0]].name = keyValue[1]
-	// 			})
-	// 			console.log("groups in fetch groups", groups)
-	// 			this.setState({ groups: this.state.currentUser.groups })
-	// 		})
-	// 		.catch(error => {
-	// 			console.log(error)
-	// 		})
-
-	// }
 
 	fetchGroups = () => {
 

@@ -153,39 +153,6 @@ app.post('/addChat', async (req, res) => {
 
 		}
 	})
-// app.post('/fetchGroups', async (req, res) =>{
-// 		try{
-// 			log("in fetchgroups")
-// 			log(req.body)
-// 			const groups = req.body.groups
-
-// 			let groupNames = []
-// 			for (let i = 0; i < groups.length; i++){
-// 				console.log("groups[i] is:" +groups[i])
-// 				let name = await Group.findById(groups[i])
-// 				console.log("name is "+name)
-// 				let keyValue = [name._id, name.name]
-// 				console.log(keyValue)
-// 				groupNames.push(keyValue)
-// 				}
-// 				// name.forEach(element => {
-// 				// 	console.log(element)
-// 				// });
-// 			log(groupNames)
-// 			res.send(groupNames)
-
-
-// 		} catch (error) {
-// 			log(error)
-// 			if (isMongoError(error)){
-// 				res.status(500).send("Internal server error")
-// 			}
-// 			else {
-// 				res.status(400).send("Bad request")
-// 			}
-
-// 		}
-// 	})
 
 
 
