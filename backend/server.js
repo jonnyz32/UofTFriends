@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 // Mongo and Mongoose
 const { ObjectID, Cursor } = require('mongodb')
 const { mongoose } = require('./db/mongoose');
-const { Group } = require('./models/UofTFriends.js');
+const { Group, Student } = require('./models/UofTFriends.js');
 
 /*** Helper functions below **********************************/
 function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
@@ -85,11 +85,16 @@ app.post('/addChat', async (req, res) => {
 
 	}})
 
-app.post('/fetchGroups', async (req, res) =>{
+	app.post('/fetchGroups', async (req, res) =>{
 		try{
 			log("in fetchgroups")
 			log(req.body)
-			const groups = req.body.groups
+			const id = req.body.id
+			log("id:", id)
+
+			let groups = await Student.findById(id, {groups: 1, _id: 0})
+			groups = groups.groups
+			log("groups", groups)
 
 			let groupNames = []
 			for (let i = 0; i < groups.length; i++){
@@ -119,6 +124,69 @@ app.post('/fetchGroups', async (req, res) =>{
 		}
 	})
 
+	app.delete('/RemoveCourse', async (req, res) =>{
+		try{
+			log("in remove course")
+			log(req.body)
+
+			const userId = req.body.userId
+			const courseId = req.body.courseId
+			log("course:", courseId)
+
+
+			const result = await Student.update(
+				{ "_id": userId},
+				{ $pull: { groups: {$in: [courseId] }}},
+			)
+			log("result", result)
+			res.send(result)
+
+
+		} catch (error) {
+			log(error)
+			if (isMongoError(error)){
+				res.status(500).send("Internal server error")
+			}
+			else {
+				res.status(400).send("Bad request")
+			}
+
+		}
+	})
+// app.post('/fetchGroups', async (req, res) =>{
+// 		try{
+// 			log("in fetchgroups")
+// 			log(req.body)
+// 			const groups = req.body.groups
+
+// 			let groupNames = []
+// 			for (let i = 0; i < groups.length; i++){
+// 				console.log("groups[i] is:" +groups[i])
+// 				let name = await Group.findById(groups[i])
+// 				console.log("name is "+name)
+// 				let keyValue = [name._id, name.name]
+// 				console.log(keyValue)
+// 				groupNames.push(keyValue)
+// 				}
+// 				// name.forEach(element => {
+// 				// 	console.log(element)
+// 				// });
+// 			log(groupNames)
+// 			res.send(groupNames)
+
+
+// 		} catch (error) {
+// 			log(error)
+// 			if (isMongoError(error)){
+// 				res.status(500).send("Internal server error")
+// 			}
+// 			else {
+// 				res.status(400).send("Bad request")
+// 			}
+
+// 		}
+// 	})
+
 
 
 
@@ -126,9 +194,13 @@ app.post('/fetchGroups', async (req, res) =>{
 app.post('/PostRegistration', async (req, res) => {
 
 	try{
-		let id = await Group.findOne({name:req.body.course}, {_id:1})
-		console.log("id is", id)
-		res.send(id)
+		let userId = req.body.userId
+		let courseId = await Group.findOne({name:req.body.course}, {_id:1})
+		console.log("id is", courseId._id)
+
+		let result = await Student.updateOne({"_id": ObjectID(userId)}, {$addToSet: {groups: courseId._id} })
+		
+		res.send(courseId)
 
 	} catch (error){
 		log(error)

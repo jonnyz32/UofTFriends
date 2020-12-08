@@ -82,7 +82,7 @@ class PostRegistration extends Component {
 
 		this.state.currentUser.courses.push(this.state.newCourse)
 		console.log("in add course")
-		this.addChat(this.state.newCourse)
+		// this.addChat(this.state.newCourse)
 		this.setState({ newCourse: "" })
 	}
 
