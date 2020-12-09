@@ -29,6 +29,33 @@ function isMongoError(error) { // checks for first error returned by promise rej
 }
 
 
+
+
+////// Get Users ///////////////
+
+app.get('/fetchUsers', async (req, res) => {
+
+	try {
+		const users = await Student.find({})
+		res.send(users)
+	} 	
+	catch (error) {
+		log(error)
+		if (isMongoError(error)){
+			res.status(500).send("Internal server error")
+		}
+		else {
+			res.status(400).send("Bad request")
+		}
+
+	}
+})
+
+
+
+
+
+
 ////// Get chat messages
 app.post('/Messages', async (req, res) => {
 
