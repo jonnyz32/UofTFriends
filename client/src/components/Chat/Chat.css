@@ -38,6 +38,10 @@
 .msgSender {
 	font-weight: lighter;
 }
+.msgSenderPic {
+	background-color: Blue;
+	border-radius: 50%;
+}
 
 .msgText {
 
@@ -86,4 +90,3 @@
 	cursor: pointer;
 	background-color: #213e3b;
 }
-

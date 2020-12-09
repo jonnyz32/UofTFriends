@@ -16,7 +16,7 @@ class Chat extends React.Component {
 	message = async () => {
 		const messageList = this.props.texts
 		if (this.state.message != "") {
-			await this.props.addMessages(this.props.currentChat, this.state.name, this.state.message)
+			await this.props.addMessages(this.props.currentChat, this.state.name, this.props.userID,this.state.message)
 			const newMessage = { sender: this.state.name, text: this.state.message, iscurrentsender: true }
 			messageList.push(newMessage)
 			this.setState({
@@ -77,6 +77,9 @@ class Texts extends React.Component {
 					else {
 						return (
 							<div key={text.sender} className="msgContainer">
+							<div className="msgSenderPic">
+								hello
+							</div>
 								<div className="msgSender">
 									{text.sender}
 								</div>
