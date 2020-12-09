@@ -12,6 +12,7 @@ class Signup extends Component {
 
 	constructor(props) {
 		super(props)
+		
 		this.state = {
 			name: "",
 			password: "",
@@ -34,11 +35,11 @@ class Signup extends Component {
 			return
 		}
 
-		for (var i = 0; i < this.state.users.length; i++) {
-			if (JSON.stringify(this.state.users[i].name) === JSON.stringify(verificationUser.name) &&
-				(JSON.stringify(this.state.users[i].password) === JSON.stringify(verificationUser.password))) {
+		for (var i = 0; i < this.props.users.length; i++) {
+			if (JSON.stringify(this.props.users[i].name) === JSON.stringify(verificationUser.name) &&
+				(JSON.stringify(this.props.users[i].password) === JSON.stringify(verificationUser.password))) {
 				this.setState({
-					currentUser: this.state.users[i],
+					currentUser: this.props.users[i],
 					signedIn: signedInState.STUDENT
 				})
 				return
@@ -67,14 +68,14 @@ class Signup extends Component {
 			return
 		}
 
-		for (var i = 0; i < this.state.users.length; i++) {
-			if (JSON.stringify(this.state.users[i].name) === JSON.stringify(this.state.name)) {
+		for (var i = 0; i < this.props.users.length; i++) {
+			if (JSON.stringify(this.props.users[i].name) === JSON.stringify(this.state.name)) {
 				alert("Username is already taken!")
 				return
 			}
 		}
 
-		const userList = this.state.users
+		const userList = this.props.users
 		const newUser = {
 			name: this.state.name,
 			password: this.state.password,

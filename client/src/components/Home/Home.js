@@ -35,7 +35,7 @@ class Home extends Component {
 		};
 	}
 
-	componentDidMount() {
+    componentDidMount() {
 		this.fetchGroups()
 	}
 
@@ -571,7 +571,8 @@ class Home extends Component {
 				</nav>
 
 				<aside id="sidebarContainer">
-					<SideBar getMessages={this.getMessages} toggleSearchMode={this.toggleSearchMode} chats={this.state.currentUser.groups} currentUser={this.props.currentUser} />
+					{Array.isArray(this.state.currentUser.groups) ? console.log("groups not fetched yet"):<SideBar getMessages={this.getMessages} toggleSearchMode={this.toggleSearchMode} chats={this.state.currentUser.groups} currentUser={this.props.currentUser} />}
+					
 				</aside>
 
 				<section id="fragmentContainer">

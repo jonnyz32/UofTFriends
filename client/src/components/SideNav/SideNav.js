@@ -15,6 +15,7 @@ class SideBar extends Component {
 	}
 
 	render() {
+		console.log("chats:", this.props.chats)
 		let groupKeys = Object.keys(this.props.chats)
 		console.log("group keys:", groupKeys)
 
