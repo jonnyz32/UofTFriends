@@ -19,6 +19,7 @@ class App extends Component {
 			{
 				name: 'user',
 				password: 'user',
+				groups: {},
 				courses: ['CSC300', 'CSC309', 'CSC311', 'CSC343', 'PHL245'],
 				program: ['Computer Science Specialist'],
 				year: "third",
@@ -35,10 +36,10 @@ class App extends Component {
 				bio: 'Third year cs student. Looking to meet some new people!',
 				image: confusedMan,
 				seenOnboarding: true,
-				groups: {"5fc69ba84c82db94b79c764c":{"name":"","messages":[]},
-						 "5fc6be2f43d80c268cb62d3b":{"name":"","messages":[]},
-						 "5fc6bf4d43d80c268cb62d3d":{"name":"","messages":[]},
-						 "5fc6bf9443d80c268cb62d3e":{"name":"","messages":[]}
+				// groups: {"5fc69ba84c82db94b79c764c":{"name":"","messages":[]},
+				// 		 "5fc6be2f43d80c268cb62d3b":{"name":"","messages":[]},
+				// 		 "5fc6bf4d43d80c268cb62d3d":{"name":"","messages":[]},
+				// 		 "5fc6bf9443d80c268cb62d3e":{"name":"","messages":[]}
 					// CSC300: [
 					// 	// {
 					// 	// 	sender: "Michael",
@@ -99,9 +100,9 @@ class App extends Component {
 					// 	// 	iscurrentsender: false
 					// 	// }
 					// ]
-				}
+				},
 
-			},
+			
 			{
 				name: 'Shadman Aziz',
 				password: 'user',
@@ -185,7 +186,7 @@ class App extends Component {
 				image: happySun,
 				seenOnboarding: true
 			}
-		]
+			]
 	}
 
 	toggleSignIn = (currentUser, signedIn) => {

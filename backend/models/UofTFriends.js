@@ -5,7 +5,7 @@ const Message = new mongoose.Schema({
     text: String,
 })
 
-const Group = new mongoose.Schema({
+const GroupModel = new mongoose.Schema({
     name: String,
     members: [{ studentId: String }],
     messages: [Message]
@@ -18,7 +18,7 @@ const ToDoList = new mongoose.Schema({
 
 const CourseMeeting = new mongoose.Schema({
     meetingDay: String,
-    durationMins: Int32
+    durationMins: Number
 })
 
 const CourseModel = new mongoose.Schema({
@@ -49,7 +49,7 @@ const StudentModel = new mongoose.Schema({
     seenTutorial: false,
 })
 
-const Group = mongoose.model('Group', Group);
+const Group = mongoose.model('Group', GroupModel);
 const Student = mongoose.model('Student', StudentModel)
 const Course = mongoose.model('Course', CourseModel)
 

@@ -21,6 +21,7 @@ class Home extends Component {
 			viewFragment: "home",
 			currentChat: null,
 			currentUser: this.props.currentUser,
+			userId: "5fce8fff18f58b18449d15d8",
 			searchQuery: "",
 			newCourse: "",
 			newBio: "",
@@ -38,15 +39,16 @@ class Home extends Component {
 		this.fetchGroups()
 	}
 
-	fetchGroups = () => {
-		let oldState = this.state;
-		const groups = Object.keys(this.state.currentUser.groups)
-		console.log("groups:", groups)
-		const data = {
-			"groups": groups,
-			"mode": "fetchGroups"
-		}
 
+	fetchGroups = () => {
+
+		let oldState = this.state;
+		const id = this.state.userId
+		console.log("id:", id)
+		const data = {
+			"id": id
+		}
+		
 		fetch("/fetchGroups", {
 			method: 'POST',
 			headers: {
@@ -70,11 +72,13 @@ class Home extends Component {
 				// console.log(typeof json[0].messages, json[0].messages)
 
 				console.log("json", json)
-				console.log("groups:", groups)
+				// console.log("groups:", groups)
+				this.state.currentUser.groups = {}
 				json.forEach(keyValue => {
+					this.state.currentUser.groups[keyValue[0]] = {"name":"", "messages": []}
 					this.state.currentUser.groups[keyValue[0]].name = keyValue[1]
 				})
-				console.log("groups in fetch groups", groups)
+				// console.log("groups in fetch groups", groups)
 				this.setState({ groups: this.state.currentUser.groups })
 			})
 			.catch(error => {
@@ -134,6 +138,7 @@ class Home extends Component {
 	}
 
 	addChat = (studentName) => {
+		console.log("in add chat")
 		const groups = Object.keys(this.state.currentUser.groups)
 		if (groups.includes(studentName.toUpperCase())) {
 			return
@@ -280,8 +285,8 @@ class Home extends Component {
 
 	getGroupId = (course) => {
 		let oldState = this.state;
-		let data = { "course": course }
-		fetch("/PostRegistration", {
+		let data = { "userId": this.state.userId, "course": course }
+		let result = fetch("/PostRegistration", {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -294,6 +299,7 @@ class Home extends Component {
 			}
 			else {
 				alert("could not get groupid")
+				throw "could not get groupid"
 			}
 			}).then(groupId => {
 				this.setState(() => {
@@ -305,11 +311,14 @@ class Home extends Component {
 				)
 			}).then(currentUser => {
 				this.fetchGroups()
+				return "success"
 			})
 
 			.catch(error =>{
 				console.log(error)
+				return "error"
 			})
+		return result	
 	}
 
 
@@ -335,6 +344,17 @@ class Home extends Component {
 		// this.addGroup(this.state.newCourse.toUpperCase())
 
 		let newCourse = this.state.newCourse
+		const result = await this.getGroupId(newCourse)
+		console.log("result", result)
+		if ( result !== "success") {
+			console.log("result", result)
+			console.log("Was not success")
+			return
+		}
+
+		console.log("Was success")
+
+
 		let updatedUser = { ...this.state.currentUser }
 		updatedUser.courses = this.state.currentUser.courses.slice()
 		updatedUser.courses.push(this.state.newCourse)
@@ -342,16 +362,28 @@ class Home extends Component {
 		let newChats = this.state.chats.slice()
 		newChats.push(this.state.newCourse)
 
-		this.setState({ currentUser: updatedUser, chats: newChats, newCourse: "" }, () => this.getGroupId(newCourse))
+		this.setState({ currentUser: updatedUser, chats: newChats, newCourse: "" })
 
 	}
 
-	removeCourse = (event) => {
+	removeCourse = async (event) => {
 
-		console.log("Removing Course")
+
 
 		const courseToRemove = event.target.parentNode.firstChild.innerText
-		console.log(courseToRemove)
+		console.log("Removing Course", courseToRemove)
+
+		let courseId = ""
+		const groupKeys = Object.keys(this.state.currentUser.groups)
+		groupKeys.forEach(groupKey => {
+			if (this.state.currentUser.groups[groupKey].name === courseToRemove){
+				courseId = groupKey
+			}
+		})
+
+		console.log("userId, courseId", this.state.userId, courseId)
+
+		
 		let coursesIndex = this.state.currentUser.courses.indexOf(courseToRemove)
 		let chatIndex = this.state.chats.indexOf(courseToRemove)
 
@@ -363,8 +395,32 @@ class Home extends Component {
 
 		let newChats = this.state.chats.slice()
 		newChats.splice(chatIndex, 1)
-
 		this.setState({ currentUser: updatedUser, chats: newChats })
+
+
+		
+
+		const data = {userId: this.state.userId, courseId: courseId}
+		await fetch("/RemoveCourse", {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		}).then(res => {
+			if (res.status == 200) {
+				console.log("status 200")
+				this.fetchGroups()
+				return res.json()
+			}
+			else {
+				alert("could not delete group")
+			}
+		})
+			.catch(error =>{
+				console.log(error)
+			})
+
 	}
 
 	bioOnChange = (event) => {
