@@ -48,7 +48,7 @@ class Home extends Component {
 		const data = {
 			"id": id
 		}
-		
+
 		fetch("/fetchGroups", {
 			method: 'POST',
 			headers: {
@@ -194,8 +194,8 @@ class Home extends Component {
 	}
 
 
-	addMessages = (currentChat,sender,message) => {
-		let data = {"groupId": currentChat,"sender":sender,"message":message}
+	addMessages = (currentChat,sender,senderID,message) => {
+		let data = {"groupId": currentChat,"sender":sender,"senderID":senderID,"message":message}
 		console.log("in add messages")
 		fetch("/Chat", {
 			method: 'POST',
@@ -318,7 +318,7 @@ class Home extends Component {
 				console.log(error)
 				return "error"
 			})
-		return result	
+		return result
 	}
 
 
@@ -383,7 +383,7 @@ class Home extends Component {
 
 		console.log("userId, courseId", this.state.userId, courseId)
 
-		
+
 		let coursesIndex = this.state.currentUser.courses.indexOf(courseToRemove)
 		let chatIndex = this.state.chats.indexOf(courseToRemove)
 
@@ -398,7 +398,7 @@ class Home extends Component {
 		this.setState({ currentUser: updatedUser, chats: newChats })
 
 
-		
+
 
 		const data = {userId: this.state.userId, courseId: courseId}
 		await fetch("/RemoveCourse", {
@@ -544,7 +544,7 @@ class Home extends Component {
 		  let texts = this.state.currentUser.groups[this.state.currentChat].messages
 			console.log("texts in home", texts)
 			if (texts) {
-				centerPage = <Chat getMessagesChat={this.getMessagesChat} addMessages={this.addMessages} currentChat={this.state.currentChat} currentUser={this.state.currentUser} texts={texts} />
+				centerPage = <Chat userID={this.state.userId} getMessagesChat={this.getMessagesChat} addMessages={this.addMessages} currentChat={this.state.currentChat} currentUser={this.state.currentUser} texts={texts} />
 				rightPage = null
 			}
 		}

@@ -166,7 +166,7 @@ app.post('/PostRegistration', async (req, res) => {
 		console.log("id is", courseId._id)
 
 		let result = await Student.updateOne({"_id": ObjectID(userId)}, {$addToSet: {groups: courseId._id} })
-		
+
 		res.send(courseId)
 
 	} catch (error){
@@ -191,7 +191,7 @@ app.post('/Chat', async (req, res) => {
 		const groupId = req.body.groupId
 		// const groupToAdd = await Group.findById(groupId)
 		// console.log(groupToAdd[0]._id)
-		const messages = await Group.findOneAndUpdate({_id: groupId},{$push: {messages:{sender:req.body.sender,text:req.body.message}}},{new: true, useFindAndModify: false})
+		const messages = await Group.findOneAndUpdate({_id: groupId},{$push: {messages:{sender:req.body.sender,senderID:req.body.senderID,text:req.body.message}}},{new: true, useFindAndModify: false})
 		log(JSON.stringify(messages))
 		res.send(messages)
 
