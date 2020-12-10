@@ -20,7 +20,7 @@ class StudentItem extends Component {
 						Bio: {this.props.user.bio} <br></br>
 					</p>
 				</div>
-				<button onClick={() => this.props.addChat(this.props.user.name)}>Chat</button>
+				<button onClick={() => this.props.addChat(this.props.user._id, this.props.user.name)}>Chat</button>
 			</div>
 
 		);
