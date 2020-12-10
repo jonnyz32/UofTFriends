@@ -43,7 +43,7 @@ class Chat extends React.Component {
 		console.log("in chat props text", this.props.currentUser.groups[this.props.currentChat].messages)
 		return (
 			<div className='messagesBox'>
-				<Texts texts={this.props.currentUser.groups[this.props.currentChat].messages} currentUser={this.props.currentUser} />
+				<Texts filterUsers={this.props.filterUsers} searchQuery={this.props.searchQuery} clickHandlerChat={this.props.clickHandlerChat} texts={this.props.currentUser.groups[this.props.currentChat].messages} currentUser={this.props.currentUser} />
 				<span className="messageInputTray">
 					<input className="messageInput" name="message" value={this.state.message} onChange={this.handleInputChange} placeholder="Enter a message..." type="text" />
 					<button className="messageButton" onClick={this.message}> Send </button>
@@ -75,9 +75,15 @@ class Texts extends React.Component {
 						)
 					}
 					else {
+						console.log(text.senderID)
 						return (
 							<div key={text.sender} className="msgContainer">
-							<div className="msgSenderPic">
+							<div onClick={async ()=>{
+								// this.props.searchQuery = text.sender
+								// this.props.filterUsers()
+								this.props.clickHandlerChat()
+
+							}} className="msgSenderPic">
 								hello
 							</div>
 								<div className="msgSender">

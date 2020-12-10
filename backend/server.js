@@ -38,7 +38,25 @@ app.get('/fetchUsers', async (req, res) => {
 	try {
 		const users = await Student.find({})
 		res.send(users)
-	} 	
+	}
+	catch (error) {
+		log(error)
+		if (isMongoError(error)){
+			res.status(500).send("Internal server error")
+		}
+		else {
+			res.status(400).send("Bad request")
+		}
+
+	}
+})
+
+app.post('/fetchParticularUser', async (req, res) => {
+
+	try {
+		const user = await Student.findById(req.body.senderID)
+		res.send(user)
+	}
 	catch (error) {
 		log(error)
 		if (isMongoError(error)){
