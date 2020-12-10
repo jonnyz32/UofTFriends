@@ -84,23 +84,60 @@ app.post('/Messages', async (req, res) => {
 
 	})
 
+	app.post('/checkGroupAdded', async (req, res) => {
+
+		try{
+			log("in addChat")
+			log(req.body)
+			const otherUserId = req.body.otherUserId
+			const currentUserId = req.body.currentUserId
+	
+			const groups = await Group.find({})
+			let contains = {"contains": false}
+			groups.forEach(group => {
+				if (group.members.length === 2){
+					if ((group.members[0].studentId === otherUserId && group.members[1].studentId === currentUserId ) || 
+					    (group.members[1].studentId === otherUserId && group.members[0].studentId === currentUserId )){
+							contains.contains = true
+						}
+				}
+			})
+
+	
+			
+			res.send(contains)
+		} catch (error) {
+			log(error)
+			if (isMongoError(error)){
+				res.status(500).send("Internal server error")
+			}
+			else {
+				res.status(400).send("Bad request")
+			}
+	
+		}})
+	
+
 app.post('/addChat', async (req, res) => {
 
 	try{
 		log("in addChat")
 		log(req.body)
-		const otherUser = req.body.otherUser
-		const currentUser = req.body.currentUser
+		const otherUserId = req.body.otherUserId
+		const otherUserName = req.body.otherUserName
+		const currentUserId = req.body.currentUserId
+		const currentUserName = req.body.currentUserName
+
+		console.log("req.body", req.body)
 
 		const group = new Group({
-			        name: otherUser,
-			        members: [{studentId: otherUser}, {studentId: currentUser}],
+			        name: otherUserName + "," + currentUserName,
+			        members: [{ "studentId": currentUserId }, { "studentId": otherUserId }],
 			        messages: []
 				})
 
-		let result = await group.save()
-		let keyValue = [result._id, result.name]
-		res.send(keyValue)
+		const groupResult = await group.save()
+		res.send(groupResult)
 	} catch (error) {
 		log(error)
 		if (isMongoError(error)){
@@ -183,6 +220,29 @@ app.post('/addChat', async (req, res) => {
 
 
 
+
+
+
+app.post('/addGroup', async (req, res) => {
+	const groupId = req.body.groupId
+	const userId = req.body.userId
+	
+	try {
+		const result = await Student.updateOne({"_id": ObjectID(userId)}, {$addToSet: {groups: groupId} })
+		res.send(result)
+	}
+	catch (error){
+		log(error)
+		if (isMongoError(error)){
+			res.status(500).send("Internal server error")
+		}
+		else {
+			res.status(400).send("Bad request")
+		}
+
+	}
+
+})
 
 
 app.post('/PostRegistration', async (req, res) => {

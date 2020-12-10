@@ -76,7 +76,23 @@ class Home extends Component {
 				this.state.currentUser.groups = {}
 				json.forEach(keyValue => {
 					this.state.currentUser.groups[keyValue[0]] = {"name":"", "messages": []}
-					this.state.currentUser.groups[keyValue[0]].name = keyValue[1]
+					if (keyValue[1].includes(",")){
+						const names = keyValue[1].split(",")
+
+						if (names[0] === this.state.currentUser.name) {
+							this.state.currentUser.groups[keyValue[0]].name = names[1]
+						}
+						else {
+							this.state.currentUser.groups[keyValue[0]].name = names[0]
+						}
+
+					}
+					else {
+						this.state.currentUser.groups[keyValue[0]].name = keyValue[1]
+					}
+
+	
+					
 				})
 				// console.log("groups in fetch groups", groups)
 				this.setState({ groups: this.state.currentUser.groups })
@@ -137,16 +153,73 @@ class Home extends Component {
 		this.setState({ searchQuery: event.target.value.trim() })
 	}
 
-	addChat = (studentName) => {
+	checkGroupAdded = async (otherUserId, currentUserId) => {
+		console.log("in check group added")
+		let data = {
+			"otherUserId": otherUserId,
+			"currentUserId": currentUserId
+		}
+
+		const result = await fetch("/checkGroupAdded", {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		}).then(res => {
+			if (res.status == 200) {
+				return res.json()
+			}
+			else {
+				alert("something is wrong")
+			}
+		})
+			.then(json => {
+				console.log("json", json)
+				if (json.contains){
+					return true
+				}
+				else {
+					return false
+				}
+
+			
+			})
+			.catch(error => {
+				console.log(error)
+			})
+			console.log("result", result)
+
+			return result
+
+
+	}
+
+	addChat = async (otherUserId, otherUserName) => {
+		const currentUserId = this.state.currentUser._id
+		const currentUserName = this.state.currentUser.name
 		console.log("in add chat")
-		const groups = Object.keys(this.state.currentUser.groups)
-		if (groups.includes(studentName.toUpperCase())) {
+		const groups = this.state.currentUser.groups
+
+		const groupAdded = await this.checkGroupAdded(otherUserId,currentUserId )
+		console.log("groupAdded", groupAdded)
+		if (groupAdded){
 			return
 		}
+
+
+		// groups.forEach(group => {
+		// 	if (group.members.includes(otherUserId)){
+		// 		return
+		// 	}
+		// })
+		
 		let oldState = this.state;
 		let data = {
-			"otherUser": studentName,
-			"currentUser": this.state.currentUser.name,
+			"otherUserId": otherUserId,
+			"otherUserName": otherUserName,
+			"currentUserId": currentUserId,
+			"currentUserName": currentUserName
 		}
 
 		// this.addGroup(chatName.toUpperCase())
@@ -169,12 +242,16 @@ class Home extends Component {
 			}
 		})
 			.then(json => {
-				this.setState(() => {
-					let currentUser = Object.assign({}, oldState.currentUser)
-					let id = json[0]
-					currentUser.groups[id] = []
-				}
-				)
+				console.log("groupId:", json)
+				this.addGroup(json._id, otherUserId)
+				this.addGroup(json._id, currentUserId)
+
+				// this.setState(() => {
+				// 	let currentUser = Object.assign({}, oldState.currentUser)
+				// 	let id = json[0]
+				// 	currentUser.groups[id] = []
+				// }
+				// )
 				this.fetchGroups()
 				return this.state.currentUser.groups;
 			})
@@ -183,15 +260,56 @@ class Home extends Component {
 			})
 	}
 
-	addGroup = (newChat) => {
-		let oldState = this.state;
-		{ console.log("state", oldState) }
-		this.setState(() => {
-			let currentUser = Object.assign({}, oldState.currentUser)
-			currentUser.groups[newChat] = [];
-			return { currentUser };
+	// addGroup = (newChat) => {
+	// 	let oldState = this.state;
+	// 	{ console.log("state", oldState) }
+	// 	this.setState(() => {
+	// 		let currentUser = Object.assign({}, oldState.currentUser)
+	// 		currentUser.groups[newChat] = [];
+	// 		return { currentUser };
+	// 	})
+	// }
+
+	
+	addGroup = (groupId, userId) => {
+		const data = {
+			"groupId":groupId,
+			"userId": userId
+		}
+
+		fetch("/addGroup", {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		}).then(res => {
+			if (res.status == 200) {
+				return res.json()
+			}
+			else {
+				alert("could not add group")
+			}
 		})
+			.then(json => {
+				// console.log("groupId:", json)
+				// this.getGroupId(json._id, otherUserId)
+				// this.getGroupId(json._id, currentUserId)
+
+				// this.setState(() => {
+				// 	let currentUser = Object.assign({}, oldState.currentUser)
+				// 	let id = json[0]
+				// 	currentUser.groups[id] = []
+				// }
+				// )
+				this.fetchGroups()
+				return this.state.currentUser.groups;
+			})
+			.catch(error => {
+				console.log(error)
+			})
 	}
+	
 
 
 	addMessages = (currentChat,sender,senderID,message) => {
@@ -283,9 +401,9 @@ class Home extends Component {
 			})
 	}
 
-	getGroupId = (course) => {
+	getGroupId = (course, userId) => {
 		let oldState = this.state;
-		let data = { "userId": this.state.userId, "course": course }
+		let data = { "userId": userId, "course": course }
 		let result = fetch("/PostRegistration", {
 			method: 'POST',
 			headers: {
@@ -344,7 +462,7 @@ class Home extends Component {
 		// this.addGroup(this.state.newCourse.toUpperCase())
 
 		let newCourse = this.state.newCourse
-		const result = await this.getGroupId(newCourse)
+		const result = await this.getGroupId(newCourse, this.state.currentUser._id)
 		console.log("result", result)
 		if ( result !== "success") {
 			console.log("result", result)
