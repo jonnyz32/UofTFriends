@@ -117,6 +117,38 @@ class Home extends Component {
 		return queryMatches
 	}
 
+	clickHandlerChat = () => {
+		console.log("in clickhandler")
+		let data = {"senderID": '5fced87818f58b18449d15d9'}
+		console.log("in clickHandlerChat")
+		fetch("/fetchParticularUser", {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		}).then(res => {
+			if (res.status == 200) {
+				return res.json()
+			}
+			else {
+				alert("could not find user")
+			}
+		})
+		.then(json => {
+			console.log("json is "+ json)
+			this.setState({
+				viewFragment: "search",
+				users: [json]
+			})
+		})
+
+			.catch(error => {
+				console.log(error)
+			})
+
+	}
+
 	// Helper to match searchQuery.
 	contains = (list, keyword) => {
 
@@ -148,11 +180,6 @@ class Home extends Component {
 			"otherUser": studentName,
 			"currentUser": this.state.currentUser.name,
 		}
-
-		// this.addGroup(chatName.toUpperCase())
-		// const updatedChats = this.state.chats.slice();
-		// updatedChats.push(studentName.toUpperCase())
-		// this.setState({ chats: updatedChats })
 
 		fetch("/addChat", {
 			method: 'POST',
@@ -533,6 +560,7 @@ class Home extends Component {
 			rightPage = <TodoList name={this.state.currentUser.name} toDoList={this.state.currentUser.toDoList} activity={this.state.activity} time={this.state.time}
 				addNewTodo={this.addNewTodo} removeToDo={this.removeToDo} handleInputChange={this.handleInputChange} />
 		} else if (this.state.viewFragment == "search") {
+			{console.log("from chat:"+JSON.stringify(this.state.users))}
 			centerPage = <Students addChat={this.addChat} users={this.state.users} />
 			rightPage = null
 		} else if (this.state.viewFragment == "settings") {
@@ -544,7 +572,7 @@ class Home extends Component {
 		  let texts = this.state.currentUser.groups[this.state.currentChat].messages
 			console.log("texts in home", texts)
 			if (texts) {
-				centerPage = <Chat userID={this.state.userId} getMessagesChat={this.getMessagesChat} addMessages={this.addMessages} currentChat={this.state.currentChat} currentUser={this.state.currentUser} texts={texts} />
+				centerPage = <Chat filterUsers={this.filterUsers} searchQuery={this.state.searchQuery} clickHandlerChat={this.clickHandlerChat} userID={this.state.userId} getMessagesChat={this.getMessagesChat} addMessages={this.addMessages} currentChat={this.state.currentChat} currentUser={this.state.currentUser} texts={texts} />
 				rightPage = null
 			}
 		}
@@ -572,7 +600,7 @@ class Home extends Component {
 
 				<aside id="sidebarContainer">
 					{Array.isArray(this.state.currentUser.groups) ? console.log("groups not fetched yet"):<SideBar getMessages={this.getMessages} toggleSearchMode={this.toggleSearchMode} chats={this.state.currentUser.groups} currentUser={this.props.currentUser} />}
-					
+
 				</aside>
 
 				<section id="fragmentContainer">
