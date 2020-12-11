@@ -77,3 +77,177 @@ offense.
 With both types of users, admin or regular, we provide the option to logout of your account
 via a button in the top right corner.
 
+
+### Overview of routes
+
+/fetchUsers (Get)
+
+Doesn't expect any data and returns a list of all users in the database
+
+
+
+/Messages (Post)
+
+Expects data as 
+ {
+  "groupId": groupId
+ }
+ 
+ Ex: 
+ 
+ {
+  "groupId": "5fc69ba84c82db94b79c764c"
+ }
+ 
+ 
+ 
+ groupId is representing the mongodb \_id corresponding to a group in the groups collection.
+ 
+ The response object is an array of message objects for the corresponding group.
+ 
+ 
+ 
+ /checkGroupAdded (Post)
+
+Expects data as 
+{
+			"otherUserId": otherUserId,
+			"currentUserId": currentUserId
+}
+
+Ex:
+
+{
+			"otherUserId": "5fced87818f58b18449d15d9",
+			"currentUserId": "5fce8fff18f58b18449d15d8"
+}
+
+
+otherUserId is the _id of another user in the students collection of mongodb
+currentUserId is the _id of the current user in the students collection of mongodb
+
+If there exists a group in groups collection that has it's members property equal
+to an array containg only the user id's of the two students, then the response value is 
+
+{ "contains": true }
+
+Otherwise, it returns 
+{ "contains": false }
+
+
+/addChat (Post)
+
+Expects data as 
+
+{
+			"otherUserId": otherUserId,
+			"otherUserName": otherUserName,
+			"currentUserId": currentUserId,
+			"currentUserName": currentUserName
+		}
+    
+Ex: 
+{
+			"otherUserId": "5fced87818f58b18449d15d9",
+			"otherUserName": "Shadman Aziz",
+			"currentUserId": "5fce8fff18f58b18449d15d8",
+			"currentUserName": "User"
+		}
+
+where otherUserId and otherUserName are the user id and name of the other user, and 
+currentUserId and currentUserName are the user id and name of the current user
+
+A group will be saved to the database in the groups collection with the following data
+
+{
+			name: otherUserName + "," + currentUserName,
+			members: [{ "studentId": currentUserId }, { "studentId": otherUserId }],
+			messages: []
+}
+
+The response object is this new group if the request was successful.
+
+
+
+/fetchGroups (Post)
+
+Expects data as 
+{
+			"id": id
+}
+
+Ex:
+{
+			"id": "5fce8fff18f58b18449d15d8"
+}
+
+where id is the \_id of the current user. (Again user id's are the default mongodb id's for the 
+student objects in the student collection)
+
+Response object is an array of arrays containing group id's with the corresponding group name.
+
+
+
+/RemoveCourse (Delete)
+
+Expects data as 
+{ userId: userId
+courseId: courseId }
+
+Ex:
+{ userId: "5fce8fff18f58b18449d15d8"
+courseId: "5fc69ba84c82db94b79c764c" }
+
+userId is the id of the current user as defined above.
+courseId is the mongodb id of the course which can be found in the groups collection.
+
+Returns the student object from the students collection with id given by userId. The groups array 
+for the given student, will have had the courseId removed.
+
+
+
+/addGroup (Post)
+
+Expects data as 
+
+{
+			"groupId": groupId,
+			"userId": userId
+}
+
+Ex:
+{
+  "groupId": "5fc69ba84c82db94b79c764c",
+  "userId": "5fce8fff18f58b18449d15d8"
+}
+
+where groupId and userId are the same as defined above. The response object is the corresponding
+student object with it's groups array, having had groupId added to it.
+
+
+
+/PostRegistration (Post)
+
+Excpects data as 
+{ "userId": userId, 
+"course": course }
+
+Ex: 
+{ "userId": "5fce8fff18f58b18449d15d8", 
+"course": "CSC309" }
+
+userId is as defined above. course is a string containing the name of a U of T course. If the groups collection has a 
+group with name field given as course, then the response object will be the the student object corresponding to the given 
+userId with it's groups array having added the groupId corresponding to the course string. If the given group cannot be found, 
+an alert will be raised "Cannot find groupId"
+
+
+
+
+
+
+ 
+
+
+
+
