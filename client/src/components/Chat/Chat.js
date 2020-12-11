@@ -119,7 +119,7 @@ class Texts extends React.Component {
 								<div className="msgText">
 									{text.text}
 								</div>
-								<button onClick={this.reportMsg}> Rep </button>
+								<button className="reportButton" onClick={this.reportMsg}> Report </button>
 							</div>
 						)
 					}
