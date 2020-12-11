@@ -79,8 +79,6 @@ class Texts extends React.Component {
 						return (
 							<div key={text.sender} className="msgContainer">
 							<div onClick={async ()=>{
-								// this.props.searchQuery = text.sender
-								// this.props.filterUsers()
 								this.props.clickHandlerChat()
 
 							}} className="msgSenderPic">

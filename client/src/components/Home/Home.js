@@ -25,7 +25,6 @@ class Home extends Component {
 			searchQuery: "",
 			newCourse: "",
 			newBio: "",
-			// chats: this.props.currentUser.courses,
 			chats: [],
 			users: [],
 			usersMasterList: this.props.users,
@@ -64,15 +63,8 @@ class Home extends Component {
 			}
 		})
 			.then(json => {
-				// console.log(typeof json, json)
-				// console.log(typeof json.body, json.body)
-				// console.log(typeof JSON.stringify(json), JSON.stringify(json))
-				// console.log(typeof JSON.stringify(json.body), JSON.stringify(json.body))
-				// console.log(typeof JSON.stringify(json[0].messages), JSON.stringify(json[0].messages))
-				// console.log(typeof json[0].messages, json[0].messages)
 
 				console.log("json", json)
-				// console.log("groups:", groups)
 				this.state.currentUser.groups = {}
 				json.forEach(keyValue => {
 					this.state.currentUser.groups[keyValue[0]] = {"name":"", "messages": []}
@@ -90,11 +82,7 @@ class Home extends Component {
 					else {
 						this.state.currentUser.groups[keyValue[0]].name = keyValue[1]
 					}
-
-	
-					
 				})
-				// console.log("groups in fetch groups", groups)
 				this.setState({ groups: this.state.currentUser.groups })
 			})
 			.catch(error => {
@@ -273,12 +261,6 @@ class Home extends Component {
 				this.addGroup(json._id, otherUserId)
 				this.addGroup(json._id, currentUserId)
 
-				// this.setState(() => {
-				// 	let currentUser = Object.assign({}, oldState.currentUser)
-				// 	let id = json[0]
-				// 	currentUser.groups[id] = []
-				// }
-				// )
 				this.fetchGroups()
 				return this.state.currentUser.groups;
 			})
@@ -287,17 +269,6 @@ class Home extends Component {
 			})
 	}
 
-	// addGroup = (newChat) => {
-	// 	let oldState = this.state;
-	// 	{ console.log("state", oldState) }
-	// 	this.setState(() => {
-	// 		let currentUser = Object.assign({}, oldState.currentUser)
-	// 		currentUser.groups[newChat] = [];
-	// 		return { currentUser };
-	// 	})
-	// }
-
-	
 	addGroup = (groupId, userId) => {
 		const data = {
 			"groupId":groupId,
@@ -319,16 +290,6 @@ class Home extends Component {
 			}
 		})
 			.then(json => {
-				// console.log("groupId:", json)
-				// this.getGroupId(json._id, otherUserId)
-				// this.getGroupId(json._id, currentUserId)
-
-				// this.setState(() => {
-				// 	let currentUser = Object.assign({}, oldState.currentUser)
-				// 	let id = json[0]
-				// 	currentUser.groups[id] = []
-				// }
-				// )
 				this.fetchGroups()
 				return this.state.currentUser.groups;
 			})
@@ -485,8 +446,6 @@ class Home extends Component {
 			alert("Please enter a course!")
 			return
 		}
-
-		// this.addGroup(this.state.newCourse.toUpperCase())
 
 		let newCourse = this.state.newCourse
 		const result = await this.getGroupId(newCourse, this.state.currentUser._id)
