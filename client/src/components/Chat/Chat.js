@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ChatStyle from './Chat.css'
 
 class Chat extends React.Component {
@@ -11,12 +11,10 @@ class Chat extends React.Component {
 		}
 	}
 
-
-
 	message = async () => {
 		const messageList = this.props.texts
-		if (this.state.message != "") {
-			await this.props.addMessages(this.props.currentChat, this.state.name, this.props.userID,this.state.message)
+		if (this.state.message !== "") {
+			await this.props.addMessages(this.props.currentChat, this.state.name, this.props.userID, this.state.message)
 			const newMessage = { sender: this.state.name, text: this.state.message, iscurrentsender: true }
 			messageList.push(newMessage)
 			this.setState({
@@ -31,16 +29,11 @@ class Chat extends React.Component {
 		const name = target.name
 
 		this.setState({
-
 			[name]: value
-		}
-
-		)
+		})
 	}
 
-
 	render() {
-		console.log("in chat props text", this.props.currentUser.groups[this.props.currentChat].messages)
 		return (
 			<div className='messagesBox'>
 				<Texts filterUsers={this.props.filterUsers} searchQuery={this.props.searchQuery} clickHandlerChat={this.props.clickHandlerChat} texts={this.props.currentUser.groups[this.props.currentChat].messages} currentUser={this.props.currentUser} />
@@ -56,13 +49,10 @@ class Chat extends React.Component {
 class Texts extends React.Component {
 
 	render() {
-
-		console.log("this.props.texts", this.props.currentUser.name)
-		console.log("this.props.texts",this.props.texts)
 		return (
 			<div className="messages">
 				{this.props.texts.map(text => {
-					if (text.sender == this.props.currentUser.name) {
+					if (text.sender === this.props.currentUser.name) {
 						return (
 							<div key={text.sender} className="userMsgContainer">
 								<div className="msgSender">
@@ -78,11 +68,11 @@ class Texts extends React.Component {
 						console.log(text.senderID)
 						return (
 							<div key={text.sender} className="msgContainer">
-							<div onClick={async ()=>{
-								this.props.clickHandlerChat()
+								<div onClick={async () => {
+									this.props.clickHandlerChat()
 
-							}} className="msgSenderPic">
-								hello
+								}} className="msgSenderPic">
+									hello
 							</div>
 								<div className="msgSender">
 									{text.sender}

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "./SignupPage.css"
-import { Route, Switch, BrowserRouter, Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const signedInState = {
 	NONE: 0,
@@ -8,11 +8,11 @@ const signedInState = {
 	ADMIN: 2
 }
 
-class Signup extends Component {
+class Signup extends React.Component {
 
 	constructor(props) {
 		super(props)
-		
+
 		this.state = {
 			name: "",
 			password: "",
@@ -99,14 +99,14 @@ class Signup extends Component {
 	}
 
 	render() {
-		if (this.state.signedIn == signedInState.STUDENT) {
+		if (this.state.signedIn === signedInState.STUDENT) {
 			this.props.toggleSignIn(this.state.currentUser, this.state.signedIn)
-			if (this.state.currentUser.seenOnboarding == 1) {
+			if (this.state.currentUser.seenOnboarding === true) {
 				return <Redirect to={{ pathname: "/Home" }} />
 			} else {
 				return <Redirect to={{ pathname: "/PostRegistration" }} />
 			}
-		} else if (this.state.signedIn == signedInState.ADMIN) {
+		} else if (this.state.signedIn === signedInState.ADMIN) {
 			return <Redirect to={{ pathname: "/Admin" }} />
 		}
 
