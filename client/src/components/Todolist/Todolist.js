@@ -10,7 +10,10 @@ class ToDoList extends Component {
 			<div className="Todolist">
 				<h2> To-Do List </h2>
 				<div>
-					{this.props.toDoList.map((toDoListItem) => <ToDoListItem name={this.props.name} activity={toDoListItem.activity} time={toDoListItem.time} removeToDo={this.props.removeToDo} />)}
+					{
+						this.props.toDoList ?
+							this.props.toDoList.map((toDoListItem) => <ToDoListItem name={this.props.name} activity={toDoListItem.activity} time={toDoListItem.time} removeToDo={this.props.removeToDo} />) : null
+					}
 				</div>
 				<div className="TodolistNewTaskTray">
 					<input name="activity" type='text' value={this.props.activity} onChange={this.props.handleInputChange} placeholder='New task...' />

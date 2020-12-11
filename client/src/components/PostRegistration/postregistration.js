@@ -172,8 +172,44 @@ class PostRegistration extends Component {
 		currentUser.image = this.state.image
 		currentUser.seenOnboarding = true
 
-		this.setState({ onboardingComplete: true })
-		this.props.updateUser(currentUser)
+		console.log(currentUser)
+		// this.setState({ onboardingComplete: true })
+		// this.props.updateUser(currentUser)
+
+		const newStudent = {
+			username: this.state.currentUser.name,
+			password: this.state.currentUser.password,
+			name: this.state.currentUser.name,
+			courses: this.state.currentUser.courses,
+			program: this.state.currentUser.program,
+			year: parseInt(this.state.currentUser.year),
+			hobbies: this.state.currentUser.hobbies,
+			todoList: [],
+			bio: this.state.currentUser.bio,
+			profilePic: this.state.currentUser.image,
+			groups: this.state.currentUser.courses,
+			seenOnboarding: true,
+			seenTutorial: false,
+		}
+
+		fetch("/addStudent", {
+			method: 'POST',
+			body: JSON.stringify(newStudent),
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		}).then(res => {
+			if (res.status == 200) {
+				console.log("Saved student!")
+				this.setState({ onboardingComplete: true })
+				this.props.updateUser(currentUser)
+			}
+			else {
+				alert("Could not save user!")
+			}
+		}).catch(error => {
+			console.log(error)
+		})
 	}
 
 	// API Calls
@@ -183,7 +219,8 @@ class PostRegistration extends Component {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json'
-			}})
+			}
+		})
 			.then(res => {
 				if (res.status === 200) { return res.json() }
 				else { alert("Error loading courses") }
@@ -234,12 +271,12 @@ class PostRegistration extends Component {
 
 							<select name="year" onChange={this.handleYearSelect}>
 								<option value disabled selected>select your year</option>
-								<option value="first">first</option>
-								<option value="second">second</option>
-								<option value="third">third</option>
-								<option value="fourth">fourth</option>
-								<option value="fifth">fifth</option>
-								<option value="sixth">sixth</option>
+								<option value="1">first</option>
+								<option value="2">second</option>
+								<option value="3">third</option>
+								<option value="4">fourth</option>
+								<option value="5">fifth</option>
+								<option value="6">sixth</option>
 							</select>
 
 							<label> year.</label>

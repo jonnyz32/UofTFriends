@@ -169,13 +169,13 @@ app.post('/PostRegistration', async (req, res) => {
 app.post('/Chat', async (req, res) => {
 	try {
 		const newMessages = {
-			messages: { 
+			messages: {
 				sender: req.body.sender,
-				 senderID: req.body.senderID,
-				  text: req.body.message 
+				senderID: req.body.senderID,
+				text: req.body.message
 			}
 		}
-		
+
 		const groupId = req.body.groupId
 		const messages = await Group.findOneAndUpdate(
 			{ _id: groupId },
