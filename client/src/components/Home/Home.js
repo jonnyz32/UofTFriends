@@ -25,7 +25,6 @@ class Home extends Component {
 			searchQuery: "",
 			newCourse: "",
 			newBio: "",
-			// chats: this.props.currentUser.courses,
 			chats: [],
 			users: [],
 			usersMasterList: this.props.users,
@@ -64,15 +63,8 @@ class Home extends Component {
 			}
 		})
 			.then(json => {
-				// console.log(typeof json, json)
-				// console.log(typeof json.body, json.body)
-				// console.log(typeof JSON.stringify(json), JSON.stringify(json))
-				// console.log(typeof JSON.stringify(json.body), JSON.stringify(json.body))
-				// console.log(typeof JSON.stringify(json[0].messages), JSON.stringify(json[0].messages))
-				// console.log(typeof json[0].messages, json[0].messages)
 
 				console.log("json", json)
-				// console.log("groups:", groups)
 				this.state.currentUser.groups = {}
 				json.forEach(keyValue => {
 					this.state.currentUser.groups[keyValue[0]] = {"name":"", "messages": []}
@@ -90,11 +82,7 @@ class Home extends Component {
 					else {
 						this.state.currentUser.groups[keyValue[0]].name = keyValue[1]
 					}
-
-	
-					
 				})
-				// console.log("groups in fetch groups", groups)
 				this.setState({ groups: this.state.currentUser.groups })
 			})
 			.catch(error => {
@@ -238,13 +226,6 @@ class Home extends Component {
 		if (groupAdded){
 			return
 		}
-
-
-		// groups.forEach(group => {
-		// 	if (group.members.includes(otherUserId)){
-		// 		return
-		// 	}
-		// })
 		
 		let oldState = this.state;
 		let data = {
@@ -273,12 +254,6 @@ class Home extends Component {
 				this.addGroup(json._id, otherUserId)
 				this.addGroup(json._id, currentUserId)
 
-				// this.setState(() => {
-				// 	let currentUser = Object.assign({}, oldState.currentUser)
-				// 	let id = json[0]
-				// 	currentUser.groups[id] = []
-				// }
-				// )
 				this.fetchGroups()
 				return this.state.currentUser.groups;
 			})
@@ -287,17 +262,6 @@ class Home extends Component {
 			})
 	}
 
-	// addGroup = (newChat) => {
-	// 	let oldState = this.state;
-	// 	{ console.log("state", oldState) }
-	// 	this.setState(() => {
-	// 		let currentUser = Object.assign({}, oldState.currentUser)
-	// 		currentUser.groups[newChat] = [];
-	// 		return { currentUser };
-	// 	})
-	// }
-
-	
 	addGroup = (groupId, userId) => {
 		const data = {
 			"groupId":groupId,
@@ -319,16 +283,6 @@ class Home extends Component {
 			}
 		})
 			.then(json => {
-				// console.log("groupId:", json)
-				// this.getGroupId(json._id, otherUserId)
-				// this.getGroupId(json._id, currentUserId)
-
-				// this.setState(() => {
-				// 	let currentUser = Object.assign({}, oldState.currentUser)
-				// 	let id = json[0]
-				// 	currentUser.groups[id] = []
-				// }
-				// )
 				this.fetchGroups()
 				return this.state.currentUser.groups;
 			})
@@ -485,8 +439,6 @@ class Home extends Component {
 			alert("Please enter a course!")
 			return
 		}
-
-		// this.addGroup(this.state.newCourse.toUpperCase())
 
 		let newCourse = this.state.newCourse
 		const result = await this.getGroupId(newCourse, this.state.currentUser._id)
@@ -665,6 +617,83 @@ class Home extends Component {
 		this.setState({ currentUser: updatedUser })
 	}
 
+	handleOutsideClick = (event) => {
+		const dropdown = document.getElementById("settingsCourseDropdown");
+		if (event.target !== dropdown) {
+			dropdown.innerHTML = ''
+		}
+	}
+
+	handleCourseInput = (event) => {
+		const courseId = event.target.value
+
+		if (courseId.length > 0) {
+			this.fetchCoursesBy(courseId)
+				.then(courses => {
+					this.displayCourses(courses)
+				}).catch(error => {
+					console.log(error)
+				})
+		} else {
+			document.getElementById("settingsCourseDropdown").innerHTML = ''
+		}
+	}
+
+	handleClickDropdownCourse = (event) => {
+		this.setState({ newCourse: event.target.course.courseId })
+		this.addCourse()
+	}
+
+	displayCourses = (courses) => {
+		const div = document.getElementById("settingsCourseDropdown");
+		div.innerHTML = ''
+
+		if (courses.length === 0) {
+			let a = document.createElement("a")
+			a.appendChild(document.createTextNode("No courses found"))
+			div.appendChild(a)
+		}
+
+		courses.forEach(course => {
+			let a = document.createElement("a")
+			a.course = course
+			a.onmouseup = this.handleClickDropdownCourse
+			a.appendChild(document.createTextNode(course.courseId))
+			div.appendChild(a)
+		})
+	}
+
+	attemptAddCourse = () => {
+		const course = this.state.newCourse
+		if (course === "") {
+			alert("Please enter a course!")
+			return
+		}
+
+		this.fetchCoursesBy(course)
+			.then(courses => {
+				if (courses.length < 1) {
+					alert("Please enter a valid course")
+				} else {
+					this.addCourse()
+				}
+			}).catch(error => {
+				console.log(error)
+			})
+	}
+
+	fetchCoursesBy = (id) => {
+		return fetch(`/Courses/${id}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}})
+			.then(res => {
+				if (res.status === 200) { return res.json() }
+				else { alert("Error loading courses") }
+			})
+	}
+
 	render() {
 
 		let centerPage = null
@@ -684,7 +713,8 @@ class Home extends Component {
 		} else if (this.state.viewFragment == "settings") {
 			centerPage = <SettingsPage currentUser={this.state.currentUser} chats={this.state.chats} courseOnChange={this.courseOnChange}
 				addCourse={this.addCourse} removeCourse={this.removeCourse} newCourse={this.state.newCourse} bioOnChange={this.bioOnChange}
-				submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange} />
+				submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange}
+				handleOutsideClick={this.handleOutsideClick} handleCourseInput={this.handleCourseInput} />
 			rightPage = null
 		} else {
 		  let texts = this.state.currentUser.groups[this.state.currentChat].messages
