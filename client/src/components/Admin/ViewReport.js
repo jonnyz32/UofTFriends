@@ -6,18 +6,17 @@ export class ViewReport extends Component {
 	render() {
 
 		return (
-			<div >
+			<div className="actionsFragment">
 
 				<div className="ReportViewContainer">
-					<p className="ReportViewParagraph">Reported: {this.props.report.name}</p>
-					<p className="ReportViewParagraph">Type: {this.props.report.type}</p>
-					<p className="ReportViewParagraph">Reason: {this.props.report.reason}</p>
-					{this.props.report.reportedMessage ? <p className="ReportViewParagraph">Reported Message: {this.props.report.reportedMessage}</p> : null}
+					<p className="ReportViewParagraph">Student: {this.props.report.name}</p>
+					<p className="ReportViewParagraph">Reported Message: {this.props.report.msg}</p>
+					<p className="ReportViewParagraph">Group ID: {this.props.report.groupID}</p>
 				</div>
 
 				<span className="ReportViewButtonTray">
-					<button className="ReportViewDismissButton" onClick={() => this.props.removeReport(this.props.report.name, this.props.report.type)}>Dismiss</button>
-					<button className="ReportViewBanButton" onClick={() => this.props.removeReport(this.props.report.name, this.props.report.type)}>Ban</button>
+					<button className="ReportViewDismissButton" onClick={() => this.props.removeReport(this.props.report.name, "DISMISS")}>Dismiss</button>
+					<button className="ReportViewBanButton" onClick={() => this.props.removeReport(this.props.report.name, "REMOVE")}>Remove Message</button>
 				</span>
 			</div>
 		);
