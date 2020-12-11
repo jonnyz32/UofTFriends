@@ -175,7 +175,6 @@ app.post('/Chat', async (req, res) => {
 				text: req.body.message
 			}
 		}
-
 		const groupId = req.body.groupId
 		const messages = await Group.findOneAndUpdate(
 			{ _id: groupId },
@@ -185,6 +184,90 @@ app.post('/Chat', async (req, res) => {
 
 	} catch (error) {
 		handleError(res, error)
+	}
+})
+
+/**
+ * Route for reporting a message.
+ */
+app.post('/reports', async (req, res) => {
+
+	console.log("Req: Report Student.  Body:", req.body)
+	const newReport = new Report(req.body)
+	try {
+		await newReport.save()
+		res.status(200).send()
+	} catch (error) {
+		console.log(error)
+		if (isMongoError(error)) {
+			res.status(500).send("Internal server error")
+		}
+		else {
+			res.status(400).send("Bad request")
+		}
+	}
+})
+
+/**
+ * Route for getting reports.
+ */
+app.get('/reports', async (req, res) => {
+
+	try {
+		const reports = await Report.find()
+		res.status(200).send(reports)
+	} catch (error) {
+		console.log(error)
+		if (isMongoError(error)) {
+			res.status(500).send("Internal server error")
+		}
+		else {
+			res.status(400).send("Bad request")
+		}
+	}
+})
+
+/**
+ * Route for deleting reports.
+ */
+app.delete('/reports/:id', async (req, res) => {
+
+	const reportId = req.params.id
+	try {
+		await Report.findByIdAndDelete(reportId)
+		res.status(200).send()
+	} catch (error) {
+		console.log(error)
+		if (isMongoError(error)) {
+			res.status(500).send("Internal server error")
+		}
+		else {
+			res.status(400).send("Bad request")
+		}
+	}
+})
+
+/**
+ * Route for deleting messages.
+ */
+app.delete('/messages/:group_id/:msg_id', async (req, res) => {
+
+	const groupId = req.params.group_id
+	const msgId = req.params.msg_id
+
+	try {
+		const group = await Group.findById(groupId)
+		const removedMsg = group.messages.id(msgId).remove()
+		await group.save()
+		res.status(200).send(removedMsg)
+	} catch (error) {
+		console.log(error)
+		if (isMongoError(error)) {
+			res.status(500).send("Internal server error")
+		}
+		else {
+			res.status(400).send("Bad request")
+		}
 	}
 })
 

@@ -50,8 +50,17 @@ const StudentModel = new mongoose.Schema({
     seenTutorial: false,
 })
 
+const ReportModel = new mongoose.Schema({
+    msgID: String,
+    msgBody: String,
+    senderID: String,
+    senderName: String,
+    groupID: String
+})
+
 const Group = mongoose.model('Group', GroupModel);
 const Student = mongoose.model('Student', StudentModel)
 const Course = mongoose.model('Course', CourseModel)
+const Report = mongoose.model('Report', ReportModel)
 
-module.exports = { Group, Student, Course };
+module.exports = { Group, Student, Course, Report };
