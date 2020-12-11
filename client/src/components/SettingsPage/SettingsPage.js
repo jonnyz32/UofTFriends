@@ -9,7 +9,7 @@ export class SettingsPage extends React.Component {
 	render() {
 
 		return (
-			<div className="SettingsRoot">
+			<div className="SettingsRoot" onClick={this.props.handleOutsideClick}>
 
 				<div className="SettingsHeaderContainer">
 					<p className="SettingsName"> {this.props.currentUser.name} </p>
@@ -37,7 +37,8 @@ export class SettingsPage extends React.Component {
 
 						<div className="SettingsAddCourseContainer">
 							<form className="SettingsAddCourseForm" onChange={this.props.courseOnChange}>
-								<input placeholder="Enter new course..." value={this.props.newCourse}></input>
+								<input placeholder="Enter new course..." onChange={this.props.handleCourseInput} value={this.props.newCourse} autocomplete="off"/>
+								<div id="settingsCourseDropdown"/>
 							</form>
 							<button className="SettingsAddCourseButton" onClick={this.props.addCourse}>Add</button>
 						</div>

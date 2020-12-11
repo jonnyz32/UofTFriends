@@ -617,6 +617,83 @@ class Home extends Component {
 		this.setState({ currentUser: updatedUser })
 	}
 
+	handleOutsideClick = (event) => {
+		const dropdown = document.getElementById("settingsCourseDropdown");
+		if (event.target !== dropdown) {
+			dropdown.innerHTML = ''
+		}
+	}
+
+	handleCourseInput = (event) => {
+		const courseId = event.target.value
+
+		if (courseId.length > 0) {
+			this.fetchCoursesBy(courseId)
+				.then(courses => {
+					this.displayCourses(courses)
+				}).catch(error => {
+					console.log(error)
+				})
+		} else {
+			document.getElementById("settingsCourseDropdown").innerHTML = ''
+		}
+	}
+
+	handleClickDropdownCourse = (event) => {
+		this.setState({ newCourse: event.target.course.courseId })
+		this.addCourse()
+	}
+
+	displayCourses = (courses) => {
+		const div = document.getElementById("settingsCourseDropdown");
+		div.innerHTML = ''
+
+		if (courses.length === 0) {
+			let a = document.createElement("a")
+			a.appendChild(document.createTextNode("No courses found"))
+			div.appendChild(a)
+		}
+
+		courses.forEach(course => {
+			let a = document.createElement("a")
+			a.course = course
+			a.onmouseup = this.handleClickDropdownCourse
+			a.appendChild(document.createTextNode(course.courseId))
+			div.appendChild(a)
+		})
+	}
+
+	attemptAddCourse = () => {
+		const course = this.state.newCourse
+		if (course === "") {
+			alert("Please enter a course!")
+			return
+		}
+
+		this.fetchCoursesBy(course)
+			.then(courses => {
+				if (courses.length < 1) {
+					alert("Please enter a valid course")
+				} else {
+					this.addCourse()
+				}
+			}).catch(error => {
+				console.log(error)
+			})
+	}
+
+	fetchCoursesBy = (id) => {
+		return fetch(`/Courses/${id}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}})
+			.then(res => {
+				if (res.status === 200) { return res.json() }
+				else { alert("Error loading courses") }
+			})
+	}
+
 	render() {
 
 		let centerPage = null
@@ -636,7 +713,8 @@ class Home extends Component {
 		} else if (this.state.viewFragment == "settings") {
 			centerPage = <SettingsPage currentUser={this.state.currentUser} chats={this.state.chats} courseOnChange={this.courseOnChange}
 				addCourse={this.addCourse} removeCourse={this.removeCourse} newCourse={this.state.newCourse} bioOnChange={this.bioOnChange}
-				submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange} />
+				submitBio={this.submitBio} handleSelectionChange={this.handleSelectionChange}
+				handleOutsideClick={this.handleOutsideClick} handleCourseInput={this.handleCourseInput} />
 			rightPage = null
 		} else {
 		  let texts = this.state.currentUser.groups[this.state.currentChat].messages

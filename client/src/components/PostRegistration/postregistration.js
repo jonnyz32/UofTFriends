@@ -147,7 +147,7 @@ class PostRegistration extends Component {
 		}
 
 		this.state.currentUser.courses.push(this.state.newCourse)
-		this.state.currentUser.groups.push(this.state.newCourse)
+		// Add to group (need to implement according to model)
 		this.setState({ newCourse: "" })
 	}
 
