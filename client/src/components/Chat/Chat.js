@@ -36,7 +36,7 @@ class Chat extends React.Component {
 	render() {
 		return (
 			<div className='messagesBox'>
-				<Texts filterUsers={this.props.filterUsers} searchQuery={this.props.searchQuery} clickHandlerChat={this.props.clickHandlerChat} texts={this.props.currentUser.groups[this.props.currentChat].messages} currentUser={this.props.currentUser} />
+				<Texts filterUsers={this.props.filterUsers} searchQuery={this.props.searchQuery} clickHandlerChat={this.props.clickHandlerChat} texts={this.props.currentUser.groups[this.props.currentChat].messages} currentUser={this.props.currentUser} currentChat={this.props.currentChat} />
 				<span className="messageInputTray">
 					<input className="messageInput" name="message" value={this.state.message} onChange={this.handleInputChange} placeholder="Enter a message..." type="text" />
 					<button className="messageButton" onClick={this.message}> Send </button>
@@ -47,6 +47,45 @@ class Chat extends React.Component {
 }
 
 class Texts extends React.Component {
+
+	reportMsg = (event) => {
+
+		const msgString = event.target.parentNode.children[2].innerHTML
+		let senderID, senderName, msgID = null
+
+		this.props.texts.forEach(msgObject => {
+			if (msgObject.text === msgString) {
+				senderID = msgObject.senderID
+				msgID = msgObject._id
+				senderName = msgObject.sender
+				return
+			}
+		});
+		console.log(`Message ${msgString} sent by ${senderID} was reported!`)
+		if (!senderID || !msgID) return
+
+		// Write report to DB
+		const report = {
+			msgID: msgID,
+			msgBody: msgString,
+			senderID: senderID,
+			senderName: senderName,
+			groupID: this.props.currentChat
+		}
+		fetch("/reports", {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(report),
+		}).then(res => {
+			if (res.status == 200) {
+				alert("Message reported!")
+			}
+		}).catch(error => {
+			console.log(error)
+		})
+	}
 
 	render() {
 		return (
@@ -80,6 +119,7 @@ class Texts extends React.Component {
 								<div className="msgText">
 									{text.text}
 								</div>
+								<button className="reportButton" onClick={this.reportMsg}> Report </button>
 							</div>
 						)
 					}

@@ -7,7 +7,7 @@ export class ReportCard extends Component {
 
 		return (
 			<div className="ReportCardContainer">
-				<button onClick={() => this.props.viewReport(this.props.name, this.props.type)}>{this.props.name}</button>
+				<button onClick={() => this.props.viewReport(this.props.report)}>{this.props.report.name}</button>
 			</div>
 		);
 	}

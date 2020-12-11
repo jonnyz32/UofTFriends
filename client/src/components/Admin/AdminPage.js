@@ -7,101 +7,106 @@ import { Redirect } from 'react-router-dom';
 export class AdminPage extends React.Component {
 
 	state = {
-		reportedGroups: [
-			{
-				name: "CSC309",
-				type: "Group",
-				reason: "Collectively excluding a student.",
-			},
-			{
-				name: "MAT235",
-				type: "Group",
-				reason: "Whole lotta cheating",
-			}],
-		reportedUsers: [
-			{
-				name: "Jonathan Zak",
-				type: "Student",
-				reason: "Too cool for school",
-				reportedMessage: "Yo school is actually for C H U M P S."
-			},
-			{
-				name: "Phil Dunphy",
-				type: "Student",
-				reason: "Spamming self-promotions",
-				reportedMessage: "I'm a realtor, buy a house."
-			},
-			{
-				name: "Homer Simpson",
-				type: "Student",
-				reason: "Eating too many donuts",
-				reportedMessage: "This is my 12th donut."
-			},
-			{
-				name: "Adi Thakur",
-				type: "Student",
-				reason: "Spreading hate against JS",
-				reportedMessage: "JS sucks."
-			},
-			{
-				name: "Meirbek Zeinulla",
-				type: "Student",
-				reason: "Extremely rude.",
-				reportedMessage: "Good evening, may I please have some more soup?"
-			}],
+		reports: [],
 		reportToShow: null,
 		logout: false
 	}
 
-	viewReport = (reportName, reportType) => {
+	// Fetching all reports.
+	componentDidMount() {
+		fetch("/reports", {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		}).then(res => {
+			if (res.status == 200) {
+				return res.json()
+			} else {
+				alert("Couldn't get reports!")
+			}
+		}).then(json => {
+			console.log("Reports:", json)
+			this.createReportObjects(json)
+		}).catch(error => {
+			console.log(error)
+		})
+	}
 
-		const reportIndex = this.getIndexOf(reportName, reportType)
-		let report = null
+	// Constructing the report objects needed for Admin's logic.
+	createReportObjects = (dbReports) => {
+		const newReports = []
+		dbReports.forEach(rep => {
+			newReports.push({
+				name: rep.senderName,
+				msgID: rep.msgID,
+				msg: rep.msgBody,
+				senderID: rep.senderID,
+				groupID: rep.groupID,
+				reportID: rep._id
+			})
+		})
+		this.setState({ reports: newReports })
+		console.log("Constructed reports", this.state.reports)
+	}
 
-		if (reportType === "Group") {
-			report = this.state.reportedGroups[reportIndex]
-		} else {
-			report = this.state.reportedUsers[reportIndex]
-		}
+	// onClick callback for reported student buttons; loads appripirate view in the actions section.
+	viewReport = (reportedStudent) => {
+		const report = this.state.reports.find(rep => rep.reportID === reportedStudent.reportID)
 		this.setState({ reportToShow: report })
 	}
 
-	getIndexOf = (reportName, reportType) => {
-
-		let arrayToIterate
-
-		if (reportType === "Group") {
-			arrayToIterate = this.state.reportedGroups
-		} else {
-			arrayToIterate = this.state.reportedUsers
-		}
-
-		for (let i = 0; i < arrayToIterate.length; i++) {
-			const element = arrayToIterate[i];
-			if (element.name === reportName) {
-				return i
+	// Remove the selected report locally and from the DB.
+	removeReport = (reportedStudent, action) => {
+		let reportIndex
+		let i = 0
+		this.state.reports.forEach(rep => {
+			if (rep.name === reportedStudent) {
+				reportIndex = i
+				return
 			}
-		}
-		return null
+			i++
+		});
+		const reportID = this.state.reports[reportIndex].reportID
+		// Remove report on DB.
+		fetch(`/reports/${reportID}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		}).then(res => {
+			if (res.status == 200) {
+				// Delete the report locally.
+				const newReports = [...this.state.reports]
+				const removedReport = newReports.splice(reportIndex, 1)[0]
+				this.setState({ reports: newReports })
+				this.setState({ reportToShow: null })
+				// Report has been removed; remove actual message.
+				if (action === "REMOVE") {
+					this.removeMessage(removedReport.groupID, removedReport.msgID)
+				}
+			} else {
+				alert("Couldn't delete report!")
+			}
+		}).catch(error => {
+			console.log(error)
+		})
 	}
 
-	removeReport = (reportName, reportType) => {
-
-		const reportIndex = this.getIndexOf(reportName, reportType)
-		console.log(reportName, reportType)
-		console.log(reportIndex)
-		let arrayToSplice
-
-		if (reportType == "Group") {
-			arrayToSplice = this.state.reportedGroups.slice()
-			arrayToSplice.splice(reportIndex, 1)
-			this.setState({ reportedGroups: arrayToSplice })
-		} else {
-			arrayToSplice = this.state.reportedUsers.slice()
-			arrayToSplice.splice(reportIndex, 1)
-			this.setState({ reportedUsers: arrayToSplice })
-		}
-		this.setState({ reportToShow: null })
+	// Remove the reported message from the DB.
+	removeMessage(groupID, msgID) {
+		fetch(`/messages/${groupID}/${msgID}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		}).then(res => {
+			if (res.status !== 200) {
+				alert("Couldn't delete message!")
+			}
+		}).catch(error => {
+			console.log(error)
+		})
 	}
 
 	logout = () => {
@@ -113,31 +118,25 @@ export class AdminPage extends React.Component {
 		if (this.state.logout) {
 			return <Redirect to={{ pathname: "/" }} />
 		}
-
 		return (
-
 			<div className="adminRoot">
+				{/* ICONS */}
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
+				{/* Navbar */}
 				<nav className="adminNav">
 					<p className="adminTitle">ADMIN</p>
 					<a onClick={this.logout}><i className="fa fa-fw fa-power-off"></i>Logout</a>
 				</nav>
-
+				{/* Sidebar; buttons for reported students. */}
 				<section className="adminSidebar">
 					<aside className="reportedPanel">
-						<p>Reported Groups</p>
-						{this.state.reportedGroups.map((report) => <ReportCard name={report.name} reason={report.reason} type={report.type}
-							reportedMessage={null} viewReport={this.viewReport} />)}
-					</aside>
-					<aside className="reportedPanel">
 						<p>Reported Students</p>
-						{this.state.reportedUsers.map((report) => <ReportCard name={report.name} reason={report.reason} type={report.type}
-							reportedMessage={report.reportedMessage} viewReport={this.viewReport} />)}
+						{this.state.reports.map((report) => <ReportCard report={report} viewReport={this.viewReport} />)}
 					</aside>
 				</section>
-
-				<section className="actionsFragment">
+				{/* Actions: Report or dismiss reports. */}
+				<section className="actionsFragmentContainer">
 					<p className="actionsFragmentHeader">Actions</p>
 					{this.state.reportToShow ? <ViewReport report={this.state.reportToShow} removeReport={this.removeReport} /> : null}
 				</section>
