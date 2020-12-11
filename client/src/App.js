@@ -17,14 +17,14 @@ class App extends Component {
 		currentUser: {},
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		fetch("/fetchUsers", {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 			}
 		}).then(res => {
-			if (res.status == 200) {
+			if (res.status === 200) {
 				return res.json()
 			}
 			else {
@@ -32,26 +32,29 @@ class App extends Component {
 			}
 		})
 			.then(json => {
-		
+
 				this.setState({ users: json })
 			})
 			.catch(error => {
 				console.log(error)
 			})
 	}
-	
+
 
 	toggleSignIn = (currentUser, signedIn) => {
 		if (signedIn) {
-			{ this.setState({ currentUser: currentUser }) }
+			this.setState({ currentUser: currentUser })
 		}
 	}
 
 	updateUser = (updatedUser) => {
-		this.state.currentUser = updatedUser
+		this.setState({ currentUser: updatedUser })
+
+		let users = this.state.users
 		for (var i = 0; i < this.state.users.length; i++) {
 			if (JSON.stringify(this.state.users[i].name) === JSON.stringify(updatedUser.name)) {
-				this.state.users[i] = updatedUser
+				users[i] = updatedUser
+				this.setState({ users: users })
 				return
 			}
 		}

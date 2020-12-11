@@ -34,14 +34,13 @@ class Home extends Component {
 		};
 	}
 
-    componentDidMount() {
+	componentDidMount() {
 		this.fetchGroups()
 	}
 
 
 	fetchGroups = () => {
 
-		let oldState = this.state;
 		const id = this.state.userId
 		console.log("id:", id)
 		const data = {
@@ -55,7 +54,7 @@ class Home extends Component {
 			},
 			body: JSON.stringify(data),
 		}).then(res => {
-			if (res.status == 200) {
+			if (res.status === 200) {
 				return res.json()
 			}
 			else {
@@ -63,12 +62,10 @@ class Home extends Component {
 			}
 		})
 			.then(json => {
-
-				console.log("json", json)
 				this.state.currentUser.groups = {}
 				json.forEach(keyValue => {
-					this.state.currentUser.groups[keyValue[0]] = {"name":"", "messages": []}
-					if (keyValue[1].includes(",")){
+					this.state.currentUser.groups[keyValue[0]] = { "name": "", "messages": [] }
+					if (keyValue[1].includes(",")) {
 						const names = keyValue[1].split(",")
 
 						if (names[0] === this.state.currentUser.name) {
@@ -123,7 +120,7 @@ class Home extends Component {
 
 	clickHandlerChat = () => {
 		console.log("in clickhandler")
-		let data = {"senderID": '5fced87818f58b18449d15d9'}
+		let data = { "senderID": '5fced87818f58b18449d15d9' }
 		console.log("in clickHandlerChat")
 		fetch("/fetchParticularUser", {
 			method: 'POST',
@@ -139,13 +136,13 @@ class Home extends Component {
 				alert("could not find user")
 			}
 		})
-		.then(json => {
-			console.log("json is "+ json)
-			this.setState({
-				viewFragment: "search",
-				users: [json]
+			.then(json => {
+				console.log("json is " + json)
+				this.setState({
+					viewFragment: "search",
+					users: [json]
+				})
 			})
-		})
 
 			.catch(error => {
 				console.log(error)
@@ -196,21 +193,21 @@ class Home extends Component {
 		})
 			.then(json => {
 				console.log("json", json)
-				if (json.contains){
+				if (json.contains) {
 					return true
 				}
 				else {
 					return false
 				}
 
-			
+
 			})
 			.catch(error => {
 				console.log(error)
 			})
-			console.log("result", result)
+		console.log("result", result)
 
-			return result
+		return result
 
 
 	}
@@ -219,14 +216,13 @@ class Home extends Component {
 		const currentUserId = this.state.currentUser._id
 		const currentUserName = this.state.currentUser.name
 		console.log("in add chat")
-		const groups = this.state.currentUser.groups
 
-		const groupAdded = await this.checkGroupAdded(otherUserId,currentUserId )
+		const groupAdded = await this.checkGroupAdded(otherUserId, currentUserId)
 		console.log("groupAdded", groupAdded)
-		if (groupAdded){
+		if (groupAdded) {
 			return
 		}
-		
+
 		let oldState = this.state;
 		let data = {
 			"otherUserId": otherUserId,
@@ -264,7 +260,7 @@ class Home extends Component {
 
 	addGroup = (groupId, userId) => {
 		const data = {
-			"groupId":groupId,
+			"groupId": groupId,
 			"userId": userId
 		}
 
@@ -290,11 +286,11 @@ class Home extends Component {
 				console.log(error)
 			})
 	}
-	
 
 
-	addMessages = (currentChat,sender,senderID,message) => {
-		let data = {"groupId": currentChat,"sender":sender,"senderID":senderID,"message":message}
+
+	addMessages = (currentChat, sender, senderID, message) => {
+		let data = { "groupId": currentChat, "sender": sender, "senderID": senderID, "message": message }
 		console.log("in add messages")
 		fetch("/Chat", {
 			method: 'POST',
@@ -348,7 +344,7 @@ class Home extends Component {
 				this.setState(() => {
 					let currentUser = Object.assign({}, oldState.currentUser)
 					currentUser.groups[groupId].messages = json.messages
-					return { currentUser};
+					return { currentUser };
 				}
 				)
 			})
@@ -358,26 +354,25 @@ class Home extends Component {
 	}
 
 	getMessagesChat = (groupId) => {
-		let data = {"groupId": groupId}
-		let oldState = this.state;
+		let data = { "groupId": groupId }
 		fetch("/Messages", {
 			method: 'POST',
 			headers: {
-			  'Content-Type': 'application/json',
+				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(data),
-		  }).then(res => {
-			if (res.status == 200){
+		}).then(res => {
+			if (res.status == 200) {
 				return res.json()
 			}
-			else{
+			else {
 				alert("could not get chat")
 			}
 		})
 			.then(json => {
-        return json.messages
+				return json.messages
 			})
-			.catch(error =>{
+			.catch(error => {
 				console.log(error)
 			})
 	}
@@ -400,20 +395,20 @@ class Home extends Component {
 				alert("could not get groupid")
 				throw "could not get groupid"
 			}
-			}).then(groupId => {
-				this.setState(() => {
-					let currentUser = Object.assign({}, oldState.currentUser)
-					console.log("groupId", groupId)
-					currentUser.groups[groupId._id] = {"name":"","messages":[]};
-					return { currentUser };
-				}
-				)
-			}).then(currentUser => {
-				this.fetchGroups()
-				return "success"
-			})
+		}).then(groupId => {
+			this.setState(() => {
+				let currentUser = Object.assign({}, oldState.currentUser)
+				console.log("groupId", groupId)
+				currentUser.groups[groupId._id] = { "name": "", "messages": [] };
+				return { currentUser };
+			}
+			)
+		}).then(currentUser => {
+			this.fetchGroups()
+			return "success"
+		})
 
-			.catch(error =>{
+			.catch(error => {
 				console.log(error)
 				return "error"
 			})
@@ -443,7 +438,7 @@ class Home extends Component {
 		let newCourse = this.state.newCourse
 		const result = await this.getGroupId(newCourse, this.state.currentUser._id)
 		console.log("result", result)
-		if ( result !== "success") {
+		if (result !== "success") {
 			console.log("result", result)
 			console.log("Was not success")
 			return
@@ -473,7 +468,7 @@ class Home extends Component {
 		let courseId = ""
 		const groupKeys = Object.keys(this.state.currentUser.groups)
 		groupKeys.forEach(groupKey => {
-			if (this.state.currentUser.groups[groupKey].name === courseToRemove){
+			if (this.state.currentUser.groups[groupKey].name === courseToRemove) {
 				courseId = groupKey
 			}
 		})
@@ -497,7 +492,7 @@ class Home extends Component {
 
 
 
-		const data = {userId: this.state.userId, courseId: courseId}
+		const data = { userId: this.state.userId, courseId: courseId }
 		await fetch("/RemoveCourse", {
 			method: 'DELETE',
 			headers: {
@@ -514,7 +509,7 @@ class Home extends Component {
 				alert("could not delete group")
 			}
 		})
-			.catch(error =>{
+			.catch(error => {
 				console.log(error)
 			})
 
@@ -687,7 +682,8 @@ class Home extends Component {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json'
-			}})
+			}
+		})
 			.then(res => {
 				if (res.status === 200) { return res.json() }
 				else { alert("Error loading courses") }
@@ -707,7 +703,7 @@ class Home extends Component {
 			rightPage = <TodoList name={this.state.currentUser.name} toDoList={this.state.currentUser.toDoList} activity={this.state.activity} time={this.state.time}
 				addNewTodo={this.addNewTodo} removeToDo={this.removeToDo} handleInputChange={this.handleInputChange} />
 		} else if (this.state.viewFragment == "search") {
-			{console.log("from chat:"+JSON.stringify(this.state.users))}
+			{ console.log("from chat:" + JSON.stringify(this.state.users)) }
 			centerPage = <Students addChat={this.addChat} users={this.state.users} />
 			rightPage = null
 		} else if (this.state.viewFragment == "settings") {
@@ -717,7 +713,7 @@ class Home extends Component {
 				handleOutsideClick={this.handleOutsideClick} handleCourseInput={this.handleCourseInput} />
 			rightPage = null
 		} else {
-		  let texts = this.state.currentUser.groups[this.state.currentChat].messages
+			let texts = this.state.currentUser.groups[this.state.currentChat].messages
 			console.log("texts in home", texts)
 			if (texts) {
 				centerPage = <Chat filterUsers={this.filterUsers} searchQuery={this.state.searchQuery} clickHandlerChat={this.clickHandlerChat} userID={this.state.userId} getMessagesChat={this.getMessagesChat} addMessages={this.addMessages} currentChat={this.state.currentChat} currentUser={this.state.currentUser} texts={texts} />
@@ -747,7 +743,7 @@ class Home extends Component {
 				</nav>
 
 				<aside id="sidebarContainer">
-					{Array.isArray(this.state.currentUser.groups) ? console.log("groups not fetched yet"):<SideBar getMessages={this.getMessages} toggleSearchMode={this.toggleSearchMode} chats={this.state.currentUser.groups} currentUser={this.props.currentUser} />}
+					{Array.isArray(this.state.currentUser.groups) ? console.log("groups not fetched yet") : <SideBar getMessages={this.getMessages} toggleSearchMode={this.toggleSearchMode} chats={this.state.currentUser.groups} currentUser={this.props.currentUser} />}
 
 				</aside>
 
