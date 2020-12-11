@@ -21,7 +21,6 @@ class Home extends Component {
 			viewFragment: "home",
 			currentChat: null,
 			currentUser: this.props.currentUser,
-			userId: "5fce8fff18f58b18449d15d8",
 			searchQuery: "",
 			newCourse: "",
 			newBio: "",
@@ -41,7 +40,7 @@ class Home extends Component {
 
 	fetchGroups = () => {
 
-		const id = this.state.userId
+		const id = this.state.currentUser._id
 		console.log("id:", id)
 		const data = {
 			"id": id
@@ -473,7 +472,6 @@ class Home extends Component {
 			}
 		})
 
-		console.log("userId, courseId", this.state.userId, courseId)
 
 
 		let coursesIndex = this.state.currentUser.courses.indexOf(courseToRemove)
@@ -492,7 +490,7 @@ class Home extends Component {
 
 
 
-		const data = { userId: this.state.userId, courseId: courseId }
+		const data = { userId: this.state.currentUser._id, courseId: courseId }
 		await fetch("/RemoveCourse", {
 			method: 'DELETE',
 			headers: {
