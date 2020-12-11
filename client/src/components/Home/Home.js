@@ -226,13 +226,6 @@ class Home extends Component {
 		if (groupAdded){
 			return
 		}
-
-
-		// groups.forEach(group => {
-		// 	if (group.members.includes(otherUserId)){
-		// 		return
-		// 	}
-		// })
 		
 		let oldState = this.state;
 		let data = {
