@@ -193,7 +193,7 @@ class PostRegistration extends Component {
 	// HTML Render
 
 	render() {
-		if (this.state.onboardingComplete === 1) {
+		if (this.state.onboardingComplete === true) {
 			return <Redirect to={{ pathname: "/Home" }} />
 		}
 
