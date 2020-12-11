@@ -205,6 +205,23 @@ Returns the student object from the students collection with id given by userId.
 for the given student, will have had the courseId removed.
 
 
+/fetchParticularUser (Post)
+
+Expects data as 
+
+{
+ "senderID": userId
+}
+
+'SenderID' is the userID of the particular student we are looking to get back, the route returns the entire student object of 
+the student with that particular Id.
+
+Ex:
+{
+ "senderID": 5fce8fff18f58b18449d15d8
+}
+
+the response object is the entire student object with that particular ID.
 
 /addGroup (Post)
 
@@ -224,11 +241,36 @@ Ex:
 where groupId and userId are the same as defined above. The response object is the corresponding
 student object with it's groups array, having had groupId added to it.
 
+/Chat (Post) 
 
+Expects data as 
+{
+"groupId":groupId,
+"sender": NameOfSender,
+"senderID": IdOfSender,
+text: message 
+}
+
+where "text" is the message the user is sending, "sender" is the name of the sender, 
+"senderID" is the actual Id of the student sending the message and 
+groupId is ID of the chat group where the message is being sent. This route adds 
+the text to the list of messages for that particular chat group, while also keeping track of 
+the sender students name and ID.
+
+Ex: 
+{
+"groupId":"5fc69ba84c82db94b79c764c",
+"sender": "user",
+"senderID": "5fce8fff18f58b18449d15d8",
+text: "hello guys" 
+} 
+
+the response sends the text message added, but main objective is to 
+update the messages list for the group in the database.
 
 /PostRegistration (Post)
 
-Excpects data as 
+Expects data as 
 { "userId": userId, 
 "course": course }
 
