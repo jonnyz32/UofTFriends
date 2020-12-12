@@ -1,6 +1,10 @@
 Our app is a platform for University of Toronto students to connect
 and communicate with other students in their courses or programs.
 
+## URL
+
+https://floating-brook-03042.herokuapp.com/
+
 ## Getting Started
 
 ```
